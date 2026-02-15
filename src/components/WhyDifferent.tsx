@@ -55,23 +55,23 @@ const WhyDifferent = ({ data }: { data: any }) => {
                         {/* Decorative Offset Border */}
                         <div className="absolute top-4 left-4 w-full h-full rounded-2xl md:rounded-[3rem] border-2 border-[#007f94]/10 z-0 translate-x-4 translate-y-4" />
 
-                        <div className="relative z-10 rounded-2xl md:rounded-[3rem] overflow-hidden aspect-[3/2] md:aspect-[4/5] shadow-xl md:shadow-2xl">
+                        <div className="relative z-10 rounded-2xl md:rounded-[3rem] overflow-hidden aspect-[3/4] md:aspect-[4/5] shadow-xl md:shadow-2xl">
                             <img
                                 src={image}
-                                className="w-full h-full object-cover object-top md:object-center scale-110"
+                                className="w-full h-full object-cover object-center"
                                 alt="Expert Medical Analysis"
                                 onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=1000'}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1e2b]/80 via-transparent to-transparent" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1e2b]/90 via-transparent to-transparent" />
 
                             {/* Floating Quote/Statement */}
                             <FadeIn
                                 direction="up"
                                 delay={0.5}
                                 duration={0.8}
-                                className="absolute bottom-4 left-4 right-4 md:bottom-10 md:left-10 md:right-10 p-4 md:p-8 bg-white/10 backdrop-blur-md rounded-2xl md:rounded-3xl border border-white/20"
+                                className="absolute bottom-3 left-3 right-3 md:bottom-10 md:left-10 md:right-10 p-4 md:p-8 bg-white/10 backdrop-blur-md rounded-xl md:rounded-3xl border border-white/20"
                             >
-                                <p className="text-white text-sm md:text-2xl font-bold leading-tight whitespace-pre-line">
+                                <p className="text-white text-xs md:text-2xl font-bold leading-tight whitespace-pre-line">
                                     <HighlightedText text={quote} />
                                 </p>
                             </FadeIn>
