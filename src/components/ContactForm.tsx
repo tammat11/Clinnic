@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Loader, ArrowRight } from 'lucide-react';
+import HighlightedText from './common/HighlightedText';
 
-const ContactForm = () => {
+const ContactForm = ({ data }: { data: any }) => {
+    const {
+        badge = 'Свяжитесь с нами',
+        title = 'Готовы начать путь \n к здоровью?',
+        desc = 'Оставьте заявку, и наш медицинский консультант свяжется с вами в течение 15 минут.',
+        titleSize = 48,
+        descSize = 18,
+        padding = 80
+    } = data || {};
+
     const [status, setStatus] = useState('idle'); // idle, submitting, success
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -13,18 +23,28 @@ const ContactForm = () => {
     };
 
     return (
-        <section id="contact" className="py-24 bg-[#007f94]/5 overflow-hidden">
+        <section
+            id="contact"
+            style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
+            className="bg-[#007f94]/5 overflow-hidden"
+        >
             <div className="section-container">
                 <div className="bg-white rounded-[40px] shadow-2xl p-8 lg:p-20 overflow-hidden relative">
                     {/* Content */}
                     <div className="grid lg:grid-cols-2 gap-16 relative z-10">
                         <div>
-                            <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm mb-6 block">Свяжитесь с нами</span>
-                            <h2 className="text-3xl md:text-5xl font-bold text-[#0a1e2b] mb-6 leading-tight">
-                                Получите консультацию международных врачей в Алматы
+                            <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm mb-6 block">{badge}</span>
+                            <h2
+                                style={{ fontSize: `clamp(2rem, 5vw, ${titleSize}px)` }}
+                                className="font-black text-[#0a1e2b] mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
+                            >
+                                <HighlightedText text={title} />
                             </h2>
-                            <p className="text-xl text-slate-600 mb-10 leading-relaxed">
-                                Запишитесь на приём и получите профессиональное мнение по вашему диагнозу и дальнейшему лечению.
+                            <p
+                                style={{ fontSize: `${descSize}px` }}
+                                className="text-slate-500 mb-10 leading-relaxed whitespace-pre-line"
+                            >
+                                <HighlightedText text={desc} />
                             </p>
                             <div className="flex gap-4 items-center text-[#007f94] bg-[#007f94]/5 p-6 rounded-2xl border border-[#007f94]/10">
                                 <div className="w-2 h-2 rounded-full bg-[#007f94] shrink-0" />

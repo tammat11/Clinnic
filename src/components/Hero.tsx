@@ -1,9 +1,11 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Check, ShieldCheck, MapPin, Sparkles, Clock, Users, Search, Activity, FileText, Stethoscope } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import Magnetic from './common/Magnetic';
+import HighlightedText from './common/HighlightedText';
+import { ICON_POOL } from '../lib/icons';
 
-const Hero = () => {
+const Hero = ({ data }: { data: any }) => {
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -12,6 +14,25 @@ const Hero = () => {
 
     const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
     const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+    const {
+        badgeTR = 'Turkiye',
+        badgeKZ = 'Kazakhstan',
+        title = 'Ведущие врачи из Турции теперь принимают в Алматы',
+        subtitle = 'Узнайте риски до того, как они станут диагнозами',
+        subtitleSize = 20,
+        description = 'Консультации, диагностика и планы медицинской реабилитации экспертного уровня без выезда за границу.',
+        buttonPrimary = 'Записаться',
+        buttonSecondary = 'Стоимость',
+        titleSize = 72,
+        descSize = 20,
+        padding = 100,
+        image = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000',
+        benefits = [],
+        floatingDoctors = []
+    } = data || {};
+
+    const [doctorLeft, doctorRight] = floatingDoctors;
 
     // Animation Variants
     const containerVariants = {
@@ -25,12 +46,6 @@ const Hero = () => {
         }
     };
 
-    const directionOffset = {
-        up: { y: 20, x: 0 },
-        down: { y: -20, x: 0 },
-        left: { x: 20, y: 0 },
-        right: { x: -20, y: 0 }
-    };
     const itemVariants = {
         hidden: { opacity: 0, y: 20, translateZ: 0 },
         visible: {
@@ -54,7 +69,9 @@ const Hero = () => {
     return (
         <section
             ref={containerRef}
-            className="relative min-h-screen flex items-center justify-center bg-white pt-24 pb-12 overflow-hidden"
+            id="hero"
+            style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
+            className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden"
         >
             {/* 1. LAYERED BACKGROUND */}
             <div className="absolute inset-0 z-0 pointer-events-none">
@@ -78,37 +95,38 @@ const Hero = () => {
                     {/* Badge */}
                     <motion.div
                         variants={itemVariants}
-                        className="inline-flex items-center gap-3 mb-6 md:mb-10 px-3 py-1.5 md:px-4 bg-slate-50 border border-slate-100 rounded-full"
+                        className="inline-flex items-center gap-4 mb-6 md:mb-10 px-5 py-2.5 bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-sm"
                     >
-                        <div className="flex items-center gap-1.5">
-                            <div className="w-4 h-4 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-white">
+                        <div className="flex items-center gap-2">
+                            <div className="w-3.5 h-3.5 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-slate-100">
                                 <img
                                     src="https://flagcdn.com/w80/tr.png"
-                                    className="w-[150%] h-[150%] max-w-none object-cover object-[30%_center]"
+                                    className="w-full h-full object-cover scale-[1.2] object-[30%_center]"
                                     alt="TR"
                                 />
                             </div>
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Turkiye</span>
+                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">{badgeTR}</span>
                         </div>
-                        <span className="text-slate-300 text-[10px]">/</span>
-                        <div className="flex items-center gap-1.5">
-                            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">Kazakhstan</span>
-                            <div className="w-4 h-4 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-white">
+                        <span className="text-slate-300 text-[10px] font-thin">/</span>
+                        <div className="flex items-center gap-2">
+                            <div className="w-3.5 h-3.5 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-slate-100">
                                 <img
                                     src="https://flagcdn.com/w80/kz.png"
-                                    className="w-[150%] h-[150%] max-w-none object-cover"
+                                    className="w-full h-full object-cover scale-[1.2] object-[60%_center]"
                                     alt="KZ"
                                 />
                             </div>
+                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">{badgeKZ}</span>
                         </div>
                     </motion.div>
 
                     {/* Main Headline */}
                     <motion.h1
                         variants={itemVariants}
-                        className="text-4xl xs:text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold text-[#0a1e2b] tracking-tighter leading-[1.05] md:leading-[1.1] mb-6 px-1"
+                        style={{ fontSize: `clamp(2.25rem, 5vw, ${titleSize}px)` }}
+                        className="font-extrabold text-[#0a1e2b] tracking-tighter leading-[1.05] md:leading-[1.1] mb-6 px-1 whitespace-pre-line"
                     >
-                        Ведущие врачи <br /> <span className="text-[#007f94]">из Турции теперь</span> <br /> принимают в Алматы
+                        <HighlightedText text={title} />
                     </motion.h1>
 
                     {/* Detailed Subtext */}
@@ -116,12 +134,18 @@ const Hero = () => {
                         variants={itemVariants}
                         className="max-w-4xl mx-auto space-y-3 mb-8 md:mb-10 px-0"
                     >
-                        <h2 className="text-base xs:text-lg md:text-3xl font-black text-[#007f94]/70 tracking-tighter leading-tight uppercase whitespace-pre-wrap md:whitespace-nowrap">
-                            Узнайте риски до того, <span className="text-[#007f94]">как они станут диагнозами</span>
+                        <h2
+                            style={{ fontSize: `${subtitleSize}px` }}
+                            className="font-black text-[#007f94]/70 tracking-tighter leading-tight uppercase whitespace-pre-wrap md:whitespace-nowrap"
+                        >
+                            <HighlightedText text={subtitle} />
                         </h2>
 
-                        <p className="text-sm md:text-lg text-slate-500 font-medium max-w-[340px] md:max-w-2xl mx-auto leading-relaxed opacity-80">
-                            Консультации, диагностика и планы медицинской реабилитации <br className="hidden xs:block md:hidden" /> экспертного уровня без выезда за границу.
+                        <p
+                            style={{ fontSize: `${descSize}px` }}
+                            className="text-slate-500 font-medium max-w-[340px] md:max-w-2xl mx-auto leading-relaxed opacity-80 whitespace-pre-line"
+                        >
+                            <HighlightedText text={description} />
                         </p>
                     </motion.div>
 
@@ -137,7 +161,7 @@ const Hero = () => {
                                 href="#contact"
                                 className="flex-1 sm:flex-none px-4 md:px-12 py-4 md:py-5 bg-[#007f94] text-white font-bold rounded-2xl shadow-xl shadow-[#007f94]/20 flex items-center justify-center gap-2 md:gap-3 text-base md:text-xl whitespace-nowrap"
                             >
-                                Записаться <ArrowUpRight size={18} className="shrink-0 md:w-5 md:h-5" />
+                                {buttonPrimary} <ArrowUpRight size={18} className="shrink-0 md:w-5 md:h-5" />
                             </motion.a>
                         </Magnetic>
                         <Magnetic>
@@ -147,7 +171,7 @@ const Hero = () => {
                                 href="#cost"
                                 className="flex-1 sm:flex-none px-4 md:px-12 py-4 md:py-5 bg-white text-slate-900 font-bold rounded-2xl border border-slate-200 hover:bg-slate-50 transition-all text-base md:text-xl flex justify-center whitespace-nowrap"
                             >
-                                Стоимость
+                                {buttonSecondary}
                             </motion.a>
                         </Magnetic>
                     </motion.div>
@@ -158,18 +182,15 @@ const Hero = () => {
                             variants={itemVariants}
                             className="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-8 gap-y-3"
                         >
-                            {[
-                                { icon: ShieldCheck, text: "Протоколы JCI" },
-                                { icon: Search, text: "Чекап: 80 направлений" },
-                                { icon: Clock, text: "Без очередей" },
-                                { icon: Users, text: "Персональный менеджер" },
-                                { icon: Sparkles, text: "Всё за 1 визит" }
-                            ].map((item, i) => (
-                                <span key={i} className="flex items-center gap-1.5 md:gap-2 whitespace-nowrap text-[#007f94] font-bold tracking-tight text-[10px] md:text-sm bg-slate-50 md:bg-transparent px-2 md:px-0 py-1 md:py-0 rounded-md md:rounded-none">
-                                    <item.icon size={12} className="text-[#007f94] shrink-0 md:w-[14px] md:h-[14px]" />
-                                    {item.text}
-                                </span>
-                            ))}
+                            {(benefits || []).map((item: any, i: number) => {
+                                const Icon = ICON_POOL[item.icon] || ICON_POOL.Activity;
+                                return (
+                                    <span key={i} className="flex items-center gap-1.5 md:gap-2 whitespace-nowrap text-[#007f94] font-bold tracking-tight text-[10px] md:text-sm bg-slate-50 md:bg-transparent px-2 md:px-0 py-1 md:py-0 rounded-md md:rounded-none">
+                                        <Icon size={12} className="text-[#007f94] shrink-0 md:w-[14px] md:h-[14px]" />
+                                        {item.text}
+                                    </span>
+                                );
+                            })}
                         </motion.div>
                     </div>
 
@@ -178,66 +199,88 @@ const Hero = () => {
                         <motion.div
                             style={{ scale }}
                             variants={portalVariants}
-                            className="aspect-[21/9] rounded-[2rem] md:rounded-[4rem] overflow-hidden shadow-2xl relative"
+                            className="aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] rounded-[2rem] md:rounded-[4rem] overflow-hidden shadow-2xl relative"
                         >
                             <motion.img
                                 style={{ scale: imageScale }}
-                                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000"
+                                src={image}
+                                onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000'}
                                 className="w-full h-full object-cover"
                                 alt="Modern Clinic Excellence"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
                         </motion.div>
 
-                        {/* Floating Action Cards */}
-                        {/* Card 1: Dr. Mustafa Demir */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 1, duration: 1 }}
-                            className="absolute -left-2 sm:-left-6 lg:-left-12 top-[10%] sm:top-1/4 z-20"
-                        >
+                        {/* Floating Action Cards - Doctors */}
+                        {/* Doctor 1: Left Floating Card */}
+                        {doctorLeft && (
                             <motion.div
-                                animate={{ y: [0, -5, 0] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                                className="bg-white/95 backdrop-blur-xl p-3 sm:p-6 rounded-2xl sm:rounded-[2.5rem] shadow-xl border border-white/50 max-w-[160px] sm:max-w-[260px] text-left"
+                                initial={{ opacity: 0, x: -30, y: 0 }}
+                                animate={{ opacity: 1, x: 0, y: 0 }}
+                                transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                                className="absolute -left-2 xs:-left-4 sm:-left-8 lg:-left-20 top-[10%] sm:top-[20%] z-20"
                             >
-                                <div className="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-4">
-                                    <div className="w-8 h-8 sm:w-14 sm:h-14 rounded-full border-2 border-[#007f94] overflow-hidden shadow-lg shrink-0">
-                                        <img src="/doctor.png" className="w-full h-auto" alt="Doctor" onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=200'} />
+                                <motion.div
+                                    animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
+                                    transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                                    className="bg-white/90 backdrop-blur-2xl p-1.5 sm:p-4 rounded-[1.2rem] sm:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/60 max-w-[130px] xs:max-w-[160px] sm:max-w-[280px] text-left group transition-transform hover:scale-105 duration-500"
+                                >
+                                    <div className="relative aspect-[4/5] rounded-[0.8rem] sm:rounded-[2rem] overflow-hidden mb-1.5 sm:mb-4 shadow-inner bg-slate-100">
+                                        <img
+                                            src={doctorLeft.image}
+                                            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                                            alt={doctorLeft.name}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#007f94]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
-                                    <div>
-                                        <p className="text-[10px] sm:text-sm font-bold text-slate-900 leading-tight">Д-р Мустафа Демир</p>
-                                        <p className="text-[7px] sm:text-[9px] text-[#007f94] font-bold uppercase mt-0.5 sm:mt-1">Acıbadem Surgeon</p>
+                                    <div className="px-1 sm:px-2 pb-1">
+                                        <p className="text-[10px] sm:text-base font-bold text-slate-900 leading-tight">{doctorLeft.name}</p>
+                                        <p className="text-[7px] sm:text-[10px] text-[#007f94] font-black uppercase tracking-wider mt-0.5 opacity-80">{doctorLeft.role}</p>
                                     </div>
-                                </div>
-                                <p className="text-[8px] sm:text-[11px] text-slate-500 font-medium leading-tight sm:leading-relaxed">Действующий профессор медицинских наук из Стамбула.</p>
+                                </motion.div>
                             </motion.div>
-                        </motion.div>
+                        )}
 
-                        {/* Card 2: Expertise Badge */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 1.2, duration: 1 }}
-                            className="absolute -right-2 sm:-right-6 lg:-right-12 bottom-[10%] sm:bottom-1/4 z-20"
-                        >
+                        {/* Doctor 2: Right Floating Card */}
+                        {doctorRight && (
                             <motion.div
-                                animate={{ y: [0, 5, 0] }}
-                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                                className="bg-[#007f94]/90 backdrop-blur-xl p-3 sm:p-6 rounded-2xl sm:rounded-[2.5rem] shadow-xl border border-white/20 max-w-[140px] sm:max-w-[240px] text-left text-white"
+                                initial={{ opacity: 0, x: 30, y: 0 }}
+                                animate={{ opacity: 1, x: 0, y: 0 }}
+                                transition={{ delay: 1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                                className="absolute -right-2 xs:-right-4 sm:-right-8 lg:-right-20 bottom-[5%] sm:bottom-[15%] z-20"
                             >
-                                <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-4">
-                                    <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                                        <ShieldCheck size={16} className="sm:w-6 sm:h-6" />
+                                <motion.div
+                                    animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
+                                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                                    className="bg-white/90 backdrop-blur-2xl p-1.5 sm:p-4 rounded-[1.2rem] sm:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/60 max-w-[130px] xs:max-w-[160px] sm:max-w-[280px] text-left group transition-transform hover:scale-105 duration-500"
+                                >
+                                    <div className="relative aspect-[4/5] rounded-[0.8rem] sm:rounded-[2rem] overflow-hidden mb-1.5 sm:mb-4 shadow-inner bg-slate-100">
+                                        <img
+                                            src={doctorRight.image}
+                                            className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                                            alt={doctorRight.name}
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#007f94]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
-                                    <div>
-                                        <p className="text-[10px] sm:text-sm font-bold leading-tight">Expert Opinion</p>
-                                        <p className="text-[7px] sm:text-[9px] text-white/70 font-bold uppercase">International Status</p>
+                                    <div className="px-1 sm:px-2 pb-1">
+                                        <p className="text-[10px] sm:text-base font-bold text-slate-900 leading-tight">{doctorRight.name}</p>
+                                        <p className="text-[7px] sm:text-[10px] text-[#007f94] font-black uppercase tracking-wider mt-0.5 opacity-80">{doctorRight.role}</p>
                                     </div>
-                                </div>
-                                <p className="text-[8px] sm:text-[11px] text-white/80 font-medium leading-tight sm:leading-relaxed">Второе мнение от ведущих специалистов мира.</p>
+                                </motion.div>
                             </motion.div>
+                        )}
+
+                        {/* Centered Badge - Trust Indicator */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.4, duration: 0.8 }}
+                            className="absolute left-1/2 -translate-x-1/2 -bottom-6 z-30 flex gap-2 md:gap-4"
+                        >
+                            <div className="bg-[#0a1e2b] text-white px-4 md:px-8 py-3 md:py-4 rounded-full shadow-2xl flex items-center gap-3 border border-white/10 backdrop-blur-md">
+                                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] whitespace-nowrap">Международные врачи на связи</span>
+                            </div>
                         </motion.div>
                     </div>
                 </div>

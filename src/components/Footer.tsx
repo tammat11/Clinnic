@@ -2,7 +2,13 @@ import React from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const Footer = () => {
+const Footer = ({ data }: { data: any }) => {
+    const {
+        address = 'Алматы, проспект Достык, 210',
+        phone = '+7 707 333 44 55',
+        instagram = 'https://www.instagram.com/icgroup.kz/?__pwa=1'
+    } = data || {};
+
     return (
         <footer className="bg-slate-900 pt-24 pb-12 text-white overflow-hidden">
             <div className="section-container">
@@ -18,27 +24,41 @@ const Footer = () => {
                             <div className="w-10 h-10 bg-[#007f94] rounded-lg flex items-center justify-center">
                                 <span className="text-white font-bold text-xl">R</span>
                             </div>
-                            <span className="text-2xl font-bold tracking-tight">REACTIVE</span>
+                            <span className="text-2xl font-bold tracking-tight uppercase">Reactive</span>
                         </div>
                         <p className="text-slate-400 text-lg leading-relaxed max-w-sm mb-10">
                             Leading private clinic in Almaty bringing world-class Turkish medical protocols to your health.
                         </p>
                         <div className="flex gap-6">
-                            <motion.a whileHover={{ scale: 1.1, rotate: 10 }} href="#" className="p-3 bg-white/5 rounded-xl hover:bg-[#007f94] transition-colors"><Instagram size={20} /></motion.a>
-                            <motion.a whileHover={{ scale: 1.1, rotate: -10 }} href="#" className="p-3 bg-white/5 rounded-xl hover:bg-[#007f94] transition-colors"><Facebook size={20} /></motion.a>
+                            <motion.a
+                                whileHover={{ scale: 1.1, rotate: 10 }}
+                                href={instagram}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 bg-white/5 rounded-xl hover:bg-[#007f94] transition-colors"
+                            >
+                                <Instagram size={20} />
+                            </motion.a>
+                            <motion.a
+                                whileHover={{ scale: 1.1, rotate: -10 }}
+                                href="#"
+                                className="p-3 bg-white/5 rounded-xl hover:bg-[#007f94] transition-colors"
+                            >
+                                <Facebook size={20} />
+                            </motion.a>
                         </div>
                     </div>
 
                     <div className="lg:col-span-4">
-                        <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-8">Contact Info</h4>
+                        <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-8">Контакты</h4>
                         <div className="space-y-6">
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <MapPin size={20} className="text-[#007f94] shrink-0" />
-                                <span className="text-slate-300">Almaty, Republic Square 1, Private Clinical Wing</span>
+                                <span className="text-slate-300">{address}</span>
                             </motion.div>
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <Phone size={20} className="text-[#007f94] shrink-0" />
-                                <span className="text-slate-300 font-bold">+7 (700) 000-00-00</span>
+                                <span className="text-slate-300 font-bold">{phone}</span>
                             </motion.div>
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <Mail size={20} className="text-[#007f94] shrink-0" />

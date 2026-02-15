@@ -43,7 +43,6 @@ const FadeIn = ({
             viewport={{ once: once, margin: "-20px" }}
             style={{
                 willChange: "opacity, transform",
-                opacity: 0,
                 ...style
             }}
             className={className}

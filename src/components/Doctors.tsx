@@ -2,40 +2,51 @@ import React from 'react';
 import { ArrowUpRight, MapPin, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+const Doctors = ({ data }: { data: any }) => {
+    const {
+        badge = 'Команда',
+        title = 'Ведущие врачи из Турции \n теперь в Алматы.',
+        desc = 'Приём ведут специалисты с клиническим опытом работы в лучших госпиталях Стамбула.',
+        titleSize = 48,
+        descSize = 18,
+        padding = 80,
+        doctorsList,
+        cardTitleSize = 24,
+        cardDescSize = 14
+    } = data || {};
 
-
-const Doctors = () => {
-    const doctors = [
+    const items = doctorsList || [
         {
             name: 'Д-р Ахмет Кая',
             role: 'Кардиолог-хирург',
             years: '18 лет опыта',
             practice: 'Стамбульский университет',
-            bio: 'Эксперт по диагностике и лечению сложных случаев. Медународные протоколы.',
-            image: '/doctor.png'
+            image: '/doctors/doctor-1.jpg'
         },
         {
             name: 'Д-р Мехмет Оз',
             role: 'Невролог',
             years: '15 лет опыта',
             practice: 'Клиника Acıbadem',
-            bio: 'Специализируется на нейродегенеративных заболеваниях.',
-            image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800'
+            image: '/doctors/doctor-2.jpg'
         },
         {
             name: 'Д-р Айше Демир',
             role: 'Эндокринолог',
             years: '20 лет опыта',
             practice: 'Американский госпиталь',
-            bio: 'Ведущий специалист по гормональной терапии.',
             image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800'
         }
     ];
 
     return (
-        <section id="doctors" className="section-padding bg-slate-50 overflow-hidden relative">
-            <div className="section-container relative z-10">
-                {/* APEX: Centered Header */}
+        <section
+            id="doctors"
+            style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
+            className="bg-slate-50 overflow-hidden relative"
+        >
+            <div className="container mx-auto px-4 md:px-6 relative z-10">
+                {/* Centered Header */}
                 <div className="text-center max-w-4xl mx-auto mb-10 md:mb-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -43,55 +54,68 @@ const Doctors = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block">Команда</span>
-                        <h2 className="text-3xl md:text-5xl font-bold text-[#0a1e2b] mb-4 md:mb-6 leading-tight">
-                            Ведущие врачи из Турции <br /> <span className="text-[#007f94]">теперь в Алматы.</span>
+                        <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block">{badge}</span>
+                        <h2
+                            style={{ fontSize: `clamp(2rem, 5vw, ${titleSize}px)` }}
+                            className="font-black text-[#0a1e2b] mb-4 md:mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
+                        >
+                            {title}
                         </h2>
-                        <p className="text-sm md:text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed px-4">
-                            Приём ведут специалисты с клиническим опытом работы в лучших госпиталях Стамбула.
+                        <p
+                            style={{ fontSize: `${descSize}px` }}
+                            className="text-slate-500 max-w-2xl mx-auto leading-relaxed px-4 whitespace-pre-line"
+                        >
+                            {desc}
                         </p>
                     </motion.div>
                 </div>
 
-                {/* BASE: Doctors Grid - Horizontal Scroll on Mobile, Grid on Desktop */}
-                <div className="flex overflow-x-auto md:grid md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16 snap-x snap-mandatory scrollbar-hide pb-8 -mx-6 px-6">
-                    {doctors.map((doc, i) => (
+                {/* Doctors Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8 mb-10 md:mb-16">
+                    {items.map((doc: any, i: number) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 30 } as any}
-                            whileInView={{ opacity: 1, y: 0 } as any}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-20px" }}
-                            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 1, 0.36, 1] } as any}
-                            style={{ willChange: "transform, opacity", opacity: 0 }}
-                            className="group flex flex-col items-center text-center min-w-[260px] xs:min-w-[300px] md:min-w-0 w-full snap-center"
+                            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 1, 0.36, 1] }}
+                            className="group flex flex-col items-center text-center w-full"
                         >
-                            {/* Image Container - Large & Rounded like PDF */}
-                            <div className="w-full aspect-[4/5] md:aspect-[3/4] mb-4 md:mb-8 overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-slate-200 relative shadow-md group-hover:shadow-2xl transition-all duration-500">
+                            {/* Image Container */}
+                            <div className="w-full aspect-[4/5] md:aspect-[3/4] mb-3 md:mb-8 overflow-hidden rounded-[1.2rem] md:rounded-[2.5rem] bg-slate-200 relative shadow-sm md:shadow-md group-hover:shadow-2xl transition-all duration-500">
                                 <img
                                     src={doc.image}
                                     alt={doc.name}
                                     className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                                     onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800'}
                                 />
-
                                 {/* Hover Overlay */}
                                 <div className="absolute inset-0 bg-[#007f94]/0 group-hover:bg-[#007f94]/10 transition-colors duration-300" />
-
-                                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-[9px] md:text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-all duration-300">
+                                <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/90 backdrop-blur-md px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[7px] md:text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-all duration-300">
                                     {doc.years}
                                 </div>
                             </div>
 
-                            <h3 className="text-xl md:text-2xl font-bold text-slate-900 mb-1 md:mb-2">{doc.name}</h3>
-                            <p className="text-[#007f94] text-sm md:text-base font-medium mb-2 md:mb-4">{doc.role}</p>
+                            <h3
+                                style={{ fontSize: `clamp(14px, 4.5vw, ${cardTitleSize}px)` }}
+                                className="font-bold text-slate-900 mb-0.5 md:mb-2 leading-tight"
+                            >
+                                {doc.name}
+                            </h3>
+                            <p
+                                style={{ fontSize: `clamp(10px, 3.5vw, ${cardDescSize}px)` }}
+                                className="text-[#007f94] font-medium mb-1 md:mb-4 leading-tight"
+                            >
+                                {doc.role}
+                            </p>
 
-                            <div className="flex items-center justify-center gap-2 text-[10px] md:text-sm text-slate-400 mb-4 md:mb-6">
-                                <MapPin size={12} className="md:w-[14px] md:h-[14px]" />
-                                <span>{doc.practice}</span>
+                            <div className="flex items-center justify-center gap-1.5 md:gap-2 text-[8px] md:text-sm text-slate-400 mb-3 md:mb-6">
+                                <MapPin size={10} className="md:w-[14px] md:h-[14px]" />
+                                <span className="truncate max-w-[120px] md:max-w-none">{doc.practice}</span>
                             </div>
 
-                            <a href="#contact" className="inline-flex items-center gap-2 text-sm md:text-base text-slate-900 font-bold border-b border-slate-200 pb-0.5 hover:border-[#007f94] hover:text-[#007f94] transition-colors">
-                                Записаться <ArrowUpRight size={16} className="md:w-[18px]" />
+                            <a href="#contact" className="inline-flex items-center gap-1 md:gap-2 text-[10px] md:text-base text-slate-900 font-bold border-b border-slate-200 pb-0.5 hover:border-[#007f94] hover:text-[#007f94] transition-colors">
+                                Записаться <ArrowUpRight size={12} className="md:w-[18px]" />
                             </a>
                         </motion.div>
                     ))}
