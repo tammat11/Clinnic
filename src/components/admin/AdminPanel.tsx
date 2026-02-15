@@ -224,6 +224,17 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
             });
 
             if (updateRes.ok) {
+                // Success Telegram Notification
+                await fetch(`https://api.telegram.org/bot${'8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c'}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: '5411497762',
+                        text: `✅ <b>Деплой успешно завершен!</b>\n\nСайт обновится в течение 2-3 минут.\n<a href="https://clinnic.vercel.app">Перейти на сайт</a>`,
+                        parse_mode: 'HTML'
+                    })
+                }).catch(() => { });
+
                 alert("🚀 Изменения успешно отправлены на GitHub!\n\nСайт обновится автоматически в течение 2-3 минут. Вы получите уведомление в Telegram.");
                 setIsOpen(false);
             } else {
@@ -232,6 +243,18 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
             }
         } catch (error: any) {
             console.error('Deployment Error:', error);
+
+            // Error Telegram Notification
+            await fetch(`https://api.telegram.org/bot${'8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c'}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: '5411497762',
+                    text: `❌ <b>Ошибка деплоя</b>\n\n${error.message}`,
+                    parse_mode: 'HTML'
+                })
+            }).catch(() => { });
+
             alert("❌ Ошибка при публикации: " + error.message);
         } finally {
             setIsDeploying(false);
@@ -423,12 +446,16 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                                 value={data.ctaTitle}
                                 onChange={(v: string) => handleUpdate('process', 'ctaTitle', v)}
                                 placeholder="Введите заголовок"
+                                size={data.ctaTitleSize}
+                                onSizeChange={(v: number) => handleUpdate('process', 'ctaTitleSize', v)}
                             />
                             <ContentBlock
                                 label="Описание CTA"
                                 value={data.ctaDesc}
                                 onChange={(v: string) => handleUpdate('process', 'ctaDesc', v)}
                                 placeholder="Введите описание"
+                                size={data.ctaDescSize}
+                                onSizeChange={(v: number) => handleUpdate('process', 'ctaDescSize', v)}
                             />
                             <InputField label="Текст кнопки CTA" value={data.ctaButton} onChange={(v: string) => handleUpdate('process', 'ctaButton', v)} />
                         </div>
@@ -450,6 +477,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                             label="Цитата на фото"
                             value={data.quote}
                             onChange={(v: string) => handleUpdate('trust', 'quote', v)}
+                            size={data.quoteSize}
+                            onSizeChange={(v: number) => handleUpdate('trust', 'quoteSize', v)}
                         />
                         <ContentBlock
                             label="Вердикт"
@@ -516,10 +545,36 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                             </div>
 
                             <div className="space-y-3">
-                                {(data.doctorsList || []).map((doc: any) => (
+                                {(data.doctorsList || []).map((doc: any, idx: number) => (
                                     <div key={doc.id} className="bg-slate-50 border border-slate-200 rounded-xl p-3">
                                         <div className="flex items-start justify-between gap-3 mb-3">
                                             <div className="flex items-center gap-3">
+                                                <div className="flex flex-col gap-1 mr-2">
+                                                    <button
+                                                        type="button"
+                                                        disabled={idx === 0}
+                                                        onClick={() => {
+                                                            const newDoctors = [...(data.doctorsList || [])];
+                                                            [newDoctors[idx - 1], newDoctors[idx]] = [newDoctors[idx], newDoctors[idx - 1]];
+                                                            handleUpdate('doctors', 'doctorsList', newDoctors);
+                                                        }}
+                                                        className="p-1 hover:bg-slate-200 rounded disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                                                    >
+                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6" /></svg>
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        disabled={idx === (data.doctorsList?.length || 0) - 1}
+                                                        onClick={() => {
+                                                            const newDoctors = [...(data.doctorsList || [])];
+                                                            [newDoctors[idx + 1], newDoctors[idx]] = [newDoctors[idx], newDoctors[idx + 1]];
+                                                            handleUpdate('doctors', 'doctorsList', newDoctors);
+                                                        }}
+                                                        className="p-1 hover:bg-slate-200 rounded disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                                                    >
+                                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
+                                                    </button>
+                                                </div>
                                                 <img src={doc.image} className="w-10 h-10 rounded-full object-cover bg-slate-200" alt={doc.name} />
                                                 <div>
                                                     <p className="text-sm font-bold text-slate-900">{doc.name}</p>
@@ -636,7 +691,10 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                 {activeSection === 'footer' && (
                     <>
                         <InputField label="Адрес" value={data.address} onChange={(v: string) => handleUpdate('footer', 'address', v)} placeholder="Адрес" />
-                        <InputField label="Телефон" value={data.phone} onChange={(v: string) => handleUpdate('footer', 'phone', v)} placeholder="Номер" />
+                        <div className="grid grid-cols-2 gap-4">
+                            <InputField label="Телефон 1" value={data.phone} onChange={(v: string) => handleUpdate('footer', 'phone', v)} placeholder="Номер 1" />
+                            <InputField label="Телефон 2" value={data.phone2} onChange={(v: string) => handleUpdate('footer', 'phone2', v)} placeholder="Номер 2 (необязательно)" />
+                        </div>
                         <InputField label="Instagram URL" value={data.instagram} onChange={(v: string) => handleUpdate('footer', 'instagram', v)} />
                         <SectionLayout data={data} onUpdate={handleUpdate} section="footer" />
                     </>

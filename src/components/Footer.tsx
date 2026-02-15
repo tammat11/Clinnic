@@ -58,7 +58,10 @@ const Footer = ({ data }: { data: any }) => {
                             </motion.div>
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <Phone size={20} className="text-[#007f94] shrink-0" />
-                                <span className="text-slate-300 font-bold">{phone}</span>
+                                <div className="flex flex-col">
+                                    <span className="text-slate-300 font-bold">{phone}</span>
+                                    {data?.phone2 && <span className="text-slate-300 font-bold mt-1">{data.phone2}</span>}
+                                </div>
                             </motion.div>
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <Mail size={20} className="text-[#007f94] shrink-0" />
