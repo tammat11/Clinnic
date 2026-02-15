@@ -262,14 +262,14 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
     };
 
     const sections = [
-        { id: 'hero', label: 'Главный экран', icon: Layout },
-        { id: 'values', label: 'Ценности', icon: Type },
-        { id: 'process', label: 'Процесс', icon: Settings },
-        { id: 'trust', label: 'Доверие', icon: ShieldCheck },
-        { id: 'doctors', label: 'Врачи', icon: ImageIcon },
-        { id: 'directions', label: 'Услуги', icon: Sparkles },
-        { id: 'contact', label: 'Контакты', icon: Mail },
-        { id: 'footer', label: 'Футер', icon: Layout },
+        { id: 'hero', label: '01. Главный экран', icon: Layout },
+        { id: 'values', label: '02. Ценности', icon: Activity },
+        { id: 'process', label: '03. Процесс приёма', icon: ClipboardCheck },
+        { id: 'trust', label: '04. Доверие и факты', icon: ShieldCheck },
+        { id: 'doctors', label: '05. Команда врачей', icon: UserPlus },
+        { id: 'directions', label: '06. Услуги и направления', icon: Stethoscope },
+        { id: 'contact', label: '07. Контактная форма', icon: Mail },
+        { id: 'footer', label: '08. Футер и соцсети', icon: Settings },
     ];
 
     if (!isOpen) return null;
@@ -279,7 +279,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
 
         return (
             <div className="space-y-6">
-                <SectionTitle title={`Редактирование: ${sections.find(s => s.id === activeSection)?.label}`} />
+                <SectionTitle title={`Раздел ${sections.findIndex(s => s.id === activeSection) + 1}: ${sections.find(s => s.id === activeSection)?.label.split('. ')[1]}`} />
 
                 <div className="bg-[#007f94]/5 p-4 rounded-xl border border-[#007f94]/10 flex gap-3 text-xs text-slate-600 leading-relaxed mb-6">
                     <div className="w-5 h-5 bg-[#007f94] text-white rounded-full flex items-center justify-center shrink-0 font-bold">i</div>
@@ -672,18 +672,21 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
 
             <div className="flex-1 flex overflow-hidden">
                 {/* Sidebar */}
-                <div className="w-20 border-r border-slate-50 flex flex-col items-center py-6 gap-4 bg-slate-50/50 overflow-y-auto">
-                    {sections.map(section => (
+                <div className="w-24 border-r border-slate-50 flex flex-col items-center py-6 gap-2 bg-slate-50/50 overflow-y-auto scrollbar-hide">
+                    {sections.map((section, idx) => (
                         <button
                             key={section.id}
                             type="button"
                             onClick={() => setActiveSection(section.id)}
                             title={section.label}
                             aria-label={`Перейти к разделу ${section.label}`}
-                            className={`p-3.5 rounded-2xl transition-all relative group ${activeSection === section.id ? 'bg-[#007f94] text-white shadow-lg shadow-[#007f94]/20' : 'text-slate-400 hover:text-slate-900 hover:bg-white'}`}
+                            className={`w-16 h-16 flex flex-col items-center justify-center rounded-2xl transition-all relative group ${activeSection === section.id ? 'bg-[#007f94] text-white shadow-lg shadow-[#007f94]/20' : 'text-slate-400 hover:text-slate-900 hover:bg-white'}`}
                         >
-                            <section.icon size={22} />
-                            <span className="absolute left-full ml-4 px-2 py-1 bg-slate-900 text-white text-[10px] font-bold rounded opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50 transition-opacity">
+                            <span className={`text-[9px] font-black mb-1 ${activeSection === section.id ? 'text-white/70' : 'text-slate-300'}`}>
+                                0{idx + 1}
+                            </span>
+                            <section.icon size={20} />
+                            <span className="absolute left-full ml-4 px-3 py-2 bg-slate-900 text-white text-[10px] font-bold rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50 transition-all translate-x-[-10px] group-hover:translate-x-0 shadow-xl">
                                 {section.label}
                             </span>
                         </button>
