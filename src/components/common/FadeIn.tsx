@@ -17,10 +17,10 @@ const FadeIn = ({
     once?: boolean
 }) => {
     const directionOffset = {
-        up: { y: 40, x: 0 },
-        down: { y: -40, x: 0 },
-        left: { x: 40, y: 0 },
-        right: { x: -40, y: 0 }
+        up: { y: 20, x: 0 },
+        down: { y: -20, x: 0 },
+        left: { x: 20, y: 0 },
+        right: { x: -20, y: 0 }
     };
 
     return (

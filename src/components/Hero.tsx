@@ -25,13 +25,18 @@ const Hero = () => {
         }
     };
 
+    const directionOffset = {
+        up: { y: 20, x: 0 },
+        down: { y: -20, x: 0 },
+        left: { x: 20, y: 0 },
+        right: { x: -20, y: 0 }
+    };
     const itemVariants = {
-        hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+        hidden: { opacity: 0, y: 20 },
         visible: {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",
-            transition: { type: "spring", damping: 25, stiffness: 100 }
+            transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as any }
         }
     };
 
