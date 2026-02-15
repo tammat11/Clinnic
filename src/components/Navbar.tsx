@@ -65,7 +65,7 @@ const Navbar = () => {
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="text-[10.5px] md:text-sm font-bold text-slate-600 hover:text-[#007f94] transition-colors relative group px-1 py-1"
+                                className="text-[9.5px] md:text-sm font-bold text-slate-600 hover:text-[#007f94] transition-colors relative group px-1 py-1"
                             >
                                 {link.name}
                             </a>
@@ -85,8 +85,8 @@ const Navbar = () => {
                     </Magnetic>
                 </div>
 
-                {/* Mobile CTA Icon */}
-                <div className="md:hidden shrink-0">
+                {/* Mobile CTA Icon - HIDDEN as requested */}
+                <div className="hidden shrink-0">
                     <a
                         href="#contact"
                         className="w-10 h-10 bg-[#007f94] text-white rounded-full flex items-center justify-center shadow-lg shadow-[#007f94]/20 active:scale-95 transition-transform"

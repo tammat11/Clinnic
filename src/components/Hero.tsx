@@ -123,7 +123,7 @@ const Hero = ({ data }: { data: any }) => {
                     {/* Main Headline */}
                     <motion.h1
                         variants={itemVariants}
-                        style={{ fontSize: `clamp(2.15rem, 7vw, ${titleSize}px)`, textWrap: 'balance' }}
+                        style={{ fontSize: `clamp(2.5rem, 8vw, ${titleSize}px)`, textWrap: 'balance' }}
                         className="font-extrabold text-[#0a1e2b] tracking-tighter leading-[1.05] md:leading-[1.1] mb-6 px-1 whitespace-normal md:whitespace-pre-line"
                     >
                         <HighlightedText text={title} />
@@ -135,14 +135,14 @@ const Hero = ({ data }: { data: any }) => {
                         className="max-w-4xl mx-auto space-y-3 mb-8 md:mb-10 px-0"
                     >
                         <h2
-                            style={{ fontSize: `clamp(0.95rem, 2.5vw, ${subtitleSize}px)`, textWrap: 'balance' }}
+                            style={{ fontSize: `clamp(1.1rem, 4vw, ${subtitleSize}px)`, textWrap: 'balance' }}
                             className="font-black text-[#007f94]/70 tracking-tighter leading-tight uppercase whitespace-normal md:whitespace-nowrap"
                         >
                             <HighlightedText text={subtitle} />
                         </h2>
 
                         <p
-                            style={{ fontSize: `${descSize}px` }}
+                            style={{ fontSize: `clamp(0.85rem, 2vw, ${descSize}px)` }}
                             className="text-slate-500 font-medium max-w-[340px] md:max-w-2xl mx-auto leading-relaxed opacity-80 whitespace-pre-line"
                         >
                             <HighlightedText text={description} />
@@ -211,21 +211,21 @@ const Hero = ({ data }: { data: any }) => {
                             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
                         </motion.div>
 
-                        {/* Floating Action Cards - Doctors (Desktop Only) */}
+                        {/* Floating Action Cards - Doctors */}
                         {/* Doctor 1: Left Floating Card */}
                         {doctorLeft && (
                             <motion.div
                                 initial={{ opacity: 0, x: -30, y: 0 }}
                                 animate={{ opacity: 1, x: 0, y: 0 }}
                                 transition={{ delay: 0.8, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="hidden md:block absolute -left-20 top-[20%] z-20"
+                                className="block absolute -left-2 top-[10%] md:-left-20 md:top-[20%] z-20"
                             >
                                 <motion.div
                                     animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
                                     transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-                                    className="bg-white/90 backdrop-blur-2xl p-4 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/60 max-w-[280px] text-left group transition-transform hover:scale-105 duration-500"
+                                    className="bg-white/90 backdrop-blur-2xl p-2 md:p-4 rounded-[1.5rem] md:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/60 max-w-[130px] md:max-w-[280px] text-left group transition-transform hover:scale-105 duration-500"
                                 >
-                                    <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-4 shadow-inner bg-slate-100">
+                                    <div className="relative aspect-[4/5] rounded-[1rem] md:rounded-[2rem] overflow-hidden mb-2 md:mb-4 shadow-inner bg-slate-100">
                                         <img
                                             src={doctorLeft.image}
                                             className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
@@ -233,9 +233,9 @@ const Hero = ({ data }: { data: any }) => {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#007f94]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
-                                    <div className="px-2 pb-1">
-                                        <p className="text-base font-bold text-slate-900 leading-tight">{doctorLeft.name}</p>
-                                        <p className="text-[10px] text-[#007f94] font-black uppercase tracking-wider mt-0.5 opacity-80">{doctorLeft.role}</p>
+                                    <div className="px-1 md:px-2 pb-1">
+                                        <p className="text-[10px] md:text-base font-bold text-slate-900 leading-tight">{doctorLeft.name}</p>
+                                        <p className="text-[7px] md:text-[10px] text-[#007f94] font-black uppercase tracking-wider mt-0.5 opacity-80">{doctorLeft.role}</p>
                                     </div>
                                 </motion.div>
                             </motion.div>
@@ -247,14 +247,14 @@ const Hero = ({ data }: { data: any }) => {
                                 initial={{ opacity: 0, x: 30, y: 0 }}
                                 animate={{ opacity: 1, x: 0, y: 0 }}
                                 transition={{ delay: 1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                                className="hidden md:block absolute -right-20 bottom-[15%] z-20"
+                                className="block absolute -right-2 bottom-[15%] md:-right-20 md:bottom-[15%] z-20"
                             >
                                 <motion.div
                                     animate={{ y: [0, 10, 0], x: [0, -5, 0] }}
                                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                                    className="bg-white/90 backdrop-blur-2xl p-4 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/60 max-w-[280px] text-left group transition-transform hover:scale-105 duration-500"
+                                    className="bg-white/90 backdrop-blur-2xl p-2 md:p-4 rounded-[1.5rem] md:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-white/60 max-w-[130px] md:max-w-[280px] text-left group transition-transform hover:scale-105 duration-500"
                                 >
-                                    <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-4 shadow-inner bg-slate-100">
+                                    <div className="relative aspect-[4/5] rounded-[1rem] md:rounded-[2rem] overflow-hidden mb-2 md:mb-4 shadow-inner bg-slate-100">
                                         <img
                                             src={doctorRight.image}
                                             className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
@@ -262,28 +262,13 @@ const Hero = ({ data }: { data: any }) => {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#007f94]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                     </div>
-                                    <div className="px-2 pb-1">
-                                        <p className="text-base font-bold text-slate-900 leading-tight">{doctorRight.name}</p>
-                                        <p className="text-[10px] text-[#007f94] font-black uppercase tracking-wider mt-0.5 opacity-80">{doctorRight.role}</p>
+                                    <div className="px-1 md:px-2 pb-1">
+                                        <p className="text-[10px] md:text-base font-bold text-slate-900 leading-tight">{doctorRight.name}</p>
+                                        <p className="text-[7px] md:text-[10px] text-[#007f94] font-black uppercase tracking-wider mt-0.5 opacity-80">{doctorRight.role}</p>
                                     </div>
                                 </motion.div>
                             </motion.div>
                         )}
-
-                        {/* Mobile Doctors (Grid below image) */}
-                        <div className="md:hidden mt-6 grid grid-cols-2 gap-3 sm:gap-4">
-                            {[doctorLeft, doctorRight].filter(Boolean).map((doc, idx) => (
-                                <div key={idx} className="bg-white/80 backdrop-blur-md border border-white/60 p-3 rounded-[1.5rem] shadow-lg shadow-slate-200/50 flex flex-col items-center text-center gap-2">
-                                    <div className="w-12 h-12 rounded-2xl overflow-hidden shadow-sm">
-                                        <img src={doc.image} className="w-full h-full object-cover" alt={doc.name} />
-                                    </div>
-                                    <div>
-                                        <p className="text-xs font-bold text-slate-900 leading-tight">{doc.name}</p>
-                                        <p className="text-[8px] text-[#007f94] font-black uppercase tracking-wider mt-0.5 opacity-80 leading-none">{doc.role}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
 
                         {/* Centered Badge - Trust Indicator */}
                         <motion.div
