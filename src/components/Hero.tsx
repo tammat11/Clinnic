@@ -100,7 +100,7 @@ const Hero = () => {
                     {/* Main Headline */}
                     <motion.h1
                         variants={itemVariants}
-                        className="text-4xl xs:text-5xl md:text-6xl lg:text-[5.5rem] font-extrabold text-[#0a1e2b] tracking-tighter leading-[1.1] md:leading-[1.1] mb-6 px-1"
+                        className="text-5xl xs:text-6xl md:text-6xl lg:text-[5.5rem] font-extrabold text-[#0a1e2b] tracking-tighter leading-[1.05] md:leading-[1.1] mb-6 px-1"
                     >
                         Ведущие врачи <br /> <span className="text-[#007f94]">из Турции теперь</span> <br /> принимают в Алматы
                     </motion.h1>
@@ -110,11 +110,11 @@ const Hero = () => {
                         variants={itemVariants}
                         className="max-w-4xl mx-auto space-y-3 mb-8 md:mb-10 px-0"
                     >
-                        <h2 className="text-sm xs:text-base md:text-3xl font-black text-[#007f94]/70 tracking-tighter leading-tight uppercase whitespace-pre-wrap md:whitespace-nowrap">
+                        <h2 className="text-base xs:text-lg md:text-3xl font-black text-[#007f94]/70 tracking-tighter leading-tight uppercase whitespace-pre-wrap md:whitespace-nowrap">
                             Узнайте риски до того, <br className="hidden md:block" /> <span className="text-[#007f94]">как они станут диагнозами</span>
                         </h2>
 
-                        <p className="text-xs md:text-lg text-slate-500 font-medium max-w-[320px] md:max-w-2xl mx-auto leading-relaxed opacity-80">
+                        <p className="text-sm md:text-lg text-slate-500 font-medium max-w-[340px] md:max-w-2xl mx-auto leading-relaxed opacity-80">
                             Консультации, диагностика и планы медицинской реабилитации <br className="hidden xs:block md:hidden" /> экспертного уровня без выезда за границу.
                         </p>
                     </motion.div>
@@ -128,10 +128,9 @@ const Hero = () => {
                             <motion.a
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                href="#contact"
-                                className="flex-1 sm:flex-none px-4 md:px-12 py-4 md:py-5 bg-[#007f94] text-white font-bold rounded-2xl shadow-xl shadow-[#007f94]/20 flex items-center justify-center gap-2 md:gap-3 text-sm md:text-xl whitespace-nowrap"
+                                className="flex-1 sm:flex-none px-4 md:px-12 py-4 md:py-5 bg-[#007f94] text-white font-bold rounded-2xl shadow-xl shadow-[#007f94]/20 flex items-center justify-center gap-2 md:gap-3 text-base md:text-xl whitespace-nowrap"
                             >
-                                Записаться <ArrowUpRight size={18} className="shrink-0 md:w-5 md:h-5" />
+                                Записаться <ArrowUpRight size={20} className="shrink-0 md:w-5 md:h-5" />
                             </motion.a>
                         </Magnetic>
                         <Magnetic>
@@ -139,7 +138,7 @@ const Hero = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 href="#cost"
-                                className="flex-1 sm:flex-none px-4 md:px-12 py-4 md:py-5 bg-white text-slate-900 font-bold rounded-2xl border border-slate-200 hover:bg-slate-50 transition-all text-sm md:text-xl flex justify-center whitespace-nowrap"
+                                className="flex-1 sm:flex-none px-4 md:px-12 py-4 md:py-5 bg-white text-slate-900 font-bold rounded-2xl border border-slate-200 hover:bg-slate-50 transition-all text-base md:text-xl flex justify-center whitespace-nowrap"
                             >
                                 Стоимость
                             </motion.a>
