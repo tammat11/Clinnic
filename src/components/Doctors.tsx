@@ -58,10 +58,10 @@ const Doctors = () => {
                     {doctors.map((doc, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 30, translateZ: 0 }}
-                            whileInView={{ opacity: 1, y: 0, translateZ: 0 }}
+                            initial={{ opacity: 0, y: 30 } as any}
+                            whileInView={{ opacity: 1, y: 0 } as any}
                             viewport={{ once: true, margin: "-20px" }}
-                            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 1, 0.36, 1] as any }}
+                            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.21, 1, 0.36, 1] } as any}
                             style={{ willChange: "transform, opacity", opacity: 0 }}
                             className="group flex flex-col items-center text-center min-w-[260px] xs:min-w-[300px] md:min-w-0 w-full snap-center"
                         >
