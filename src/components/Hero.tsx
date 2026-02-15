@@ -111,7 +111,7 @@ const Hero = () => {
                         className="max-w-4xl mx-auto space-y-3 mb-8 md:mb-10 px-0"
                     >
                         <h2 className="text-base xs:text-lg md:text-3xl font-black text-[#007f94]/70 tracking-tighter leading-tight uppercase whitespace-pre-wrap md:whitespace-nowrap">
-                            Узнайте риски до того, <br className="hidden md:block" /> <span className="text-[#007f94]">как они станут диагнозами</span>
+                            Узнайте риски до того, <span className="text-[#007f94]">как они станут диагнозами</span>
                         </h2>
 
                         <p className="text-sm md:text-lg text-slate-500 font-medium max-w-[340px] md:max-w-2xl mx-auto leading-relaxed opacity-80">
