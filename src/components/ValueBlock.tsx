@@ -82,6 +82,11 @@ const ValueBlock = ({ data }: { data: any }) => {
                                 >
                                     {subText}
                                 </p>
+                                {data.conclusion && (
+                                    <p className="text-[#007f94] font-bold text-sm md:text-base pt-4 border-t border-[#007f94]/10">
+                                        {data.conclusion}
+                                    </p>
+                                )}
                             </div>
 
                             {image && (

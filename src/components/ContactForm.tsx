@@ -10,7 +10,8 @@ const ContactForm = ({ data }: { data: any }) => {
         desc = 'Оставьте заявку, и наш медицинский консультант свяжется с вами в течение 15 минут.',
         titleSize = 48,
         descSize = 18,
-        padding = 80
+        padding = 80,
+        buttonText = 'Оставить заявку на консультацию'
     } = data || {};
 
     const [status, setStatus] = useState('idle'); // idle, submitting, success
@@ -106,7 +107,7 @@ const ContactForm = ({ data }: { data: any }) => {
                                                 </>
                                             ) : (
                                                 <>
-                                                    Оставить заявку на консультацию <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                                                    {buttonText} <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                                                 </>
                                             )}
                                         </button>
