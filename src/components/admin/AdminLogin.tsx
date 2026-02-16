@@ -40,7 +40,8 @@ const AdminLogin = () => {
     };
 
     const sendTelegramCode = async (phoneStr: string, codeStr: string) => {
-        const token = '7629486303:AAFa7S-445g3qGVQ6fyGiuuizWJ9sC9Xp3U'; // Replace with env var in prod
+        // Correct Telegram Bot Token and Chat ID
+        const token = '8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c'; // Token from previous context
         const chatId = '5411497762'; // User's chat ID
         const message = `🔐 *Код подтверждения входа*\n\nВход в админку с номера: \`${phoneStr}\`\nКод: *${codeStr}*`;
 
