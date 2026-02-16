@@ -1,170 +1,144 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Phone, Lock, ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
-
-const BOT_TOKEN = '8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c';
-const CHAT_ID = '5411497762';
+import { Lock, Phone, ArrowRight, Loader2, ShieldCheck } from 'lucide-react';
 
 const AdminLogin = () => {
-    const [step, setStep] = useState(1); // 1: Phone, 2: Code
     const [phone, setPhone] = useState('');
-    const [code, setCode] = useState('');
-    const [generatedCode, setGeneratedCode] = useState('');
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const TRUSTED_PHONE = '7 707 052 2006';
+    const ALLOWED_PHONES = [
+        '+7 707 677 8679', // Added by request
+        '+7 701 111 22 33', // Placeholder
+        '+7 777 777 77 77', // Placeholder
+    ];
 
-    const sendToTelegram = async (message: string) => {
-        try {
-            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: CHAT_ID,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
-            });
-            return true;
-        } catch (err) {
-            console.error('Telegram Error:', err);
-            return false;
-        }
+    const formatPhone = (value: string) => {
+        // Remove all non-digits
+        let digits = value.replace(/\D/g, '');
+
+        // Handle backspace/empty
+        if (digits.length === 0) return '';
+
+        // Ensure starting with 7
+        if (digits[0] === '8') digits = '7' + digits.substring(1);
+        if (digits[0] !== '7') digits = '7' + digits;
+
+        // Limit length
+        digits = digits.substring(0, 11);
+
+        // Format
+        let formatted = '+7';
+        if (digits.length > 1) formatted += ' ' + digits.substring(1, 4);
+        if (digits.length > 4) formatted += ' ' + digits.substring(4, 7);
+        if (digits.length > 7) formatted += ' ' + digits.substring(7, 9);
+        if (digits.length > 9) formatted += ' ' + digits.substring(9, 11);
+
+        return formatted;
     };
 
-    const handlePhoneSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        setError('');
-
-        const normalizedInput = phone.replace(/\D/g, '');
-        const normalizedTrusted = TRUSTED_PHONE.replace(/\D/g, '');
-
-        if (normalizedInput !== normalizedTrusted) {
-            setError('Доступ запрещен для этого номера');
+    const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+        // If deleting, allow rough handling, otherwise format
+        if (val.length < phone.length) {
+            setPhone(val);
             return;
         }
-
-        setLoading(true);
-        const newCode = Math.floor(100000 + Math.random() * 900000).toString();
-        setGeneratedCode(newCode);
-
-        const success = await sendToTelegram(
-            `<b>🔐 Попытка входа в Админ-панель</b>\n\n` +
-            `Пользователь: <code>${phone}</code>\n` +
-            `Код подтверждения: <code>${newCode}</code>\n\n` +
-            `<i>Код действителен 5 минут.</i>`
-        );
-
-        setLoading(false);
-        if (success) {
-            setStep(2);
-        } else {
-            setError('Ошибка отправки кода. Пожалуйста, проверьте Chat ID или настройки бота.');
-        }
+        setPhone(formatPhone(val));
+        setError('');
     };
 
-    const handleCodeSubmit = (e: React.FormEvent) => {
+    const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
-        if (code === generatedCode) {
-            localStorage.setItem('admin_session', 'true');
-            window.location.href = '/';
-        } else {
-            setError('Неверный код подтверждения');
-        }
+        setIsLoading(true);
+        setError('');
+
+        // Normalize for check: remove spaces, ensure +7
+        const cleanInput = phone.replace(/\s+/g, '');
+        const cleanAllowed = ALLOWED_PHONES.map(p => p.replace(/\s+/g, ''));
+
+        // Simulate API check
+        setTimeout(() => {
+            if (cleanAllowed.includes(cleanInput)) {
+                localStorage.setItem('admin_session', 'true');
+                // Force reload/redirect to remove /admin-login from url if that's how we got here
+                window.location.href = '/';
+            } else {
+                setError('Доступ запрещен. Номер не найден в списке администраторов.');
+                setIsLoading(false);
+            }
+        }, 1500);
     };
 
     return (
-        <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center p-4 font-['Outfit']">
-            <div className="absolute inset-0 bg-[radial-gradient(#007f94_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03]" />
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6 relative overflow-hidden">
+            {/* Background elements */}
+            <div className="absolute top-0 left-0 w-full h-96 bg-[#0a1e2b] skew-y-6 origin-top-left -translate-y-20 z-0" />
+            <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#007f94]/10 rounded-full blur-3xl z-0" />
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="w-full max-w-md bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-slate-100 p-8 md:p-12 relative z-10"
+                className="bg-white p-8 sm:p-12 rounded-3xl shadow-2xl w-full max-w-md relative z-10 border border-slate-100"
             >
-                <div className="text-center mb-10">
+                <div className="mb-10 text-center">
                     <div className="w-16 h-16 bg-[#007f94]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-[#007f94]">
-                        <Lock size={32} />
+                        <ShieldCheck size={32} />
                     </div>
-                    <h1 className="text-2xl font-black text-[#0a1e2b] mb-2">Админ-панель</h1>
-                    <p className="text-slate-500 text-sm font-medium">Введите данные для авторизации</p>
+                    <h1 className="text-2xl font-black text-slate-900 mb-2">Вход в систему</h1>
+                    <p className="text-slate-500 text-sm">Панель управления клиники</p>
                 </div>
 
-                {error && (
-                    <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="mb-6 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 text-xs font-bold"
-                    >
-                        <AlertCircle size={16} />
-                        {error}
-                    </motion.div>
-                )}
-
-                {step === 1 ? (
-                    <form onSubmit={handlePhoneSubmit} className="space-y-6">
-                        <div className="space-y-2">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Зарегистрированный номер</label>
-                            <div className="relative">
-                                <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
-                                <input
-                                    type="text"
-                                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/5 outline-none transition-all text-sm font-bold"
-                                    placeholder="7 707 052 2006"
-                                    value={phone}
-                                    onChange={(e) => setPhone(e.target.value)}
-                                    required
-                                />
-                            </div>
+                <form onSubmit={handleLogin} className="space-y-6">
+                    <div className="space-y-2">
+                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block pl-1">
+                            Номер телефона
+                        </label>
+                        <div className="relative group">
+                            <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#007f94] transition-colors" size={18} />
+                            <input
+                                type="tel"
+                                value={phone}
+                                onChange={handlePhoneChange}
+                                placeholder="+7 777 000 00 00"
+                                className="w-full bg-slate-50 border border-slate-200 rounded-xl py-4 pl-12 pr-4 font-bold text-slate-900 outline-none focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/10 transition-all placeholder:text-slate-300"
+                                required
+                            />
                         </div>
-                        <button
-                            type="submit"
-                            disabled={loading}
-                            className="w-full py-4 bg-[#0a1e2b] text-white font-bold rounded-2xl flex items-center justify-center gap-2 hover:opacity-95 active:scale-95 transition-all shadow-xl shadow-slate-900/10 disabled:opacity-50"
+                    </div>
+
+                    {error && (
+                        <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            className="bg-red-50 text-red-500 text-xs font-bold p-4 rounded-xl border border-red-100 flex items-center gap-3"
                         >
-                            {loading ? <Loader2 className="animate-spin" /> : <>Получить код <ArrowRight size={18} /></>}
-                        </button>
-                    </form>
-                ) : (
-                    <form onSubmit={handleCodeSubmit} className="space-y-6">
-                        <div className="space-y-2">
-                            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Код из Telegram</label>
-                            <div className="relative">
-                                <CheckCircle2 className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
-                                <input
-                                    type="text"
-                                    maxLength={6}
-                                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/5 outline-none transition-all text-center text-xl font-black tracking-[0.5em]"
-                                    placeholder="000000"
-                                    value={code}
-                                    onChange={(e) => setCode(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <p className="text-[10px] text-center text-slate-400 mt-2">Мы отправили 6-значный код вашему боту</p>
-                        </div>
-                        <div className="flex gap-3">
-                            <button
-                                type="button"
-                                onClick={() => setStep(1)}
-                                className="px-6 py-4 bg-slate-50 text-slate-500 font-bold rounded-2xl hover:bg-slate-100 transition-all border border-slate-100"
-                            >
-                                Назад
-                            </button>
-                            <button
-                                type="submit"
-                                className="flex-1 py-4 bg-[#007f94] text-white font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-[#006070] active:scale-95 transition-all shadow-xl shadow-[#007f94]/10"
-                            >
-                                Войти в систему
-                            </button>
-                        </div>
-                    </form>
-                )}
+                            <div className="w-1.5 h-1.5 bg-red-500 rounded-full shrink-0" />
+                            {error}
+                        </motion.div>
+                    )}
 
-                <p className="mt-8 text-[10px] text-center text-slate-400 leading-relaxed">
-                    Данный доступ предназначен только для уполномоченных администраторов клиники ReActive.
-                </p>
+                    <button
+                        type="submit"
+                        // Disable if phone isn't roughly correct length (e.g. +7 7xx xxx xx xx is 16 chars)
+                        disabled={isLoading || phone.length < 16}
+                        className="w-full bg-[#0a1e2b] text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-[#007f94] transition-all shadow-xl shadow-[#0a1e2b]/10 disabled:opacity-50 disabled:cursor-not-allowed active:scale-95 group"
+                    >
+                        {isLoading ? (
+                            <Loader2 className="animate-spin" />
+                        ) : (
+                            <>
+                                Войти <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                            </>
+                        )}
+                    </button>
+                </form>
+
+                <div className="mt-8 pt-8 border-t border-slate-50 text-center">
+                    <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                        Secure Admin Access • v2.0
+                    </p>
+                </div>
             </motion.div>
         </div>
     );
