@@ -270,18 +270,7 @@ const Hero = ({ data }: { data: any }) => {
                             </motion.div>
                         )}
 
-                        {/* Centered Badge - Trust Indicator */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1.4, duration: 0.8 }}
-                            className="absolute left-1/2 -translate-x-1/2 -bottom-6 z-30 flex gap-2 md:gap-4 w-auto max-w-[90vw]"
-                        >
-                            <div className="bg-[#0a1e2b] text-white px-5 py-3 md:px-8 md:py-4 rounded-full shadow-2xl flex items-center justify-center gap-3 border border-white/10 backdrop-blur-md w-full">
-                                <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-                                <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest md:tracking-[0.2em] whitespace-normal text-center leading-tight">Международные врачи на связи</span>
-                            </div>
-                        </motion.div>
+
                     </div>
                 </div>
             </motion.div>
