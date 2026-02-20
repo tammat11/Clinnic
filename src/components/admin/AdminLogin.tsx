@@ -12,9 +12,9 @@ const AdminLogin = () => {
     const [generatedCode, setGeneratedCode] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-
     const ALLOWED_PHONES = [
         '77070522006',
+        '7707052006', // Accounted for user typo
         '77076778679',
         '77084170936'
     ];
