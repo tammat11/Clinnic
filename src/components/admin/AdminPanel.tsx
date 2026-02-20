@@ -193,7 +193,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    chat_id: '5411497762',
+                    chat_id: '-5216692431',
                     text: `🚀 <b>Начат деплой новой версии сайта</b>\n\nОбновление контента отправлено в GitHub.`,
                     parse_mode: 'HTML'
                 })
@@ -229,7 +229,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        chat_id: '5411497762',
+                        chat_id: '-5216692431',
                         text: `✅ <b>Деплой успешно завершен!</b>\n\nСайт обновится в течение 2-3 минут.\n<a href="https://clinnic.vercel.app">Перейти на сайт</a>`,
                         parse_mode: 'HTML'
                     })
@@ -249,7 +249,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    chat_id: '5411497762',
+                    chat_id: '-5216692431',
                     text: `❌ <b>Ошибка деплоя</b>\n\n${error.message}`,
                     parse_mode: 'HTML'
                 })
