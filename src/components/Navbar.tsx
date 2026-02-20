@@ -59,13 +59,13 @@ const Navbar = () => {
                 </div>
 
                 {/* Scrollable Links (The Island Content) */}
-                <div className="flex-1 min-w-0 overflow-x-auto scrollbar-hide flex justify-end md:justify-center">
-                    <div className="flex items-center gap-2.5 md:gap-10 bg-slate-100 md:bg-white/60 px-3 py-2 md:px-8 md:py-3 rounded-full border border-slate-200/60 md:border-white/40 shadow-sm md:shadow-inner whitespace-nowrap backdrop-blur-md w-max">
+                <div className="flex-1 min-w-0 overflow-x-auto scrollbar-hide flex justify-start md:justify-center items-center">
+                    <div className="flex items-center gap-1.5 sm:gap-4 md:gap-10 bg-slate-100/90 md:bg-white/60 px-3 py-1.5 md:px-8 md:py-3 rounded-full border border-slate-200/60 md:border-white/40 shadow-sm md:shadow-inner whitespace-nowrap backdrop-blur-xl w-max ml-0 md:mx-auto">
                         {links.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="text-[10px] md:text-sm font-extrabold text-slate-600 hover:text-[#007f94] transition-colors relative group px-1 flex-shrink-0"
+                                className="text-[10px] sm:text-xs md:text-sm font-bold text-slate-700 hover:text-[#007f94] transition-colors relative group px-1.5 py-0.5 flex-shrink-0"
                             >
                                 {link.name}
                             </a>
