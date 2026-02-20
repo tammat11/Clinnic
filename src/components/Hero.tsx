@@ -7,13 +7,7 @@ import { ICON_POOL } from '../lib/icons';
 
 const Hero = ({ data }: { data: any }) => {
     const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end start"]
-    });
 
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-    const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
     const {
         badgeTR = 'Turkiye',
@@ -27,9 +21,7 @@ const Hero = ({ data }: { data: any }) => {
         titleSize = 72,
         descSize = 20,
         padding = 100,
-        image = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000',
-        benefits = [],
-        floatingDoctors = []
+        benefits = []
     } = data || {};
 
 
@@ -56,15 +48,7 @@ const Hero = ({ data }: { data: any }) => {
         }
     };
 
-    const portalVariants = {
-        hidden: { scale: 1.1, clipPath: 'inset(10% 10% 10% 10%)', opacity: 0 },
-        visible: {
-            scale: 1,
-            clipPath: 'inset(0% 0% 0% 0%)',
-            opacity: 1,
-            transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] as any }
-        }
-    };
+
 
     return (
         <section
@@ -194,27 +178,7 @@ const Hero = ({ data }: { data: any }) => {
                         </motion.div>
                     </div>
 
-                    {/* Action Portal */}
-                    <div className="relative w-full max-w-6xl mx-auto mb-14 px-0 sm:px-0">
-                        <motion.div
-                            style={{ scale }}
-                            variants={portalVariants}
-                            className="aspect-[4/3] sm:aspect-[16/9] md:aspect-[21/9] rounded-[2rem] md:rounded-[4rem] overflow-hidden shadow-2xl relative"
-                        >
-                            <motion.img
-                                style={{ scale: imageScale }}
-                                src={image}
-                                onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=2000'}
-                                className="w-full h-full object-cover"
-                                alt="Modern Clinic Excellence"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent" />
-                        </motion.div>
 
-
-
-
-                    </div>
                 </div>
             </motion.div>
         </section>
