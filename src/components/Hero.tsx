@@ -55,7 +55,7 @@ const Hero = ({ data }: { data: any }) => {
             ref={containerRef}
             id="hero"
             style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
-            className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden"
+            className="relative flex items-center justify-center bg-white overflow-hidden mt-20"
         >
             {/* 1. LAYERED BACKGROUND */}
             <div className="absolute inset-0 z-0 pointer-events-none">

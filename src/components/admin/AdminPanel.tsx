@@ -346,24 +346,12 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                             placeholder="Введите описание"
                         />
 
-                        <ImageField label="Основное изображение" value={data.image} onChange={(v: string) => handleUpdate('hero', 'image', v)} />
-
                         <div className="grid grid-cols-2 gap-4">
                             <InputField label="Кнопка 1" value={data.buttonPrimary} onChange={(v: string) => handleUpdate('hero', 'buttonPrimary', v)} />
                             <InputField label="Кнопка 2" value={data.buttonSecondary} onChange={(v: string) => handleUpdate('hero', 'buttonSecondary', v)} />
                         </div>
 
-                        <ListEditor
-                            label="Плавающие карточки врачей"
-                            itemLabel="врача"
-                            items={data.floatingDoctors || []}
-                            onUpdate={(items: any) => handleUpdate('hero', 'floatingDoctors', items)}
-                            fields={[
-                                { key: 'image', label: 'Фото', type: 'image' },
-                                { key: 'name', label: 'Имя' },
-                                { key: 'role', label: 'Специальность' }
-                            ]}
-                        />
+
                         <SectionLayout data={data} onUpdate={handleUpdate} section="hero" />
                     </>
                 )}
