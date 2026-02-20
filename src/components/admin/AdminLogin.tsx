@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Phone, Lock, ArrowRight, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 
 const BOT_TOKEN = '8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c';
-const CHAT_ID = '5411497762';
+const CHAT_ID = '-5216692431'; // Group Chat ID
 
 const AdminLogin = () => {
     const [step, setStep] = useState(1); // 1: Phone, 2: Code
@@ -13,7 +13,11 @@ const AdminLogin = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
-    const TRUSTED_PHONE = '7 707 052 2006';
+    const ALLOWED_PHONES = [
+        '77070522006',
+        '77076778679',
+        '77084170936'
+    ];
 
     const sendToTelegram = async (message: string) => {
         try {
@@ -38,9 +42,9 @@ const AdminLogin = () => {
         setError('');
 
         const normalizedInput = phone.replace(/\D/g, '');
-        const normalizedTrusted = TRUSTED_PHONE.replace(/\D/g, '');
+        const cleanInput = normalizedInput.startsWith('8') ? '7' + normalizedInput.substring(1) : normalizedInput;
 
-        if (normalizedInput !== normalizedTrusted) {
+        if (!ALLOWED_PHONES.includes(cleanInput)) {
             setError('Доступ запрещен для этого номера');
             return;
         }
@@ -60,7 +64,7 @@ const AdminLogin = () => {
         if (success) {
             setStep(2);
         } else {
-            setError('Ошибка отправки кода. Пожалуйста, проверьте Chat ID или настройки бота.');
+            setError('Ошибка отправки кода. Пожалуйста, проверьте настройки группы.');
         }
     };
 
@@ -68,8 +72,6 @@ const AdminLogin = () => {
         e.preventDefault();
         if (code === generatedCode) {
             localStorage.setItem('admin_session', 'true');
-            // We'll use the environment variable set in Vercel instead of localStorage for the token
-            // Redirect to home
             window.location.href = '/';
         } else {
             setError('Неверный код подтверждения');
@@ -144,7 +146,7 @@ const AdminLogin = () => {
                                     required
                                 />
                             </div>
-                            <p className="text-[10px] text-center text-slate-400 mt-2">Мы отправили 6-значный код вашему боту</p>
+                            <p className="text-[10px] text-center text-slate-400 mt-2">Код отправлен в Telegram группу</p>
                         </div>
                         <div className="flex gap-3">
                             <button
