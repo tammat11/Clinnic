@@ -14,6 +14,7 @@ const AdminLogin = () => {
         '+7 707 052 20 06', // User's number
         '+7 707 677 86 79', // New number
         '+7 701 111 22 33', // Placeholder
+        ‪'+7 708 417 09 36',‬
     ];
 
     const formatPhone = (value: string) => {
@@ -42,7 +43,7 @@ const AdminLogin = () => {
     const sendTelegramCode = async (phoneStr: string, codeStr: string) => {
         // Correct Telegram Bot Token and Chat ID
         const token = '8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c'; // Token from previous context
-        const chatId = '5411497762'; // User's chat ID
+        const chatId = '-5216692431'; // User's chat ID
         const message = `🔐 *Код подтверждения входа*\n\nВход в админку с номера: \`${phoneStr}\`\nКод: *${codeStr}*`;
 
         try {
