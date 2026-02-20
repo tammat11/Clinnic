@@ -202,7 +202,7 @@ const AdminLogin = () => {
 
                 <div className="mt-8 pt-8 border-t border-slate-50 text-center">
                     <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">
-                        Secure 2FA Access • v2.1
+                        Secure 2FA Access • v2.3
                     </p>
                 </div>
             </motion.div>
