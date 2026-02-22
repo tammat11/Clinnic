@@ -46,7 +46,10 @@ const Directions = ({ data }: { data: any }) => {
     return (
         <section
             id="expertise"
-            style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
+            style={{
+                paddingTop: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`,
+                paddingBottom: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`
+            }}
             className="bg-white overflow-hidden"
         >
             <div className="container mx-auto px-4 md:px-6">
@@ -63,7 +66,7 @@ const Directions = ({ data }: { data: any }) => {
                             <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
                         </div>
                         <h2
-                            style={{ fontSize: `clamp(2rem, 5vw, ${titleSize}px)` }}
+                            style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
                             className="font-bold text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-8 whitespace-pre-line"
                         >
                             <HighlightedText text={title} />
@@ -76,7 +79,7 @@ const Directions = ({ data }: { data: any }) => {
                         className="hidden lg:block pb-2"
                     >
                         <p
-                            style={{ fontSize: `${subTitleSize}px` }}
+                            style={{ fontSize: `clamp(${Math.max(12, subTitleSize * 0.8)}px, 3vw, ${subTitleSize}px)` }}
                             className="text-slate-400 font-medium max-w-[240px] leading-relaxed text-right"
                         >
                             <HighlightedText text={subTitle} />
@@ -111,7 +114,7 @@ const Directions = ({ data }: { data: any }) => {
                                     </div>
 
                                     <h3
-                                        style={{ fontSize: `${cardTitleSize}px` }}
+                                        style={{ fontSize: `clamp(${Math.max(16, cardTitleSize * 0.8)}px, 4.5vw, ${cardTitleSize}px)` }}
                                         className="font-black text-slate-900 mb-2 md:mb-6 group-hover:translate-x-1 transition-transform leading-tight break-words"
                                     >
                                         <HighlightedText text={item.title} />
@@ -122,7 +125,10 @@ const Directions = ({ data }: { data: any }) => {
                                             String(item.desc).split('\n').map((feat: string, idx: number) => (
                                                 <div key={idx} className="flex items-start gap-1.5 md:gap-2 text-slate-600 font-medium">
                                                     <CheckCircle2 size={12} className="min-w-[12px] md:w-[14px] md:h-[14px] text-[#007f94] mt-0.5" />
-                                                    <span style={{ fontSize: `${cardDescSize}px` }} className="leading-snug">
+                                                    <span
+                                                        style={{ fontSize: `clamp(${Math.max(12, cardDescSize * 0.85)}px, 3.5vw, ${cardDescSize}px)` }}
+                                                        className="leading-snug"
+                                                    >
                                                         <HighlightedText text={feat} />
                                                     </span>
                                                 </div>

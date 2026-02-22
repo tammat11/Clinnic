@@ -42,11 +42,17 @@ const Hero = ({ data }: { data: any }) => {
         }
     };
 
+    const padding = 120; // Base padding in px
+
     return (
         <section
             ref={containerRef}
             id="hero"
-            className="relative flex flex-col items-center justify-center min-h-[100svh] pt-24 md:pt-32 pb-8 overflow-hidden bg-gradient-to-b from-[#fafcff] to-white"
+            style={{
+                paddingTop: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`,
+                paddingBottom: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`
+            }}
+            className="relative flex flex-col items-center justify-center min-h-[100svh] overflow-hidden bg-gradient-to-b from-[#fafcff] to-white"
         >
             {/* Soft Background */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -88,8 +94,8 @@ const Hero = ({ data }: { data: any }) => {
 
                     <motion.h1
                         variants={itemVariants}
-                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.1] mb-6 max-w-4xl text-balance whitespace-pre-line mx-auto text-[clamp(1.75rem,5vw,1000px)]"
-                        style={{ fontSize: `${titleSize}px` }}
+                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.1] mb-5 md:mb-8 max-w-4xl text-balance whitespace-pre-line mx-auto"
+                        style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
                     >
                         <HighlightedText text={title} />
                     </motion.h1>
@@ -98,16 +104,17 @@ const Hero = ({ data }: { data: any }) => {
                     <motion.div variants={itemVariants} className="flex flex-col items-center gap-3 mb-8 max-w-2xl px-4 mx-auto">
                         <h2
                             className="font-black text-[#007f94] tracking-[0.15em] uppercase text-balance"
-                            style={{ fontSize: `${subtitleSize}px` }}
+                            style={{ fontSize: `clamp(${Math.max(12, subtitleSize * 0.8)}px, 3vw, ${subtitleSize}px)` }}
                         >
                             {subtitle}
                         </h2>
-                        <p
-                            className="text-slate-500 leading-relaxed text-balance font-medium text-sm md:text-base"
-                            style={{ fontSize: `${descSize}px` }}
+                        <motion.p
+                            variants={itemVariants}
+                            className="text-slate-500 font-medium mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed text-balance"
+                            style={{ fontSize: `clamp(${Math.max(15, descSize * 0.85)}px, 4vw, ${descSize}px)` }}
                         >
                             {description}
-                        </p>
+                        </motion.p>
                     </motion.div>
 
                     {/* Buttons */}

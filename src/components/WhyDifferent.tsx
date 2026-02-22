@@ -40,7 +40,10 @@ const WhyDifferent = ({ data }: { data: any }) => {
     return (
         <section
             id="why-different"
-            style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
+            style={{
+                paddingTop: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`,
+                paddingBottom: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`
+            }}
             className="py-12 md:py-24 bg-[#f8fafc] overflow-hidden"
         >
             <div className="container mx-auto px-4 md:px-6">
@@ -91,7 +94,7 @@ const WhyDifferent = ({ data }: { data: any }) => {
                             </div>
 
                             <h2
-                                style={{ fontSize: `${titleSize}px` }}
+                                style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
                                 className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-6 md:mb-10 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
                             >
                                 <HighlightedText text={title} />

@@ -43,7 +43,10 @@ const Doctors = ({ data }: { data: any }) => {
     return (
         <section
             id="doctors"
-            style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
+            style={{
+                paddingTop: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`,
+                paddingBottom: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`
+            }}
             className="bg-slate-50 overflow-hidden relative"
         >
             <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -57,13 +60,13 @@ const Doctors = ({ data }: { data: any }) => {
                     >
                         <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block">{badge}</span>
                         <h2
-                            style={{ fontSize: `${titleSize}px` }}
+                            style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
                             className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-8 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
                         >
                             <HighlightedText text={title} />
                         </h2>
                         <p
-                            style={{ fontSize: `${descSize}px` }}
+                            style={{ fontSize: `clamp(${Math.max(14, descSize * 0.85)}px, 4vw, ${descSize}px)` }}
                             className="text-slate-500 max-w-2xl mx-auto leading-relaxed px-4 whitespace-pre-line"
                         >
                             {desc}

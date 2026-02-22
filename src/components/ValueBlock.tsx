@@ -21,7 +21,10 @@ const ValueBlock = ({ data }: { data: any }) => {
     return (
         <section
             id="value"
-            style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
+            style={{
+                paddingTop: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`,
+                paddingBottom: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`
+            }}
             className="relative bg-white overflow-hidden"
         >
             {/* Subtle background detail */}
@@ -35,8 +38,8 @@ const ValueBlock = ({ data }: { data: any }) => {
                             <Sparkles size={14} className="text-[#007f94]" /> Эффективная профилактика
                         </div>
                         <h2
-                            style={{ fontSize: `${titleSize}px` }}
-                            className="font-bold text-[#0a1e2b] mb-8 leading-[1.1] tracking-tighter whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
+                            style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
+                            className="font-bold text-[#0a1e2b] mb-6 md:mb-8 leading-[1.1] tracking-tighter whitespace-pre-line"
                         >
                             <HighlightedText text={title} />
                         </h2>
@@ -46,8 +49,7 @@ const ValueBlock = ({ data }: { data: any }) => {
                             {[...Array(10)].map((_, i) => (
                                 <User
                                     key={i}
-                                    size={28}
-                                    className={i < 8 ? "text-[#007f94]" : "text-red-500 opacity-60"}
+                                    className={`${i < 8 ? "text-[#007f94]" : "text-red-500 opacity-60"} w-5 h-5 md:w-7 md:h-7`}
                                     strokeWidth={3}
                                 />
                             ))}
@@ -55,13 +57,13 @@ const ValueBlock = ({ data }: { data: any }) => {
 
                         <div className="space-y-4 max-w-2xl mx-auto">
                             <p
-                                style={{ fontSize: `${descSize + 4}px` }}
+                                style={{ fontSize: `clamp(${Math.max(18, (descSize + 4) * 0.7)}px, 4vw, ${descSize + 4}px)` }}
                                 className="text-[#007f94] font-bold leading-relaxed whitespace-pre-line max-w-[320px] mx-auto md:max-w-none"
                             >
                                 <HighlightedText text={mainText} />
                             </p>
                             <p
-                                style={{ fontSize: `${descSize}px` }}
+                                style={{ fontSize: `clamp(${Math.max(14, descSize * 0.85)}px, 3.5vw, ${descSize}px)` }}
                                 className="text-slate-500 font-medium leading-relaxed"
                             >
                                 <HighlightedText text={subText} />
