@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stethoscope, Scan, ClipboardCheck, ArrowRight, Play } from 'lucide-react';
+import { Stethoscope, Scan, ClipboardCheck, ArrowRight } from 'lucide-react';
 import FadeIn from './common/FadeIn';
 import Magnetic from './common/Magnetic';
 import { motion } from 'framer-motion';
@@ -25,11 +25,11 @@ const ProcessBlock = ({ data }: { data: any }) => {
     const COLORS = ['bg-blue-50 text-blue-600', 'bg-indigo-50 text-indigo-600', 'bg-teal-50 text-teal-600'];
 
     const partnersList = [
-        { name: 'Bupa', color: 'text-white' },
-        { name: 'Cigna', color: 'text-emerald-400' },
-        { name: 'Aetna', color: 'text-purple-300' },
-        { name: 'Allianz', color: 'text-blue-300' },
-        { name: 'AXA', color: 'text-white' }
+        { name: 'Bupa', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Bupa_logo.svg/512px-Bupa_logo.svg.png' },
+        { name: 'Cigna', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Cigna_logo.svg/512px-Cigna_logo.svg.png' },
+        { name: 'Aetna', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Aetna_logo.svg/512px-Aetna_logo.svg.png' },
+        { name: 'Allianz', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Allianz_logo.svg/512px-Allianz_logo.svg.png' },
+        { name: 'AXA', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/AXA_Logo.svg/512px-AXA_Logo.svg.png' }
     ];
 
     return (
@@ -121,55 +121,30 @@ const ProcessBlock = ({ data }: { data: any }) => {
                         </div>
 
                         {/* Partners Display on Right */}
-                        <div className="relative flex flex-col items-center lg:items-start">
-                            <div className="mb-8 flex items-center gap-3">
+                        <div className="relative flex flex-col items-center">
+                            <div className="mb-10 flex items-center gap-3">
                                 <div className="h-[1px] w-8 bg-[#007f94]" />
                                 <span className="text-[#007f94] font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">Наши партнеры</span>
+                                <div className="h-[1px] w-8 bg-[#007f94]" />
                             </div>
 
-                            <div className="relative w-full overflow-hidden py-10">
-                                <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-16 md:gap-x-20 md:gap-y-24">
-                                    {partnersList.map((partner, index) => (
-                                        <motion.div
-                                            key={index}
-                                            initial={{ opacity: 0, scale: 0.8 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{
-                                                delay: index * 0.05,
-                                                duration: 0.5,
-                                                ease: "easeOut"
-                                            }}
-                                            className="group relative flex flex-col items-center"
-                                        >
-                                            <motion.div
-                                                animate={{
-                                                    y: [0, index % 2 === 0 ? -10 : 10, 0]
-                                                }}
-                                                transition={{
-                                                    duration: 3 + index,
-                                                    repeat: Infinity,
-                                                    ease: "easeInOut"
-                                                }}
-                                                className={`text-3xl md:text-5xl font-black text-white/40 group-hover:text-white transition-all duration-500 cursor-default select-none tracking-tighter`}
-                                            >
-                                                {partner.name === 'AXA' ? (
-                                                    <span className="relative">
-                                                        AXA
-                                                        <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-red-500 rounded-full opacity-60 group-hover:opacity-100 transition-opacity" />
-                                                    </span>
-                                                ) : partner.name}
-                                            </motion.div>
-                                            {/* Subtle glow on hover */}
-                                            <div className="absolute inset-0 bg-white/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity rounded-full -z-10" />
-                                        </motion.div>
-                                    ))}
-                                </div>
-
-                                {/* Abstract decorative backgrounds for the logos area */}
-                                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-20 pointer-events-none">
-                                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,#ffffff0a_0,transparent_70%)]" />
-                                </div>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4 md:gap-6 items-center justify-items-center w-full">
+                                {partnersList.map((partner, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, scale: 0.95 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: index * 0.05 }}
+                                        className="w-full max-w-[140px] md:max-w-[180px] aspect-[2.5/1] bg-white rounded-xl p-3 md:p-6 flex items-center justify-center shadow-lg"
+                                    >
+                                        <img
+                                            src={partner.logo}
+                                            alt={partner.name}
+                                            className="w-full h-full object-contain"
+                                        />
+                                    </motion.div>
+                                ))}
                             </div>
                         </div>
                     </div>
