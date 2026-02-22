@@ -49,7 +49,7 @@ const Hero = ({ data }: { data: any }) => {
             ref={containerRef}
             id="hero"
             style={{
-                paddingTop: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`,
+                paddingTop: `clamp(160px, 18vh, ${padding + 20}px)`,
                 paddingBottom: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`
             }}
             className="relative flex flex-col items-center justify-center min-h-[100svh] overflow-hidden bg-gradient-to-b from-[#fafcff] to-white"
@@ -94,39 +94,33 @@ const Hero = ({ data }: { data: any }) => {
 
                     <motion.h1
                         variants={itemVariants}
-                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.1] mb-5 md:mb-8 max-w-4xl text-balance whitespace-pre-line mx-auto"
-                        style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
+                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.05] mb-6 md:mb-10 max-w-4xl whitespace-pre-line mx-auto px-4"
+                        style={{ fontSize: `clamp(32px, 10vw, ${titleSize}px)` }}
                     >
                         <HighlightedText text={title} />
                     </motion.h1>
 
                     {/* Subtext and Description */}
-                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-3 mb-8 max-w-2xl px-4 mx-auto">
+                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 mb-10 md:mb-14 max-w-2xl px-6 mx-auto">
                         <h2
-                            className="font-black text-[#007f94] tracking-[0.15em] uppercase text-balance"
-                            style={{ fontSize: `clamp(${Math.max(12, subtitleSize * 0.8)}px, 3vw, ${subtitleSize}px)` }}
+                            className="font-black text-[#007f94] tracking-[0.2em] uppercase"
+                            style={{ fontSize: `clamp(12px, 3vw, ${subtitleSize}px)` }}
                         >
                             {subtitle}
                         </h2>
-                        <motion.p
-                            variants={itemVariants}
-                            className="text-slate-500 font-medium mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed text-balance"
-                            style={{ fontSize: `clamp(${Math.max(15, descSize * 0.85)}px, 4vw, ${descSize}px)` }}
+                        <p
+                            className="text-slate-500 font-medium leading-relaxed"
+                            style={{ fontSize: `clamp(16px, 4.5vw, ${descSize}px)` }}
                         >
                             {description}
-                        </motion.p>
+                        </p>
                     </motion.div>
 
                     {/* Buttons */}
-                    <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full px-6 sm:px-0 mb-8 shrink-0">
+                    <motion.div variants={itemVariants} className="flex justify-center w-full px-6 mb-12">
                         <Magnetic>
-                            <a href="#contact" className="w-full sm:w-auto px-7 py-3.5 bg-[#007f94] hover:bg-[#00c2e0] text-white font-bold rounded-xl shadow-lg shadow-[#007f94]/20 transition-all flex items-center justify-center gap-2 text-sm md:text-base">
-                                {buttonPrimary} <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 opacity-90" />
-                            </a>
-                        </Magnetic>
-                        <Magnetic>
-                            <a href="#about" className="w-full sm:w-auto px-7 py-3.5 bg-white border border-slate-200 text-[#0a1e2b] hover:border-[#007f94] hover:bg-slate-50 rounded-xl transition-all flex items-center justify-center text-sm md:text-base font-bold shadow-sm">
-                                {buttonSecondary}
+                            <a href="#contact" className="px-10 py-4.5 bg-[#0a1e2b] hover:bg-[#007f94] text-white font-bold rounded-2xl shadow-2xl shadow-slate-900/20 transition-all flex items-center justify-center gap-3 text-base md:text-lg">
+                                {buttonPrimary} <ArrowUpRight className="w-5 h-5 opacity-90" />
                             </a>
                         </Magnetic>
                     </motion.div>
