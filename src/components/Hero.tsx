@@ -160,9 +160,23 @@ const Hero = ({ data }: { data: any }) => {
                         </Magnetic>
                     </motion.div>
 
-
-
-
+                    {/* Benefit Bar - Unified for Mobile/Desktop */}
+                    <div className="w-full border-t border-slate-100 pt-6 md:pt-8 mb-12 px-2 md:px-0">
+                        <motion.div
+                            variants={itemVariants}
+                            className="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-8 gap-y-3"
+                        >
+                            {(benefits || []).map((item: any, i: number) => {
+                                const Icon = ICON_POOL[item.icon] || ICON_POOL.Activity;
+                                return (
+                                    <span key={i} className="flex items-center gap-1.5 md:gap-2 whitespace-nowrap text-[#007f94] font-bold tracking-tight text-[10px] md:text-sm bg-slate-50 md:bg-transparent px-2 md:px-0 py-1 md:py-0 rounded-md md:rounded-none">
+                                        <Icon size={12} className="text-[#007f94] shrink-0 md:w-[14px] md:h-[14px]" />
+                                        {item.text}
+                                    </span>
+                                );
+                            })}
+                        </motion.div>
+                    </div>
                 </div>
             </motion.div>
         </section>
