@@ -24,6 +24,14 @@ const ProcessBlock = ({ data }: { data: any }) => {
     const ICONS = [Stethoscope, Scan, ClipboardCheck];
     const COLORS = ['bg-blue-50 text-blue-600', 'bg-indigo-50 text-indigo-600', 'bg-teal-50 text-teal-600'];
 
+    const partnersList = [
+        { name: 'Bupa', color: 'text-white' },
+        { name: 'Cigna', color: 'text-emerald-400' },
+        { name: 'Aetna', color: 'text-purple-300' },
+        { name: 'Allianz', color: 'text-blue-300' },
+        { name: 'AXA', color: 'text-white' }
+    ];
+
     return (
         <section
             id="process"
@@ -91,33 +99,43 @@ const ProcessBlock = ({ data }: { data: any }) => {
                         <div className="absolute bottom-[-20%] left-[-10%] w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-blue-500/10 rounded-full blur-[50px] md:blur-[100px]" />
                     </div>
 
-                    <div className="relative z-10 grid lg:grid-cols-2 gap-8 md:gap-8 items-center">
+                    <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
                         <div className="text-center lg:text-left">
-                            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 md:mb-6 leading-[1.1] tracking-tighter whitespace-pre-line">
+                            <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-[1.1] tracking-tighter whitespace-pre-line">
                                 <HighlightedText text={ctaTitle} />
                             </h3>
-                            <p
-                                style={{ fontSize: `${descSize}px` }}
-                                className="text-slate-400 font-medium mb-8 max-w-md mx-auto lg:mx-0 leading-relaxed whitespace-pre-line"
-                            >
+                            <p className="text-slate-400 font-medium mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed whitespace-pre-line">
                                 {ctaDesc}
                             </p>
 
-                            <div className="flex flex-wrap justify-center lg:justify-start gap-4 md:gap-6">
-                                <Magnetic>
-                                    <motion.a
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        href="#contact"
-                                        className="inline-flex items-center gap-2 md:gap-3 px-8 md:px-10 py-4 md:py-5 bg-[#007f94] text-white font-bold text-sm md:text-lg rounded-full shadow-2xl shadow-[#007f94]/30 hover:opacity-90 transition-all w-full md:w-auto justify-center"
+                            {/* Integrated Partners Grid */}
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 mb-10 opacity-70">
+                                {partnersList.map((partner, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0 }}
+                                        whileInView={{ opacity: 1 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        className={`text-xl md:text-2xl font-bold ${partner.color} hover:opacity-100 transition-opacity`}
                                     >
-                                        {ctaButton} <ArrowRight size={18} className="md:w-5 md:h-5" />
-                                    </motion.a>
+                                        {partner.name}
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            <div className="flex justify-center lg:justify-start">
+                                <Magnetic>
+                                    <a
+                                        href="#contact"
+                                        className="inline-flex items-center gap-2 px-10 py-5 bg-[#007f94] text-white font-bold rounded-full shadow-2xl hover:scale-105 transition-all text-lg"
+                                    >
+                                        {ctaButton} <ArrowRight size={20} />
+                                    </a>
                                 </Magnetic>
                             </div>
                         </div>
 
-                        <div className="hidden lg:block relative h-full min-h-[300px]">
+                        <div className="hidden lg:block relative h-full min-h-[400px]">
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
@@ -128,17 +146,9 @@ const ProcessBlock = ({ data }: { data: any }) => {
                                     src={image}
                                     alt="Medical Process"
                                     className="w-full h-full object-cover"
-                                    onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&q=80&w=800'}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a1e2b]/60 to-transparent" />
                             </motion.div>
-
-                            {/* Floating decorative elements */}
-                            <motion.div
-                                animate={{ y: [0, -10, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute -top-10 -right-6 w-20 h-20 bg-[#007f94]/30 rounded-full blur-2xl"
-                            />
                         </div>
                     </div>
                 </FadeIn>
