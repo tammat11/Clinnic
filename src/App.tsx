@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import { useContent } from './hooks/useContent';
 import AdminPanel from './components/admin/AdminPanel';
 import AdminLogin from './components/admin/AdminLogin';
+import Specialists from './components/Specialists';
 
 function App() {
     const { content, updateContent } = useContent();
@@ -57,6 +58,7 @@ function App() {
         process: ProcessBlock,
         trust: WhyDifferent,
         doctors: Doctors,
+        specialists: Specialists,
         directions: Directions,
         contact: ContactForm,
         footer: Footer

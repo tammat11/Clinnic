@@ -290,9 +290,10 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
         { id: 'process', label: '03. Процесс приёма', icon: ClipboardCheck },
         { id: 'trust', label: '04. Доверие и факты', icon: ShieldCheck },
         { id: 'doctors', label: '05. Команда врачей', icon: UserPlus },
-        { id: 'directions', label: '06. Услуги и направления', icon: Stethoscope },
-        { id: 'contact', label: '07. Контактная форма', icon: Mail },
-        { id: 'footer', label: '08. Футер и соцсети', icon: Settings },
+        { id: 'specialists', label: '06. Наши специалисты', icon: UserPlus },
+        { id: 'directions', label: '07. Услуги и направления', icon: Stethoscope },
+        { id: 'contact', label: '08. Контактная форма', icon: Mail },
+        { id: 'footer', label: '09. Футер и соцсети', icon: Settings },
     ];
 
     if (!isOpen) return null;
@@ -612,6 +613,29 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                         </div>
                         <SectionLayout data={data} onUpdate={handleUpdate} section="doctors" />
                     </div>
+                )}
+
+                {activeSection === 'specialists' && (
+                    <>
+                        <ContentBlock
+                            label="Заголовок"
+                            value={data.title}
+                            onChange={(v: string) => handleUpdate('specialists', 'title', v)}
+                            size={data.titleSize}
+                            onSizeChange={(v: number) => handleUpdate('specialists', 'titleSize', v)}
+                            placeholder="Введите заголовок"
+                        />
+                        <ContentBlock
+                            label="Описание"
+                            value={data.desc}
+                            onChange={(v: string) => handleUpdate('specialists', 'desc', v)}
+                            size={data.descSize}
+                            onSizeChange={(v: number) => handleUpdate('specialists', 'descSize', v)}
+                            placeholder="Введите описание"
+                        />
+                        <ImageField label="Фото (Специалисты)" value={data.image} onChange={(v: string) => handleUpdate('specialists', 'image', v)} />
+                        <SectionLayout data={data} onUpdate={handleUpdate} section="specialists" />
+                    </>
                 )}
 
                 {activeSection === 'directions' && (
