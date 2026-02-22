@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
 import { motion } from 'framer-motion';
+import HighlightedText from './common/HighlightedText';
 
 const Footer = ({ data }: { data: any }) => {
     const {
@@ -53,8 +54,9 @@ const Footer = ({ data }: { data: any }) => {
                         <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-8">Контакты</h4>
                         <div className="space-y-6">
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
-                                <MapPin size={20} className="text-[#007f94] shrink-0" />
-                                <span className="text-slate-300">{address}</span>
+                                <span className="text-slate-300">
+                                    <HighlightedText text={address} />
+                                </span>
                             </motion.div>
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <Phone size={20} className="text-[#007f94] shrink-0" />

@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import FadeIn from './common/FadeIn';
 import Magnetic from './common/Magnetic';
+import HighlightedText from './common/HighlightedText';
 
 const Directions = ({ data }: { data: any }) => {
     const {
@@ -63,9 +64,9 @@ const Directions = ({ data }: { data: any }) => {
                         </div>
                         <h2
                             style={{ fontSize: `clamp(2rem, 5vw, ${titleSize}px)` }}
-                            className="font-black text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-8 whitespace-pre-line"
+                            className="font-bold text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-8 whitespace-pre-line"
                         >
-                            {title}
+                            <HighlightedText text={title} />
                         </h2>
                     </FadeIn>
 
@@ -78,7 +79,7 @@ const Directions = ({ data }: { data: any }) => {
                             style={{ fontSize: `${subTitleSize}px` }}
                             className="text-slate-400 font-medium max-w-[240px] leading-relaxed text-right"
                         >
-                            {subTitle}
+                            <HighlightedText text={subTitle} />
                         </p>
                     </FadeIn>
                 </div>
@@ -113,7 +114,7 @@ const Directions = ({ data }: { data: any }) => {
                                         style={{ fontSize: `${cardTitleSize}px` }}
                                         className="font-black text-slate-900 mb-2 md:mb-6 group-hover:translate-x-1 transition-transform leading-tight break-words"
                                     >
-                                        {item.title}
+                                        <HighlightedText text={item.title} />
                                     </h3>
 
                                     <div className="space-y-1 md:space-y-3 mb-2 md:mb-8">
@@ -121,7 +122,9 @@ const Directions = ({ data }: { data: any }) => {
                                             String(item.desc).split('\n').map((feat: string, idx: number) => (
                                                 <div key={idx} className="flex items-start gap-1.5 md:gap-2 text-slate-600 font-medium">
                                                     <CheckCircle2 size={12} className="min-w-[12px] md:w-[14px] md:h-[14px] text-[#007f94] mt-0.5" />
-                                                    <span style={{ fontSize: `${cardDescSize}px` }} className="leading-snug">{feat}</span>
+                                                    <span style={{ fontSize: `${cardDescSize}px` }} className="leading-snug">
+                                                        <HighlightedText text={feat} />
+                                                    </span>
                                                 </div>
                                             ))
                                         ) : (

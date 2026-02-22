@@ -112,8 +112,12 @@ const WhyDifferent = ({ data }: { data: any }) => {
                                                 <Icon size={20} className="md:w-6 md:h-6" strokeWidth={1.5} />
                                             </div>
                                             <div>
-                                                <h3 className="text-sm md:text-lg font-bold text-slate-900 mb-1 md:mb-1 group-hover:text-[#007f94] transition-colors uppercase tracking-tight">{fact.text}</h3>
-                                                <p className="text-slate-500 text-xs md:text-sm leading-relaxed max-w-md">{fact.desc}</p>
+                                                <h3 className="text-sm md:text-lg font-bold text-slate-900 mb-1 md:mb-1 group-hover:text-[#007f94] transition-colors uppercase tracking-tight">
+                                                    <HighlightedText text={fact.text} />
+                                                </h3>
+                                                <p className="text-slate-500 text-xs md:text-sm leading-relaxed max-w-md">
+                                                    <HighlightedText text={fact.desc} />
+                                                </p>
                                             </div>
                                         </FadeIn>
                                     );

@@ -64,7 +64,7 @@ const ValueBlock = ({ data }: { data: any }) => {
                                 style={{ fontSize: `${descSize}px` }}
                                 className="text-slate-500 font-medium leading-relaxed"
                             >
-                                {subText}
+                                <HighlightedText text={subText} />
                             </p>
                         </div>
                     </FadeIn>
@@ -84,13 +84,13 @@ const ValueBlock = ({ data }: { data: any }) => {
                                         style={{ fontSize: `${methodTitleSize}px` }}
                                         className="font-black text-[#0a1e2b] mb-4 tracking-tight group-hover:text-[#007f94] transition-colors"
                                     >
-                                        {item.title}
+                                        <HighlightedText text={item.title} />
                                     </h3>
                                     <p
                                         style={{ fontSize: `${methodDescSize}px` }}
                                         className="text-slate-500 leading-relaxed font-medium"
                                     >
-                                        {item.desc}
+                                        <HighlightedText text={item.desc} />
                                     </p>
 
                                     <span className="absolute top-8 right-8 text-slate-200/50 text-4xl font-black italic select-none">
@@ -106,7 +106,7 @@ const ValueBlock = ({ data }: { data: any }) => {
                     <FadeIn delay={0.5} direction="up" className="mt-16 md:mt-20 text-center">
                         <div className="inline-block px-8 py-5 rounded-[2rem] bg-[#007f94]/5 border border-[#007f94]/10">
                             <p className="text-[#007f94] font-black text-sm md:text-lg tracking-tight">
-                                {conclusion}
+                                <HighlightedText text={conclusion} />
                             </p>
                         </div>
                     </FadeIn>

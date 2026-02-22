@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, MapPin, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
+import HighlightedText from './common/HighlightedText';
 
 const Doctors = ({ data }: { data: any }) => {
     const {
@@ -59,7 +60,7 @@ const Doctors = ({ data }: { data: any }) => {
                             style={{ fontSize: `${titleSize}px` }}
                             className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-8 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
                         >
-                            {title}
+                            <HighlightedText text={title} />
                         </h2>
                         <p
                             style={{ fontSize: `${descSize}px` }}

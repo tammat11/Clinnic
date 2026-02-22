@@ -6,16 +6,16 @@ interface HighlightedTextProps {
 }
 
 /**
- * A utility component that renders text with support for:
- * 1. Newlines (\n)
- * 2. Brand color highlighting using *text* syntax
+ * Parse the text with support for:
+ * 1. Manual line breaks using both \n and ^
+ * 2. Highlighting text between asterisks *like this*
  */
 const HighlightedText: React.FC<HighlightedTextProps> = ({ text, className }) => {
     const contentText = String(text || '');
     if (!contentText) return null;
 
-    // Split by newlines first
-    const lines = contentText.split('\n');
+    const processedText = contentText.replace(/\^/g, '\n');
+    const lines = processedText.split('\n');
 
     return (
         <span className={className}>
