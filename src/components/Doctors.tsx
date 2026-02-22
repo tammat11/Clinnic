@@ -56,8 +56,8 @@ const Doctors = ({ data }: { data: any }) => {
                     >
                         <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block">{badge}</span>
                         <h2
-                            style={{ fontSize: `clamp(2rem, 5vw, ${titleSize}px)` }}
-                            className="font-black text-[#0a1e2b] mb-4 md:mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
+                            style={{ fontSize: `${titleSize}px` }}
+                            className="font-black text-[#0a1e2b] mb-4 md:mb-6 leading-[1.1] tracking-tighter"
                         >
                             {title}
                         </h2>

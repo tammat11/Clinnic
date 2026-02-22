@@ -33,13 +33,13 @@ const Specialists = ({ data }: { data: any }) => {
                         <span className="h-[1px] w-8 bg-[#007f94]" />
                     </div>
                     <h2
-                        style={{ fontSize: `clamp(2.5rem, 6vw, ${defaultData.titleSize + 12}px)` }}
-                        className="font-extrabold text-[#0a1e2b] leading-[1] tracking-tighter mb-8 whitespace-pre-line"
+                        style={{ fontSize: `${defaultData.titleSize}px` }}
+                        className="font-extrabold text-[#0a1e2b] leading-[1] tracking-tighter mb-8 whitespace-pre-line text-[clamp(2.5rem,6vw,1000px)]"
                     >
                         <HighlightedText text={defaultData.title.replace('*', '').replace('*', '')} />
                     </h2>
                     <p
-                        style={{ fontSize: `${defaultData.descSize + 2}px` }}
+                        style={{ fontSize: `${defaultData.descSize}px` }}
                         className="text-slate-500 leading-relaxed whitespace-pre-line text-balance mx-auto"
                     >
                         {defaultData.desc}

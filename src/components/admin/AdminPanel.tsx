@@ -870,17 +870,17 @@ const ContentBlock = ({ label, value, onChange, size, onSizeChange, placeholder 
             <div className="flex items-center justify-between">
                 <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{label}</label>
                 {onSizeChange && (
-                    <div className="flex items-center gap-2 bg-white px-2 py-1 rounded-lg border border-slate-100">
-                        <Type size={12} className="text-slate-400" />
+                    <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-lg border border-slate-100 shadow-sm">
+                        <Type size={12} className="text-[#007f94]" />
                         <input
                             type="number"
                             value={size || 0}
                             onChange={(e) => onSizeChange(Number(e.target.value))}
-                            className="w-8 text-[10px] font-bold text-slate-600 outline-none"
+                            className="w-14 text-xs font-black text-slate-700 outline-none bg-transparent text-center"
                             title="Font Size"
                             aria-label={`Размер шрифта для ${label}`}
                         />
-                        <span className="text-[8px] font-bold text-slate-300">PX</span>
+                        <span className="text-[10px] font-black text-slate-300">PX</span>
                     </div>
                 )}
             </div>

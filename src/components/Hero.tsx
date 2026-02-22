@@ -19,6 +19,9 @@ const Hero = ({ data }: { data: any }) => {
         description = 'Консультации, диагностика и планы медицинской реабилитации экспертного уровня без выезда за границу.',
         buttonPrimary = 'Записаться на приём',
         buttonSecondary = 'Подробнее о клинике',
+        titleSize = 64,
+        subtitleSize = 14,
+        descSize = 18,
         benefits = []
     } = data || {};
 
@@ -86,17 +89,24 @@ const Hero = ({ data }: { data: any }) => {
                     {/* Headline */}
                     <motion.h1
                         variants={itemVariants}
-                        className="text-[clamp(2rem,5vw,3.75rem)] font-extrabold text-[#0a1e2b] tracking-[-0.02em] leading-[1.1] mb-6 max-w-4xl text-balance whitespace-pre-line mx-auto"
+                        className="font-extrabold text-[#0a1e2b] tracking-[-0.02em] leading-[1.1] mb-6 max-w-4xl text-balance whitespace-pre-line mx-auto"
+                        style={{ fontSize: `${titleSize}px` }}
                     >
                         <HighlightedText text={title} />
                     </motion.h1>
 
                     {/* Subtext and Description */}
                     <motion.div variants={itemVariants} className="flex flex-col items-center gap-3 mb-8 max-w-2xl px-4 mx-auto">
-                        <h2 className="text-[10px] md:text-xs font-black text-[#007f94] tracking-[0.15em] uppercase text-balance">
+                        <h2
+                            className="font-black text-[#007f94] tracking-[0.15em] uppercase text-balance"
+                            style={{ fontSize: `${subtitleSize}px` }}
+                        >
                             {subtitle}
                         </h2>
-                        <p className="text-slate-500 text-sm md:text-lg leading-relaxed text-balance font-medium">
+                        <p
+                            className="text-slate-500 leading-relaxed text-balance font-medium text-sm md:text-base"
+                            style={{ fontSize: `${descSize}px` }}
+                        >
                             {description}
                         </p>
                     </motion.div>

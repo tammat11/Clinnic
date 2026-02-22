@@ -35,8 +35,8 @@ const ValueBlock = ({ data }: { data: any }) => {
                             <Sparkles size={14} className="text-[#007f94]" /> Эффективная профилактика
                         </div>
                         <h2
-                            style={{ fontSize: `clamp(2rem, 5vw, ${titleSize}px)` }}
-                            className="font-black text-[#0a1e2b] mb-8 leading-[1.05] tracking-tightest whitespace-pre-line"
+                            style={{ fontSize: `${titleSize}px` }}
+                            className="font-black text-[#0a1e2b] mb-8 leading-[1.05] tracking-tightest whitespace-pre-line text-[clamp(2rem,5vw,1000px)]"
                         >
                             <HighlightedText text={title} />
                         </h2>
