@@ -37,7 +37,7 @@ export default function Partners() {
                     </motion.p>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 lg:gap-24 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16 lg:gap-24 transition-all duration-500">
                     {partners.map((partner, index) => (
                         <motion.div
                             key={partner.name}

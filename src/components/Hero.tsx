@@ -76,33 +76,7 @@ const Hero = ({ data }: { data: any }) => {
             >
                 <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
 
-                    {/* Badge */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="inline-flex items-center gap-4 mb-6 md:mb-10 px-5 py-2.5 bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-sm"
-                    >
-                        <div className="flex items-center gap-2">
-                            <div className="w-3.5 h-3.5 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-slate-100">
-                                <img
-                                    src="https://flagcdn.com/w80/tr.png"
-                                    className="w-full h-full object-cover scale-[1.2] object-[30%_center]"
-                                    alt="TR"
-                                />
-                            </div>
-                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">{badgeTR}</span>
-                        </div>
-                        <span className="text-slate-300 text-[10px] font-thin">/</span>
-                        <div className="flex items-center gap-2">
-                            <div className="w-3.5 h-3.5 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-slate-100">
-                                <img
-                                    src="https://flagcdn.com/w80/kz.png"
-                                    className="w-full h-full object-cover scale-[1.2] object-[60%_center]"
-                                    alt="KZ"
-                                />
-                            </div>
-                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">{badgeKZ}</span>
-                        </div>
-                    </motion.div>
+
 
                     {/* Main Headline */}
                     <motion.h1
