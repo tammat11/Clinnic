@@ -67,7 +67,7 @@ function App() {
     };
 
     return (
-        <div className="min-h-screen bg-white selection:bg-[#007f94] selection:text-white font-outfit">
+        <div className="min-h-screen bg-white selection:bg-[#007f94] selection:text-white">
             <Navbar />
             <main>
                 {Array.isArray(content?.sectionsOrder) && content.sectionsOrder.map((sectionId: string) => {
