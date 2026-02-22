@@ -56,7 +56,7 @@ const Hero = ({ data }: { data: any }) => {
             </div>
 
             <motion.div
-                className="container mx-auto px-4 relative z-10 w-full flex-1 flex flex-col justify-center"
+                className="container mx-auto px-4 relative z-10 w-full flex-1 flex flex-col justify-center -mt-8 md:-mt-16"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
