@@ -43,7 +43,7 @@ const Hero = ({ data }: { data: any }) => {
         <section
             ref={containerRef}
             id="hero"
-            className="relative flex flex-col items-center justify-center min-h-[100svh] pt-32 pb-16 bg-[#fafcff] overflow-hidden"
+            className="relative flex flex-col items-center justify-center min-h-[90svh] pt-32 md:pt-40 pb-12 overflow-hidden bg-gradient-to-b from-[#fafcff] to-white"
         >
             {/* Soft Background */}
             <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
@@ -56,7 +56,7 @@ const Hero = ({ data }: { data: any }) => {
             </div>
 
             <motion.div
-                className="container mx-auto px-4 relative z-10 w-full flex-1 flex flex-col justify-center -mt-8 md:-mt-16"
+                className="container mx-auto px-4 relative z-10 w-full mb-10 md:mb-16"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
@@ -65,7 +65,7 @@ const Hero = ({ data }: { data: any }) => {
                 <div className="flex flex-col items-center text-center max-w-5xl mx-auto w-full">
 
                     {/* Clean Badge */}
-                    <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6 md:mb-10 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-slate-200 shadow-sm">
+                    <motion.div variants={itemVariants} className="inline-flex items-center gap-4 mb-8 md:mb-12 px-5 py-2.5 bg-white/80 backdrop-blur-md rounded-full border border-slate-200/60 shadow-sm mx-auto">
                         <div className="flex items-center gap-2">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -86,14 +86,14 @@ const Hero = ({ data }: { data: any }) => {
                     {/* Headline */}
                     <motion.h1
                         variants={itemVariants}
-                        className="text-[clamp(2rem,7vw,4.5rem)] font-extrabold text-[#0a1e2b] tracking-tight leading-[1.1] mb-6 max-w-4xl text-balance whitespace-pre-line"
+                        className="text-[clamp(2.5rem,6vw,4.5rem)] font-extrabold text-[#0a1e2b] tracking-[-0.02em] leading-[1.05] md:leading-[1.1] mb-8 max-w-4xl text-balance whitespace-pre-line mx-auto"
                     >
                         <HighlightedText text={title} />
                     </motion.h1>
 
                     {/* Subtext and Description */}
-                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 mb-10 max-w-2xl px-4">
-                        <h2 className="text-sm md:text-base font-bold text-[#007f94] tracking-widest uppercase text-balance">
+                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 mb-12 max-w-2xl px-4 mx-auto">
+                        <h2 className="text-xs md:text-sm font-black text-[#007f94] tracking-[0.15em] uppercase text-balance">
                             {subtitle}
                         </h2>
                         <p className="text-slate-500 text-base md:text-xl leading-relaxed text-balance font-medium">
@@ -120,20 +120,20 @@ const Hero = ({ data }: { data: any }) => {
 
             {/* Clean Benefit Bar */}
             <motion.div
-                className="w-full relative z-20 container mx-auto px-4 mt-auto border-t border-slate-200/50 pt-6"
+                className="w-full relative z-20 container mx-auto px-4 mt-auto border-t border-slate-200/60 pt-6 md:pt-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
             >
-                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:gap-x-12">
+                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-14">
                     {(benefits || []).map((item: any, i: number) => {
                         const Icon = ICON_POOL[item.icon] || ICON_POOL.Activity;
                         return (
-                            <div key={i} className="flex items-center gap-2 md:gap-3 group">
-                                <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#007f94]/5 flex items-center justify-center text-[#007f94]">
-                                    <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 stroke-[2.5]" />
+                            <div key={i} className="flex items-center gap-2.5 group">
+                                <div className="w-8 h-8 rounded-full bg-[#007f94]/5 flex items-center justify-center text-[#007f94] transition-colors group-hover:bg-[#007f94]/10">
+                                    <Icon className="w-4 h-4 stroke-[2.5]" />
                                 </div>
-                                <span className="text-xs md:text-sm font-bold text-slate-600 tracking-wide">{item.text}</span>
+                                <span className="text-xs md:text-sm font-bold text-slate-600 tracking-wide group-hover:text-slate-800 transition-colors uppercase">{item.text}</span>
                             </div>
                         );
                     })}
