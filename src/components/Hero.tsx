@@ -134,18 +134,17 @@ const Hero = ({ data }: { data: any }) => {
                 </div>
             </motion.div>
 
-            {/* Clean Benefit Bar */}
             <motion.div
                 className="w-full relative z-20 container mx-auto px-4 mt-auto border-t border-slate-200/60 pt-4 md:pt-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
             >
-                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-3 md:gap-x-12">
+                <div className="flex overflow-x-auto md:flex-wrap items-center justify-start md:justify-center gap-x-6 gap-y-3 md:gap-x-12 scrollbar-hide pb-2 md:pb-0">
                     {(benefits || []).map((item: any, i: number) => {
                         const Icon = ICON_POOL[item.icon] || ICON_POOL.Activity;
                         return (
-                            <div key={i} className="flex items-center gap-2 group">
+                            <div key={i} className="flex items-center gap-2 group whitespace-nowrap shrink-0">
                                 <div className="w-7 h-7 rounded-full bg-[#007f94]/5 flex items-center justify-center text-[#007f94] transition-colors group-hover:bg-[#007f94]/10">
                                     <Icon className="w-3.5 h-3.5 stroke-[2.5]" />
                                 </div>
