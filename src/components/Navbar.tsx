@@ -35,7 +35,7 @@ const Navbar = () => {
                     <Magnetic>
                         <a
                             href="#contact"
-                            className="group relative px-6 py-2.5 md:px-8 md:py-3 bg-[#007f94] text-white font-bold text-sm md:text-base rounded-full overflow-hidden shadow-[0_8px_20px_rgba(0,127,148,0.15)] flex items-center justify-center transition-all hover:bg-[#00c2e0] hover:shadow-[0_12px_24px_rgba(0,127,148,0.25)] hover:scale-[1.02] active:scale-[0.98]"
+                            className="group relative px-6 py-2.5 md:px-8 md:py-3 bg-[#007f94] text-white font-bold text-sm md:text-base rounded-full overflow-hidden shadow-[0_8px_25px_rgba(0,127,148,0.2)] flex items-center justify-center transition-all duration-300 hover:bg-[#00c2e0] hover:shadow-[0_15px_30px_rgba(0,127,148,0.35)] hover:scale-[1.05] active:scale-[0.98]"
                         >
                             <span className="relative z-10">Записаться</span>
                         </a>

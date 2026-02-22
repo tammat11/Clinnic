@@ -49,7 +49,7 @@ const Hero = ({ data }: { data: any }) => {
             ref={containerRef}
             id="hero"
             style={{
-                paddingTop: `clamp(160px, 18vh, ${padding + 20}px)`,
+                paddingTop: `clamp(180px, 22vh, ${padding + 40}px)`,
                 paddingBottom: `clamp(${padding * 0.4}px, 10vh, ${padding}px)`
             }}
             className="relative flex flex-col items-center justify-center min-h-[100svh] overflow-hidden bg-gradient-to-b from-[#fafcff] to-white"
@@ -94,23 +94,23 @@ const Hero = ({ data }: { data: any }) => {
 
                     <motion.h1
                         variants={itemVariants}
-                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.05] mb-6 md:mb-10 max-w-4xl whitespace-pre-line mx-auto px-4"
-                        style={{ fontSize: `clamp(32px, 10vw, ${titleSize}px)` }}
+                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.1] mb-6 md:mb-10 max-w-4xl whitespace-pre-line mx-auto px-1 sm:px-4"
+                        style={{ fontSize: `clamp(24px, 8vw, ${titleSize}px)` }}
                     >
                         <HighlightedText text={title} />
                     </motion.h1>
 
                     {/* Subtext and Description */}
-                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 mb-10 md:mb-14 max-w-2xl px-6 mx-auto">
+                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 mb-8 md:mb-14 max-w-3xl px-2 sm:px-6 mx-auto">
                         <h2
                             className="font-black text-[#007f94] tracking-[0.2em] uppercase"
-                            style={{ fontSize: `clamp(12px, 3vw, ${subtitleSize}px)` }}
+                            style={{ fontSize: `clamp(11px, 2.5vw, ${subtitleSize}px)` }}
                         >
                             {subtitle}
                         </h2>
                         <p
-                            className="text-slate-500 font-medium leading-relaxed"
-                            style={{ fontSize: `clamp(16px, 4.5vw, ${descSize}px)` }}
+                            className="text-slate-500 font-medium leading-relaxed max-w-[95%] sm:max-w-none"
+                            style={{ fontSize: `clamp(13px, 3.8vw, ${descSize}px)` }}
                         >
                             {description}
                         </p>
@@ -121,11 +121,11 @@ const Hero = ({ data }: { data: any }) => {
                         <Magnetic>
                             <a
                                 href="#contact"
-                                className="group relative overflow-hidden px-12 py-5 bg-[#007f94] text-white font-bold rounded-full shadow-[0_10px_40px_rgba(0,127,148,0.3)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,127,148,0.45)] hover:scale-[1.05] active:scale-[0.98] flex items-center justify-center gap-4 text-base md:text-lg"
+                                className="group relative overflow-hidden px-10 py-4.5 md:px-12 md:py-5 bg-[#007f94] text-white font-bold rounded-full shadow-[0_10px_40px_rgba(0,127,148,0.25)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,127,148,0.4)] hover:scale-[1.05] active:scale-[0.98] flex items-center justify-center gap-3 text-sm md:text-lg"
                             >
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
                                 <span className="relative z-10">{buttonPrimary}</span>
-                                <ArrowUpRight className="w-5 h-5 opacity-90 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform relative z-10" />
+                                <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 opacity-90 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform relative z-10" />
                             </a>
                         </Magnetic>
                     </motion.div>
