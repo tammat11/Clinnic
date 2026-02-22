@@ -14,15 +14,13 @@ const Specialists = ({ data }: { data: any }) => {
         ...data
     };
 
-    const stats = [
-        { label: 'Средний опыт', value: '15+', suffix: 'лет' },
-        { label: 'Международных\nпротоколов', value: '100', suffix: '%' },
-    ];
-
     return (
         <section
             id="specialists"
-            style={{ paddingTop: `${defaultData.padding}px`, paddingBottom: `${defaultData.padding}px` }}
+            style={{
+                paddingTop: `clamp(180px, 25vh, ${defaultData.padding + 60}px)`,
+                paddingBottom: `clamp(${defaultData.padding * 0.4}px, 10vh, ${defaultData.padding}px)`
+            }}
             className="relative py-16 md:py-32 bg-white overflow-hidden"
         >
             <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
@@ -57,7 +55,7 @@ const Specialists = ({ data }: { data: any }) => {
 
                         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 z-20 flex flex-col md:flex-row justify-between items-end gap-8">
                             <div className="flex flex-wrap gap-4 md:gap-8">
-                                {stats.map((stat, idx) => (
+                                {stats.length > 0 && stats.map((stat, idx) => (
                                     <div
                                         key={idx}
                                         className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 md:p-6 min-w-[140px]"
