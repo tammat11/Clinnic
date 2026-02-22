@@ -76,7 +76,33 @@ const Hero = ({ data }: { data: any }) => {
             >
                 <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
 
-
+                    {/* Badge */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="inline-flex items-center gap-4 mb-6 md:mb-10 px-5 py-2.5 bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-sm"
+                    >
+                        <div className="flex items-center gap-2">
+                            <div className="w-3.5 h-3.5 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-slate-100">
+                                <img
+                                    src="https://flagcdn.com/w80/tr.png"
+                                    className="w-full h-full object-cover scale-[1.2] object-[30%_center]"
+                                    alt="TR"
+                                />
+                            </div>
+                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">{badgeTR}</span>
+                        </div>
+                        <span className="text-slate-300 text-[10px] font-thin">/</span>
+                        <div className="flex items-center gap-2">
+                            <div className="w-3.5 h-3.5 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-slate-100">
+                                <img
+                                    src="https://flagcdn.com/w80/kz.png"
+                                    className="w-full h-full object-cover scale-[1.2] object-[60%_center]"
+                                    alt="KZ"
+                                />
+                            </div>
+                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">{badgeKZ}</span>
+                        </div>
+                    </motion.div>
 
                     {/* Main Headline */}
                     <motion.h1
@@ -134,23 +160,7 @@ const Hero = ({ data }: { data: any }) => {
                         </Magnetic>
                     </motion.div>
 
-                    {/* Benefit Bar - Unified for Mobile/Desktop */}
-                    <div className="w-full border-t border-slate-100 pt-6 md:pt-8 mb-12 px-2 md:px-0">
-                        <motion.div
-                            variants={itemVariants}
-                            className="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-8 gap-y-3"
-                        >
-                            {(benefits || []).map((item: any, i: number) => {
-                                const Icon = ICON_POOL[item.icon] || ICON_POOL.Activity;
-                                return (
-                                    <span key={i} className="flex items-center gap-1.5 md:gap-2 whitespace-nowrap text-[#007f94] font-bold tracking-tight text-[10px] md:text-sm bg-slate-50 md:bg-transparent px-2 md:px-0 py-1 md:py-0 rounded-md md:rounded-none">
-                                        <Icon size={12} className="text-[#007f94] shrink-0 md:w-[14px] md:h-[14px]" />
-                                        {item.text}
-                                    </span>
-                                );
-                            })}
-                        </motion.div>
-                    </div>
+
 
 
                 </div>
