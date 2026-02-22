@@ -10,13 +10,13 @@ const FadeIn = ({
     once = true,
     style = {}
 }: {
-    children: React.ReactNode,
+    children: any,
     className?: string,
     direction?: 'up' | 'down' | 'left' | 'right',
     delay?: number,
     duration?: number,
     once?: boolean,
-    style?: React.CSSProperties
+    style?: any
 }) => {
     // Definining variants as an object with 'any' cast to avoid interface mismatches in production build
     const hidden: any = {
