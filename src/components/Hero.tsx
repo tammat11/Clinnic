@@ -93,34 +93,34 @@ const Hero = ({ data }: { data: any }) => {
 
                     <motion.h1
                         variants={itemVariants}
-                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.1] mb-6 md:mb-10 max-w-4xl whitespace-pre-line mx-auto px-4"
-                        style={{ fontSize: `clamp(28px, 9vw, ${titleSize}px)` }}
+                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.1] mb-5 md:mb-10 max-w-4xl whitespace-pre-line mx-auto"
+                        style={{ fontSize: `clamp(26px, 9vw, ${titleSize}px)` }}
                     >
                         <HighlightedText text={title} />
                     </motion.h1>
 
                     {/* Subtext and Description */}
-                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 mb-10 md:mb-14 max-w-2xl px-4 mx-auto">
+                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-3 mb-8 md:mb-14 max-w-2xl px-4 mx-auto">
                         <h2
-                            className="font-black text-[#007f94] tracking-[0.18em] uppercase leading-tight"
-                            style={{ fontSize: `clamp(15px, 4.5vw, 18px)` }}
+                            className="font-bold text-[#007f94] tracking-tight"
+                            style={{ fontSize: `clamp(16px, 4.5vw, ${subtitleSize + 4}px)` }}
                         >
                             {subtitle}
                         </h2>
                         <p
-                            className="text-slate-500 font-medium leading-relaxed max-w-[90%]"
-                            style={{ fontSize: `clamp(12px, 3.5vw, 16px)` }}
+                            className="text-slate-500 font-medium leading-relaxed max-w-[280px] sm:max-w-none"
+                            style={{ fontSize: `clamp(13px, 3.5vw, ${descSize}px)` }}
                         >
                             {description}
                         </p>
                     </motion.div>
 
                     {/* Buttons */}
-                    <motion.div variants={itemVariants} className="flex justify-center w-full px-4 mb-14">
+                    <motion.div variants={itemVariants} className="flex justify-center w-full px-4 mb-10 md:mb-16">
                         <Magnetic>
                             <a
                                 href="#contact"
-                                className="group relative overflow-hidden px-10 py-5 bg-[#007f94] text-white font-bold rounded-full shadow-[0_15px_35px_rgba(0,127,148,0.3)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,127,148,0.45)] hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center gap-3 text-base md:text-xl w-full max-w-[340px] md:max-w-none"
+                                className="group relative overflow-hidden px-10 py-5.5 md:px-12 md:py-6 bg-[#007f94] text-white font-bold rounded-full shadow-[0_15px_35px_rgba(0,127,148,0.3)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,127,148,0.45)] hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center gap-3 text-base md:text-xl w-full max-w-[320px] md:max-w-none"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
                                 <span className="relative z-10">{buttonPrimary}</span>
@@ -129,20 +129,20 @@ const Hero = ({ data }: { data: any }) => {
                         </Magnetic>
                     </motion.div>
 
-                    {/* Benefits Bar - Integrated */}
+                    {/* Subtle Benefits List */}
                     <motion.div
                         variants={itemVariants}
-                        className="w-full border-t border-slate-200/60 pt-8 md:pt-10"
+                        className="w-full"
                     >
-                        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-12">
+                        <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-10">
                             {(benefits || []).map((item: any, i: number) => {
                                 const Icon = ICON_POOL[item.icon] || ICON_POOL.Activity;
                                 return (
-                                    <div key={i} className="flex items-center gap-2.5 group whitespace-nowrap">
-                                        <div className="w-8 h-8 rounded-full bg-[#007f94]/5 flex items-center justify-center text-[#007f94] transition-colors group-hover:bg-[#007f94]/10 border border-[#007f94]/10">
-                                            <Icon className="w-4 h-4 stroke-[2.5]" />
+                                    <div key={i} className="flex items-center gap-2 group">
+                                        <div className="w-6 h-6 rounded-md bg-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#007f94] group-hover:bg-[#007f94]/5 transition-all duration-300">
+                                            <Icon className="w-3.5 h-3.5" />
                                         </div>
-                                        <span className="text-[11px] md:text-xs font-bold text-slate-600 tracking-wide group-hover:text-slate-800 transition-colors uppercase">{item.text}</span>
+                                        <span className="text-[10px] md:text-xs font-bold text-slate-500 tracking-tight group-hover:text-slate-700 transition-colors uppercase">{item.text}</span>
                                     </div>
                                 );
                             })}
