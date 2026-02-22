@@ -7,176 +7,140 @@ import { ICON_POOL } from '../lib/icons';
 
 const Hero = ({ data }: { data: any }) => {
     const containerRef = useRef(null);
-
+    const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
     const {
         badgeTR = 'Turkiye',
         badgeKZ = 'Kazakhstan',
         title = 'Ведущие врачи из Турции теперь принимают в Алматы',
         subtitle = 'Узнайте риски до того, как они станут диагнозами',
-        subtitleSize = 20,
         description = 'Консультации, диагностика и планы медицинской реабилитации экспертного уровня без выезда за границу.',
-        buttonPrimary = 'Записаться',
-        buttonSecondary = 'Стоимость',
-        titleSize = 72,
-        descSize = 20,
-        padding = 100,
+        buttonPrimary = 'Записаться на приём',
+        buttonSecondary = 'Подробнее о клинике',
         benefits = []
     } = data || {};
 
-
-
-    // Animation Variants
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
-            transition: {
-                staggerChildren: 0.15,
-                delayChildren: 0.2
-            }
+            transition: { staggerChildren: 0.1, delayChildren: 0.1 }
         }
     };
 
     const itemVariants = {
-        hidden: { opacity: 0, y: 20, translateZ: 0 },
+        hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
         visible: {
             opacity: 1,
             y: 0,
-            translateZ: 0,
-            transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as any }
+            filter: 'blur(0px)',
+            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] as any }
         }
     };
-
-
 
     return (
         <section
             ref={containerRef}
             id="hero"
-            style={{ paddingTop: `${padding}px`, paddingBottom: `${padding}px` }}
-            className="relative flex items-center justify-center bg-white overflow-hidden mt-20"
+            className="relative flex items-center justify-center min-h-[100svh] pt-32 pb-20 bg-[#fafcff] overflow-hidden"
         >
-            {/* 1. LAYERED BACKGROUND */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:40px_40px] opacity-20" />
+            {/* 1. PREMIUM BACKGROUND */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:40px_40px] opacity-[0.3]" />
+
+                {/* Animated glowing orbs */}
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 2, ease: "easeOut" }}
-                    className="absolute top-1/4 left-1/4 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-[#007f94]/5 rounded-full blur-[80px] md:blur-[140px]"
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full bg-gradient-to-br from-[#00c2e0]/20 to-transparent blur-[80px]"
+                />
+                <motion.div
+                    animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute top-[30%] right-[10%] w-[35vw] h-[35vw] max-w-[500px] max-h-[500px] rounded-full bg-gradient-to-bl from-[#007f94]/15 to-transparent blur-[80px]"
                 />
             </div>
 
             <motion.div
-                className="container mx-auto px-4 md:px-6 relative z-10 w-full"
+                className="container mx-auto px-4 sm:px-6 relative z-10 w-full"
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
+                style={{ y, opacity }}
             >
                 <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
 
                     {/* Badge */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="inline-flex items-center gap-4 mb-6 md:mb-10 px-5 py-2.5 bg-white/50 backdrop-blur-md border border-slate-200/50 rounded-full shadow-sm"
-                    >
+                    <motion.div variants={itemVariants} className="flex items-center gap-3 mb-8 px-5 py-2.5 bg-white/70 backdrop-blur-md rounded-full shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-slate-100">
                         <div className="flex items-center gap-2">
-                            <div className="w-3.5 h-3.5 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-slate-100">
-                                <img
-                                    src="https://flagcdn.com/w80/tr.png"
-                                    className="w-full h-full object-cover scale-[1.2] object-[30%_center]"
-                                    alt="TR"
-                                />
-                            </div>
-                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">{badgeTR}</span>
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                            </span>
+                            <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-slate-800">{badgeTR}</span>
                         </div>
-                        <span className="text-slate-300 text-[10px] font-thin">/</span>
+                        <div className="w-[1px] h-3 bg-slate-300"></div>
                         <div className="flex items-center gap-2">
-                            <div className="w-3.5 h-3.5 rounded-full overflow-hidden border border-slate-200 flex items-center justify-center bg-slate-100">
-                                <img
-                                    src="https://flagcdn.com/w80/kz.png"
-                                    className="w-full h-full object-cover scale-[1.2] object-[60%_center]"
-                                    alt="KZ"
-                                />
-                            </div>
-                            <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-slate-500">{badgeKZ}</span>
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00c2e0] opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00c2e0]"></span>
+                            </span>
+                            <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-slate-800">{badgeKZ}</span>
                         </div>
                     </motion.div>
 
-                    {/* Main Headline */}
+                    {/* Headline */}
                     <motion.h1
                         variants={itemVariants}
-                        style={{ fontSize: `clamp(2.5rem, 8vw, ${titleSize}px)`, textWrap: 'balance' }}
-                        className="font-extrabold text-[#0a1e2b] tracking-tighter leading-[1.05] md:leading-[1.1] mb-6 px-1 whitespace-normal md:whitespace-pre-line"
+                        className="text-[clamp(2.5rem,7vw,5rem)] font-extrabold text-[#0a1e2b] tracking-tighter leading-[1] md:leading-[1.05] mb-6 md:mb-8 max-w-5xl text-balance drop-shadow-sm"
                     >
                         <HighlightedText text={title} />
                     </motion.h1>
 
-                    {/* Detailed Subtext */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="max-w-4xl mx-auto space-y-3 mb-8 md:mb-10 px-0"
-                    >
-                        <h2
-                            style={{ fontSize: `clamp(1.1rem, 4vw, ${subtitleSize}px)`, textWrap: 'balance' }}
-                            className="font-black text-[#007f94]/70 tracking-tighter leading-tight uppercase whitespace-normal md:whitespace-nowrap"
-                        >
-                            <HighlightedText text={subtitle} />
+                    {/* Subtext and Description */}
+                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-4 mb-10 max-w-3xl">
+                        <h2 className="text-sm md:text-base font-black text-transparent bg-clip-text bg-gradient-to-r from-[#007f94] to-[#00c2e0] tracking-[0.1em] uppercase text-balance leading-snug">
+                            {subtitle}
                         </h2>
-
-                        <p
-                            style={{ fontSize: `clamp(0.85rem, 2vw, ${descSize}px)` }}
-                            className="text-slate-500 font-medium max-w-[340px] md:max-w-2xl mx-auto leading-relaxed opacity-80 whitespace-pre-line"
-                        >
-                            <HighlightedText text={description} />
+                        <p className="text-slate-500 text-base md:text-xl font-medium leading-relaxed md:leading-normal text-balance">
+                            {description}
                         </p>
                     </motion.div>
 
-                    {/* Main CTA Section */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 w-full max-w-md sm:max-w-none mx-auto px-4"
-                    >
+                    {/* CTA Buttons */}
+                    <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full px-4 mb-16">
                         <Magnetic>
-                            <motion.a
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                href="#contact"
-                                className="w-full sm:w-auto px-4 md:px-12 py-4 md:py-5 bg-[#007f94] text-white font-bold rounded-2xl shadow-xl shadow-[#007f94]/20 flex items-center justify-center gap-2 md:gap-3 text-base md:text-xl whitespace-nowrap"
-                            >
-                                {buttonPrimary} <ArrowUpRight size={18} className="shrink-0 md:w-5 md:h-5" />
-                            </motion.a>
+                            <a href="#contact" className="w-full sm:w-auto px-8 py-4 sm:py-5 bg-[#007f94] hover:bg-[#00c2e0] text-white font-bold rounded-2xl shadow-[0_10px_40px_rgba(0,127,148,0.3)] transition-all flex items-center justify-center gap-3 text-base md:text-lg">
+                                {buttonPrimary} <ArrowUpRight className="w-5 h-5 opacity-80" />
+                            </a>
                         </Magnetic>
                         <Magnetic>
-                            <motion.a
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                href="#cost"
-                                className="w-full sm:w-auto px-4 md:px-12 py-4 md:py-5 bg-white text-slate-900 font-bold rounded-2xl border border-slate-200 hover:bg-slate-50 transition-all text-base md:text-xl flex items-center justify-center whitespace-nowrap"
-                            >
+                            <a href="#about" className="w-full sm:w-auto px-8 py-4 sm:py-5 bg-white border border-slate-200 text-slate-700 hover:text-[#007f94] hover:border-[#007f94]/30 hover:bg-[#007f94]/5 font-bold rounded-2xl transition-all flex items-center justify-center text-base md:text-lg shadow-sm">
                                 {buttonSecondary}
-                            </motion.a>
+                            </a>
                         </Magnetic>
                     </motion.div>
 
-                    {/* Benefit Bar - Unified for Mobile/Desktop */}
-                    <div className="w-full border-t border-slate-100 pt-6 md:pt-8 mb-12 px-2 md:px-0">
-                        <motion.div
-                            variants={itemVariants}
-                            className="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-8 gap-y-3"
-                        >
+                    {/* Benefit Bar */}
+                    <motion.div variants={itemVariants} className="pt-8 w-full max-w-4xl relative">
+                        <div className="absolute top-0 left-1/4 right-1/4 h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent"></div>
+                        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 md:gap-x-10">
                             {(benefits || []).map((item: any, i: number) => {
                                 const Icon = ICON_POOL[item.icon] || ICON_POOL.Activity;
                                 return (
-                                    <span key={i} className="flex items-center gap-1.5 md:gap-2 whitespace-nowrap text-[#007f94] font-bold tracking-tight text-[10px] md:text-sm bg-slate-50 md:bg-transparent px-2 md:px-0 py-1 md:py-0 rounded-md md:rounded-none">
-                                        <Icon size={12} className="text-[#007f94] shrink-0 md:w-[14px] md:h-[14px]" />
-                                        {item.text}
-                                    </span>
+                                    <div key={i} className="flex items-center gap-2 group cursor-default">
+                                        <div className="w-6 h-6 rounded-full bg-[#007f94]/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                            <Icon className="w-3.5 h-3.5 text-[#007f94]" />
+                                        </div>
+                                        <span className="text-xs md:text-sm font-bold text-slate-600 group-hover:text-[#0a1e2b] transition-colors">{item.text}</span>
+                                    </div>
                                 );
                             })}
-                        </motion.div>
-                    </div>
+                        </div>
+                    </motion.div>
+
                 </div>
             </motion.div>
         </section>
