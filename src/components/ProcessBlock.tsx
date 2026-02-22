@@ -25,11 +25,11 @@ const ProcessBlock = ({ data }: { data: any }) => {
     const COLORS = ['bg-blue-50 text-blue-600', 'bg-indigo-50 text-indigo-600', 'bg-teal-50 text-teal-600'];
 
     const partnersList = [
-        { name: 'Bupa', logo: 'https://logo.clearbit.com/bupa.com' },
-        { name: 'Cigna', logo: 'https://logo.clearbit.com/cigna.com' },
-        { name: 'Aetna', logo: 'https://logo.clearbit.com/aetna.com' },
-        { name: 'Allianz', logo: 'https://logo.clearbit.com/allianz.com' },
-        { name: 'AXA', logo: 'https://logo.clearbit.com/axa.com' }
+        { name: 'Bupa', logo: '/partners/bupa-international-health-insurance.jpg' },
+        { name: 'Cigna', logo: '/partners/cigna-global.jpg' },
+        { name: 'Aetna', logo: '/partners/logo-aetna.png' },
+        { name: 'Allianz', logo: '/partners/insurancecompanies_20210209094545464_large.webp' },
+        { name: 'AXA', logo: '/partners/axa_logo_solid_rgb1080.png' }
     ];
 
     return (
@@ -128,32 +128,34 @@ const ProcessBlock = ({ data }: { data: any }) => {
                                 <div className="h-[1px] w-8 bg-[#007f94]" />
                             </div>
 
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4 md:gap-6 items-center justify-items-center w-full">
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-6 md:gap-8 items-center justify-items-center w-full">
                                 {partnersList.map((partner, index) => (
                                     <motion.div
                                         key={index}
-                                        initial={{ opacity: 0 }}
-                                        whileInView={{ opacity: 1 }}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        whileInView={{ opacity: 1, scale: 1 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: index * 0.1 }}
-                                        className="w-full max-w-[140px] md:max-w-[180px] aspect-[2.5/1] bg-white rounded-xl p-4 md:p-6 flex items-center justify-center"
+                                        className="relative group"
                                     >
-                                        <img
-                                            src={partner.logo}
-                                            alt={partner.name}
-                                            className="w-full h-full object-contain"
-                                            onError={(e) => {
-                                                const target = e.target as HTMLImageElement;
-                                                target.style.display = 'none';
-                                                const parent = target.parentElement;
-                                                if (parent) {
-                                                    const span = document.createElement('span');
-                                                    span.innerText = partner.name;
-                                                    span.className = 'text-slate-900 font-bold text-lg';
-                                                    parent.appendChild(span);
-                                                }
-                                            }}
-                                        />
+                                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-white p-4 md:p-6 flex items-center justify-center shadow-xl overflow-hidden border border-white/10 transition-transform duration-500 hover:scale-105">
+                                            <img
+                                                src={partner.logo}
+                                                alt={partner.name}
+                                                className="w-full h-full object-contain"
+                                                onError={(e) => {
+                                                    const target = e.target as HTMLImageElement;
+                                                    target.style.display = 'none';
+                                                    const parent = target.parentElement;
+                                                    if (parent) {
+                                                        const span = document.createElement('span');
+                                                        span.innerText = partner.name;
+                                                        span.className = 'text-slate-900 font-bold text-xs md:text-sm text-center';
+                                                        parent.appendChild(span);
+                                                    }
+                                                }}
+                                            />
+                                        </div>
                                     </motion.div>
                                 ))}
                             </div>
