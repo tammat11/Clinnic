@@ -33,10 +33,10 @@ const ProcessBlock = ({ data }: { data: any }) => {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="max-w-4xl mx-auto mb-16 md:mb-24 text-center">
                     <FadeIn>
-                        <span className="text-[#007f94] font-bold tracking-widest uppercase text-sm mb-4 block">{badge}</span>
+                        <span className="text-[#007f94] font-bold tracking-widest uppercase text-sm mb-2 md:mb-3 block">{badge}</span>
                         <h2
                             style={{ fontSize: `${titleSize}px` }}
-                            className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
+                            className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)] mb-4 md:mb-6"
                         >
                             <HighlightedText text={title} />
                         </h2>

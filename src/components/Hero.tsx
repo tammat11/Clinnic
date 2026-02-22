@@ -91,28 +91,32 @@ const Hero = ({ data }: { data: any }) => {
                         </div>
                     </motion.div>
 
-                    <motion.h1
+                    {/* Text Block */}
+                    <motion.div
                         variants={itemVariants}
-                        className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.05] mb-5 md:mb-10 max-w-4xl whitespace-pre-line mx-auto"
-                        style={{ fontSize: `clamp(24px, 8.5vw, ${titleSize}px)` }}
+                        className="flex flex-col items-center gap-4 md:gap-5 mb-10 md:mb-12 max-w-4xl mx-auto px-4"
                     >
-                        <HighlightedText text={title} />
-                    </motion.h1>
+                        <h1
+                            className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.05] whitespace-pre-line mx-auto"
+                            style={{ fontSize: `clamp(24px, 8.5vw, ${titleSize}px)` }}
+                        >
+                            <HighlightedText text={title} />
+                        </h1>
 
-                    {/* Subtext and Description */}
-                    <motion.div variants={itemVariants} className="flex flex-col items-center gap-3 mb-8 md:mb-14 max-w-2xl px-4 mx-auto">
-                        <h2
-                            className="font-bold text-[#007f94] tracking-tight"
-                            style={{ fontSize: `clamp(16px, 4.5vw, ${subtitleSize + 4}px)` }}
-                        >
-                            {subtitle}
-                        </h2>
-                        <p
-                            className="text-slate-500 font-medium leading-relaxed max-w-[280px] sm:max-w-none"
-                            style={{ fontSize: `clamp(13px, 3.5vw, ${descSize}px)` }}
-                        >
-                            {description}
-                        </p>
+                        <div className="flex flex-col items-center gap-4 md:gap-5 max-w-2xl">
+                            <h2
+                                className="font-bold text-[#007f94] tracking-tight leading-tight"
+                                style={{ fontSize: `clamp(16px, 4.5vw, ${subtitleSize + 4}px)` }}
+                            >
+                                {subtitle}
+                            </h2>
+                            <p
+                                className="text-slate-500 font-medium leading-relaxed max-w-[280px] sm:max-w-none"
+                                style={{ fontSize: `clamp(13px, 3.5vw, ${descSize}px)` }}
+                            >
+                                {description}
+                            </p>
+                        </div>
                     </motion.div>
 
                     {/* Buttons */}

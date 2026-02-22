@@ -61,13 +61,13 @@ const Directions = ({ data }: { data: any }) => {
                         duration={0.8}
                         className="max-w-2xl"
                     >
-                        <div className="flex items-center gap-3 mb-4">
+                        <div className="flex items-center gap-3 mb-2 md:mb-3">
                             <span className="w-8 md:w-12 h-[2px] bg-[#007f94]" />
                             <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
                         </div>
                         <h2
                             style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
-                            className="font-bold text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-8 whitespace-pre-line"
+                            className="font-bold text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-6 whitespace-pre-line"
                         >
                             <HighlightedText text={title} />
                         </h2>

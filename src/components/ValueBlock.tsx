@@ -34,7 +34,7 @@ const ValueBlock = ({ data }: { data: any }) => {
             <div className="section-container relative z-10">
                 <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
                     <FadeIn direction="up">
-                        <div className="flex justify-center gap-1.5 md:gap-2.5 mb-10 py-5 px-8 rounded-full bg-slate-50 border border-slate-100 max-w-fit mx-auto shadow-sm">
+                        <div className="flex justify-center gap-1.5 md:gap-2.5 mb-6 md:mb-8 py-5 px-8 rounded-full bg-slate-50 border border-slate-100 max-w-fit mx-auto shadow-sm">
                             {[...Array(10)].map((_, i) => (
                                 <User
                                     key={i}
@@ -45,7 +45,7 @@ const ValueBlock = ({ data }: { data: any }) => {
                         </div>
                         <h2
                             style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
-                            className="font-bold text-[#0a1e2b] mb-10 leading-[1.1] tracking-tighter whitespace-pre-line"
+                            className="font-bold text-[#0a1e2b] mb-4 md:mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
                         >
                             <HighlightedText text={title} />
                         </h2>
