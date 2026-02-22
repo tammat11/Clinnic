@@ -4,12 +4,12 @@
     "badgeKZ": "Kazakhstan",
     "title": "Ведущие врачи из *Турции* \nтеперь принимают в Алматы",
     "subtitle": "Узнайте риски до того, как они станут диагнозами",
-    "subtitleSize": 26,
+    "subtitleSize": 17,
     "description": "Консультации, диагностика и планы лечения по международным протоколам — без выезда за границу.",
     "buttonPrimary": "Записаться на приём",
     "buttonSecondary": "Подробнее о клинике",
-    "titleSize": 70,
-    "descSize": 13,
+    "titleSize": 63,
+    "descSize": 12,
     "padding": 100,
     "benefits": [
       {
