@@ -4,21 +4,17 @@
     "badgeKZ": "Kazakhstan",
     "title": "Ведущие врачи из *Турции* \nтеперь принимают в Алматы",
     "subtitle": "Узнайте риски до того, \nкак они станут диагнозами",
-    "subtitleSize": 17,
-    "description": "Консультации, диагностика и планы лечения по международным протоколам — без выезда за границу.",
+    "subtitleSize": 22,
+    "description": "Консультации, диагностика и планы медицинской реабилитации экспертного уровня без выезда за границу.",
     "buttonPrimary": "Записаться на приём",
-    "buttonSecondary": "Подробнее о клинике",
-    "titleSize": 63,
-    "descSize": 16,
-    "padding": 100,
+    "buttonSecondary": "О клинике",
+    "titleSize": 84,
+    "descSize": 20,
+    "padding": 120,
     "benefits": [
       {
         "icon": "ShieldCheck",
         "text": "Протоколы JCI"
-      },
-      {
-        "icon": "Search",
-        "text": ""
       },
       {
         "icon": "Clock",
@@ -26,11 +22,15 @@
       },
       {
         "icon": "Users",
-        "text": "Персональный менеджер"
+        "text": "Персональное сопровождение"
       },
       {
         "icon": "Sparkles",
         "text": "Всё за 1 визит"
+      },
+      {
+        "icon": "CheckCircle2",
+        "text": "План лечения за 1 день"
       }
     ]
   },
