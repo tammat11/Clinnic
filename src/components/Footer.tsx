@@ -10,6 +10,10 @@ const Footer = ({ data }: { data: any }) => {
         instagram = 'https://www.instagram.com/icgroup.kz/?__pwa=1'
     } = data || {};
 
+    const ui = (data as any)?.ui?.footer || {
+        contacts: "Контакты"
+    };
+
     return (
         <footer className="bg-slate-900 pt-24 pb-12 text-white overflow-hidden">
             <div className="section-container">
@@ -51,7 +55,7 @@ const Footer = ({ data }: { data: any }) => {
                     </div>
 
                     <div className="lg:col-span-4">
-                        <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-8">Контакты</h4>
+                        <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-8">{ui.contacts}</h4>
                         <div className="space-y-6">
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <span className="text-slate-300">

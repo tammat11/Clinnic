@@ -14,6 +14,7 @@ interface AdminPanelProps {
     setIsOpen: (isOpen: boolean) => void;
     content: any;
     updateContent: (sectionId: string, updates: any) => void;
+    language: string;
 }
 
 // --- Helper Components & Types ---
@@ -227,7 +228,7 @@ const ListEditor = ({
     );
 };
 
-const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, updateContent }) => {
+const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, updateContent, language }) => {
     const [activeSection, setActiveSection] = useState('hero');
     const [isDeploying, setIsDeploying] = useState(false);
     const [editingDoctorId, setEditingDoctorId] = useState<string | null>(null);
@@ -243,7 +244,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
             if (!GITHUB_TOKEN) throw new Error("GitHub Token не найден в VITE_GITHUB_TOKEN. Настройте его в Vercel.");
             const OWNER = 'tammat11';
             const REPO = 'clinnic';
-            const PATH = 'src/data/content.json';
+            const PATH = language === 'ru' ? 'src/data/content.json' : 'src/data/content_en.json';
 
             // 1. Send telegram notification
             await fetch(`https://api.telegram.org/bot8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c/sendMessage`, {

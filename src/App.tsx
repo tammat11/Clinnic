@@ -18,7 +18,7 @@ import Specialists from './components/Specialists';
 import Partners from './components/Partners';
 
 function App() {
-    const { content, updateContent } = useContent();
+    const { content, updateContent, language, setLanguage } = useContent();
     const [isAdminOpen, setIsAdminOpen] = useState(false);
     const [isAuthorized, setIsAuthorized] = useState(false);
 
@@ -67,7 +67,7 @@ function App() {
 
     return (
         <div className="min-h-screen bg-white selection:bg-[#007f94] selection:text-white">
-            <Navbar />
+            <Navbar language={language} setLanguage={setLanguage} />
             <main>
                 {Array.isArray(content?.sectionsOrder) && content.sectionsOrder.map((sectionId: string) => {
                     const Component = componentsMap[sectionId];
@@ -87,6 +87,7 @@ function App() {
                         setIsOpen={setIsAdminOpen}
                         content={content}
                         updateContent={updateContent}
+                        language={language}
                     />
 
                     {/* Administrative Access Button */}

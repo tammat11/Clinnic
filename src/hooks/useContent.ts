@@ -1,33 +1,42 @@
-import { useState } from 'react';
-import initialContent from '../data/content.json';
+import { useState, useEffect } from 'react';
+import initialContentRu from '../data/content.json';
+import initialContentEn from '../data/content_en.json';
 
-// Default initial content from JSON file
-const DEFAULT_CONTENT = initialContent as any;
+const DEFAULT_CONTENTS: { [key: string]: any } = {
+    ru: initialContentRu,
+    en: initialContentEn
+};
 
 export const useContent = () => {
+    // Determine initial language from localStorage or default to 'ru'
+    const [language, setLanguage] = useState(() => {
+        const savedLang = localStorage.getItem('clinic_language');
+        return (savedLang === 'en' || savedLang === 'ru') ? savedLang : 'ru';
+    });
+
     const [content, setContent] = useState(() => {
+        const currentDefault = DEFAULT_CONTENTS[language];
         try {
-            const saved = localStorage.getItem('clinic_content');
+            const saved = localStorage.getItem(`clinic_content_${language}`);
             if (saved) {
                 const parsed = JSON.parse(saved);
                 if (parsed && typeof parsed === 'object') {
-                    // Deep merge defaults to ensure new fields (like sizes) are added to existing saved data
+                    // Deep merge defaults to ensure new fields are added to existing saved data
                     const merged = {
-                        ...DEFAULT_CONTENT,
+                        ...currentDefault,
                         ...parsed,
-                        hero: { ...DEFAULT_CONTENT.hero, ...(parsed.hero || {}) },
-                        values: { ...DEFAULT_CONTENT.values, ...(parsed.values || {}) },
-                        process: { ...DEFAULT_CONTENT.process, ...(parsed.process || {}) },
-                        trust: { ...DEFAULT_CONTENT.trust, ...(parsed.trust || {}) },
-                        doctors: { ...DEFAULT_CONTENT.doctors, ...(parsed.doctors || {}) },
-                        directions: { ...DEFAULT_CONTENT.directions, ...(parsed.directions || {}) },
-                        contact: { ...DEFAULT_CONTENT.contact, ...(parsed.contact || {}) },
-                        footer: { ...DEFAULT_CONTENT.footer, ...(parsed.footer || {}) },
+                        hero: { ...currentDefault.hero, ...(parsed.hero || {}) },
+                        values: { ...currentDefault.values, ...(parsed.values || {}) },
+                        process: { ...currentDefault.process, ...(parsed.process || {}) },
+                        trust: { ...currentDefault.trust, ...(parsed.trust || {}) },
+                        doctors: { ...currentDefault.doctors, ...(parsed.doctors || {}) },
+                        directions: { ...currentDefault.directions, ...(parsed.directions || {}) },
+                        contact: { ...currentDefault.contact, ...(parsed.contact || {}) },
+                        footer: { ...currentDefault.footer, ...(parsed.footer || {}) },
                     };
 
-                    // Final safety check for critical fields
                     if (!Array.isArray(merged.sectionsOrder)) {
-                        merged.sectionsOrder = DEFAULT_CONTENT.sectionsOrder;
+                        merged.sectionsOrder = currentDefault.sectionsOrder;
                     }
 
                     return merged;
@@ -36,8 +45,39 @@ export const useContent = () => {
         } catch (e) {
             console.error("Failed to load content from localStorage", e);
         }
-        return DEFAULT_CONTENT;
+        return currentDefault;
     });
+
+    // Update content state when language changes
+    useEffect(() => {
+        const currentDefault = DEFAULT_CONTENTS[language];
+        localStorage.setItem('clinic_language', language);
+
+        try {
+            const saved = localStorage.getItem(`clinic_content_${language}`);
+            if (saved) {
+                const parsed = JSON.parse(saved);
+                if (parsed && typeof parsed === 'object') {
+                    setContent({
+                        ...currentDefault,
+                        ...parsed,
+                        hero: { ...currentDefault.hero, ...(parsed.hero || {}) },
+                        values: { ...currentDefault.values, ...(parsed.values || {}) },
+                        process: { ...currentDefault.process, ...(parsed.process || {}) },
+                        trust: { ...currentDefault.trust, ...(parsed.trust || {}) },
+                        doctors: { ...currentDefault.doctors, ...(parsed.doctors || {}) },
+                        directions: { ...currentDefault.directions, ...(parsed.directions || {}) },
+                        contact: { ...currentDefault.contact, ...(parsed.contact || {}) },
+                        footer: { ...currentDefault.footer, ...(parsed.footer || {}) },
+                    });
+                    return;
+                }
+            }
+        } catch (e) {
+            console.error("Error updating content on language change", e);
+        }
+        setContent(currentDefault);
+    }, [language]);
 
     const updateContent = (section: string, data: any) => {
         const newContent = {
@@ -45,14 +85,14 @@ export const useContent = () => {
             [section]: { ...content[section], ...data }
         };
         setContent(newContent);
-        localStorage.setItem('clinic_content', JSON.stringify(newContent));
+        localStorage.setItem(`clinic_content_${language}`, JSON.stringify(newContent));
     };
 
     const reorderSections = (newOrder: string[]) => {
         const newContent = { ...content, sectionsOrder: newOrder };
         setContent(newContent);
-        localStorage.setItem('clinic_content', JSON.stringify(newContent));
+        localStorage.setItem(`clinic_content_${language}`, JSON.stringify(newContent));
     };
 
-    return { content, updateContent, reorderSections };
+    return { content, updateContent, reorderSections, language, setLanguage };
 };

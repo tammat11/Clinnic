@@ -14,6 +14,17 @@ const ContactForm = ({ data }: { data: any }) => {
         buttonText = 'Оставить заявку на консультацию'
     } = data || {};
 
+    const ui = (data as any)?.ui?.contactForm || {
+        coordinator: "Наш координатор свяжется с вами и подберёт удобное время приёма.",
+        successTitle: "Заявка отправлена!",
+        successSub: "Мы свяжемся с вами в ближайшее время для подтверждения записи.",
+        nameLabel: "Как вас зовут?",
+        namePlaceholder: "Тамерлан",
+        phoneLabel: "Номер телефона",
+        submitting: "Отправка...",
+        privacy: "Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности"
+    };
+
     const [status, setStatus] = useState('idle'); // idle, submitting, success
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -49,7 +60,7 @@ const ContactForm = ({ data }: { data: any }) => {
                             </p>
                             <div className="flex gap-4 items-center text-[#007f94] bg-[#007f94]/5 p-6 rounded-2xl border border-[#007f94]/10">
                                 <div className="w-2 h-2 rounded-full bg-[#007f94] shrink-0" />
-                                <p className="font-medium">Наш координатор свяжется с вами и подберёт удобное время приёма.</p>
+                                <p className="font-medium">{ui.coordinator}</p>
                             </div>
                         </div>
 
@@ -66,8 +77,8 @@ const ContactForm = ({ data }: { data: any }) => {
                                         <div className="w-20 h-20 bg-[#007f94]/10 text-[#007f94] rounded-full flex items-center justify-center mb-6">
                                             <Check size={40} />
                                         </div>
-                                        <h3 className="text-2xl font-bold text-slate-900 mb-2">Заявка отправлена!</h3>
-                                        <p className="text-slate-500">Мы свяжемся с вами в ближайшее время для подтверждения записи.</p>
+                                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{ui.successTitle}</h3>
+                                        <p className="text-slate-500">{ui.successSub}</p>
                                     </motion.div>
                                 ) : (
                                     <motion.form
@@ -79,16 +90,16 @@ const ContactForm = ({ data }: { data: any }) => {
                                         className="space-y-6"
                                     >
                                         <div>
-                                            <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">Как вас зовут?</label>
+                                            <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">{ui.nameLabel}</label>
                                             <input
                                                 type="text"
                                                 required
-                                                placeholder="Тамерлан"
+                                                placeholder={ui.namePlaceholder}
                                                 className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-300"
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">Номер телефона</label>
+                                            <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">{ui.phoneLabel}</label>
                                             <input
                                                 type="tel"
                                                 required
@@ -103,7 +114,7 @@ const ContactForm = ({ data }: { data: any }) => {
                                         >
                                             {status === 'submitting' ? (
                                                 <>
-                                                    <Loader className="animate-spin" size={24} /> Отправка...
+                                                    <Loader className="animate-spin" size={24} /> {ui.submitting}
                                                 </>
                                             ) : (
                                                 <>
@@ -112,7 +123,7 @@ const ContactForm = ({ data }: { data: any }) => {
                                             )}
                                         </button>
                                         <p className="text-center text-xs text-slate-400 mt-4">
-                                            Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
+                                            {ui.privacy}
                                         </p>
                                     </motion.form>
                                 )}

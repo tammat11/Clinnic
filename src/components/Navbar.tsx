@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import Magnetic from './common/Magnetic';
 
-const Navbar = () => {
+interface NavbarProps {
+    language: string;
+    setLanguage: (lang: 'ru' | 'en') => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ language, setLanguage }) => {
     const { scrollY } = useScroll();
     const [scrolled, setScrolled] = useState(false);
 
@@ -30,16 +35,36 @@ const Navbar = () => {
                     />
                 </div>
 
-                {/* CTA Button */}
-                <div className="shrink-0">
-                    <Magnetic>
-                        <a
-                            href="#contact"
-                            className="group relative px-6 py-2.5 md:px-8 md:py-3 bg-[#007f94] text-white font-bold text-sm md:text-base rounded-full overflow-hidden shadow-[0_8px_25px_rgba(0,127,148,0.2)] flex items-center justify-center transition-all duration-300 hover:bg-[#00c2e0] hover:shadow-[0_15px_30px_rgba(0,127,148,0.35)] hover:scale-[1.05] active:scale-[0.98]"
+                <div className="flex items-center gap-4">
+                    {/* Language Switcher */}
+                    <div className="flex items-center bg-slate-100/50 backdrop-blur-md border border-slate-200 p-1 rounded-full text-[10px] md:text-xs">
+                        <button
+                            onClick={() => setLanguage('ru')}
+                            className={`px-3 py-1.5 rounded-full transition-all ${language === 'ru' ? 'bg-[#007f94] text-white shadow-md' : 'text-slate-600 hover:bg-white/50'}`}
                         >
-                            <span className="relative z-10">Записаться</span>
-                        </a>
-                    </Magnetic>
+                            RU
+                        </button>
+                        <button
+                            onClick={() => setLanguage('en')}
+                            className={`px-3 py-1.5 rounded-full transition-all ${language === 'en' ? 'bg-[#007f94] text-white shadow-md' : 'text-slate-600 hover:bg-white/50'}`}
+                        >
+                            EN
+                        </button>
+                    </div>
+
+                    {/* CTA Button */}
+                    <div className="shrink-0">
+                        <Magnetic>
+                            <a
+                                href="#contact"
+                                className="group relative px-6 py-2.5 md:px-8 md:py-3 bg-[#007f94] text-white font-bold text-sm md:text-base rounded-full overflow-hidden shadow-[0_8px_25px_rgba(0,127,148,0.2)] flex items-center justify-center transition-all duration-300 hover:bg-[#00c2e0] hover:shadow-[0_15px_30px_rgba(0,127,148,0.35)] hover:scale-[1.05] active:scale-[0.98]"
+                            >
+                                <span className="relative z-10">
+                                    {language === 'ru' ? 'Записаться' : 'Book Now'}
+                                </span>
+                            </a>
+                        </Magnetic>
+                    </div>
                 </div>
             </motion.div>
         </div>
