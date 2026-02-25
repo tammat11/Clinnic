@@ -244,7 +244,11 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
             if (!GITHUB_TOKEN) throw new Error("GitHub Token не найден в VITE_GITHUB_TOKEN. Настройте его в Vercel.");
             const OWNER = 'tammat11';
             const REPO = 'clinnic';
-            const PATH = language === 'ru' ? 'src/data/content.json' : 'src/data/content_en.json';
+
+            const filesToUpdate = [
+                { path: 'src/data/content.json', lang: 'ru' },
+                { path: 'src/data/content_en.json', lang: 'en' }
+            ];
 
             // 1. Send telegram notification
             await fetch(`https://api.telegram.org/bot8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c/sendMessage`, {
@@ -252,67 +256,64 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: '-5216692431',
-                    text: `🚀 <b>Начат деплой новой версии сайта</b>\n\nОбновление контента отправлено в GitHub.`,
+                    text: `🚀 <b>Начат деплой новой версии сайта (RU + EN)</b>\n\nОбновление контента отправлено в GitHub.`,
                     parse_mode: 'HTML'
                 })
             }).catch(() => { });
 
-            // 2. Get current file SHA
-            const getRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`, {
-                headers: { Authorization: `token ${GITHUB_TOKEN}` }
-            });
+            for (const file of filesToUpdate) {
+                // Get content for this specific language from localStorage
+                // We recreate loadLanguageContent logic here or use current content + sync
+                let contentToSave;
+                if (file.lang === language) {
+                    contentToSave = content;
+                } else {
+                    const saved = localStorage.getItem(`clinic_content_${file.lang}`);
+                    contentToSave = saved ? JSON.parse(saved) : null;
+                }
 
-            if (!getRes.ok) throw new Error("Не удалось получить SHA файла");
+                if (!contentToSave) continue; // Skip if no changes or no local data
 
-            const fileData = await getRes.json();
-            const sha = fileData.sha;
+                // 2. Get current file SHA
+                const getRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${file.path}`, {
+                    headers: { Authorization: `token ${GITHUB_TOKEN}` }
+                });
 
-            // 3. Update file
-            const updateRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${PATH}`, {
-                method: 'PUT',
-                headers: {
-                    Authorization: `token ${GITHUB_TOKEN}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    message: 'Admin: Update content',
-                    content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
-                    sha: sha
-                })
-            });
+                if (!getRes.ok) continue; // Skip this file if error
 
-            if (updateRes.ok) {
-                // Success Telegram Notification
-                await fetch(`https://api.telegram.org/bot8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                const fileData = await getRes.json();
+                const sha = fileData.sha;
+
+                // 3. Update file
+                await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${file.path}`, {
+                    method: 'PUT',
+                    headers: {
+                        Authorization: `token ${GITHUB_TOKEN}`,
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({
-                        chat_id: '-5216692431',
-                        text: `✅ <b>Деплой успешно завершен!</b>\n\nСайт обновится в течение 2-3 минут.\n<a href="https://clinnic.vercel.app">Перейти на сайт</a>`,
-                        parse_mode: 'HTML'
+                        message: `Admin: Update content (${file.lang.toUpperCase()})`,
+                        content: btoa(unescape(encodeURIComponent(JSON.stringify(contentToSave, null, 2)))),
+                        sha: sha
                     })
-                }).catch(() => { });
-
-                alert("🚀 Изменения успешно отправлены на GitHub!\n\nСайт обновится автоматически в течение 2-3 минут. Вы получите уведомление в Telegram.");
-                setIsOpen(false);
-            } else {
-                const err = await updateRes.json();
-                throw new Error(err.message || 'Ошибка обновления');
+                });
             }
-        } catch (error: any) {
-            console.error('Deployment Error:', error);
 
-            // Error Telegram Notification
+            // Success Telegram Notification
             await fetch(`https://api.telegram.org/bot8525303930:AAGbaNFrwS2siW2OH8imPNULu4iRZABcl8c/sendMessage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: '-5216692431',
-                    text: `❌ <b>Ошибка деплоя</b>\n\n${error.message}`,
+                    text: `✅ <b>Деплой успешно завершен!</b>\n\nОбе версии (RU и EN) обновлены.\n<a href="https://clinnic.vercel.app">Перейти на сайт</a>`,
                     parse_mode: 'HTML'
                 })
             }).catch(() => { });
 
+            alert("🚀 Изменения успешно отправлены на GitHub!\n\nОбе версии (RU и EN) обновлены. Сайт обновится автоматически в течение 2-3 минут.");
+            setIsOpen(false);
+        } catch (error: any) {
+            console.error('Deployment Error:', error);
             alert("❌ Ошибка при публикации: " + error.message);
         } finally {
             setIsDeploying(false);

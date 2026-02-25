@@ -124,10 +124,16 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                                 {doc.role}
                             </p>
 
-                            <div className="flex items-center justify-center gap-1.5 md:gap-2 text-[8px] md:text-sm text-slate-400 mb-3 md:mb-6">
+                            <div className="flex items-center justify-center gap-1.5 md:gap-2 text-[8px] md:text-sm text-slate-400 mb-3 md:mb-4">
                                 <MapPin size={10} className="md:w-[14px] md:h-[14px]" />
                                 <span className="truncate max-w-[120px] md:max-w-none">{doc.practice}</span>
                             </div>
+
+                            {doc.bio && (
+                                <p className="text-[10px] md:text-sm text-slate-500 line-clamp-3 mb-4 md:mb-6 px-4 leading-relaxed">
+                                    {doc.bio}
+                                </p>
+                            )}
 
                             <a href="#contact" className="inline-flex items-center gap-1 md:gap-2 text-[10px] md:text-base text-slate-900 font-bold border-b border-slate-200 pb-0.5 hover:border-[#007f94] hover:text-[#007f94] transition-colors">
                                 {ui?.navbar?.cta || 'Записаться'} <ArrowUpRight size={12} className="md:w-[18px]" />
