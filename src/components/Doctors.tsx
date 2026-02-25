@@ -1,10 +1,11 @@
 import React from 'react';
-import { ArrowUpRight, MapPin, ShieldCheck } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { ArrowUpRight, MapPin, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import HighlightedText from './common/HighlightedText';
 
 const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
     const [showAll, setShowAll] = React.useState(false);
+    const [selectedDoctor, setSelectedDoctor] = React.useState<any>(null);
 
     const {
         badge = 'Команда',
@@ -18,36 +19,7 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
         cardDescSize = 14
     } = data || {};
 
-    const items = doctorsList || [
-        {
-            name: 'Д-р Ахмет Кая',
-            role: 'Кардиолог-хирург',
-            years: '18 лет опыта',
-            practice: 'Стамбульский университет',
-            image: '/doctors/doctor-1.jpg'
-        },
-        {
-            name: 'Д-р Мехмет Оз',
-            role: 'Невролог',
-            years: '15 лет опыта',
-            practice: 'Клиника Acıbadem',
-            image: '/doctors/doctor-2.jpg'
-        },
-        {
-            name: 'Д-р Айше Демир',
-            role: 'Эндокринолог',
-            years: '20 лет опыта',
-            practice: 'Американский госпиталь',
-            image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800'
-        },
-        {
-            name: 'Д-р Фатих Террим',
-            role: 'Гастроэнтеролог',
-            years: '12 лет опыта',
-            practice: 'Medical Park',
-            image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800'
-        }
-    ];
+    const items = doctorsList || [];
 
     const visibleItems = showAll ? items : items.slice(0, 3);
 
@@ -97,16 +69,23 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                             className="group flex flex-col items-center text-center w-full"
                         >
                             {/* Image Container */}
-                            <div className="w-full aspect-[4/5] md:aspect-[3/4] mb-3 md:mb-8 overflow-hidden rounded-[1.2rem] md:rounded-[2.5rem] bg-slate-200 relative shadow-sm md:shadow-md group-hover:shadow-2xl transition-all duration-500">
+                            <div
+                                onClick={() => setSelectedDoctor(doc)}
+                                className="w-full aspect-[4/5] md:aspect-[3/4] mb-3 md:mb-8 overflow-hidden rounded-[1.2rem] md:rounded-[2.5rem] bg-slate-200 relative shadow-sm md:shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                            >
                                 <img
                                     src={doc.image}
                                     alt={doc.name}
-                                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
                                     onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800'}
                                 />
                                 {/* Hover Overlay */}
-                                <div className="absolute inset-0 bg-[#007f94]/0 group-hover:bg-[#007f94]/10 transition-colors duration-300" />
-                                <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/90 backdrop-blur-md px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[7px] md:text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm opacity-100 md:opacity-0 md:group-hover:opacity-100 translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 transition-all duration-300">
+                                <div className="absolute inset-0 bg-[#007f94]/0 group-hover:bg-[#007f94]/40 transition-all duration-500 flex items-center justify-center">
+                                    <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#007f94] shadow-xl opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500">
+                                        Подробнее
+                                    </div>
+                                </div>
+                                <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/90 backdrop-blur-md px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[7px] md:text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm transition-all duration-300">
                                     {doc.years}
                                 </div>
                             </div>
@@ -119,27 +98,17 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                             </h3>
                             <p
                                 style={{ fontSize: `clamp(10px, 3.5vw, ${cardDescSize}px)` }}
-                                className="text-[#007f94] font-medium mb-1 md:mb-4 leading-tight"
+                                className="text-[#007f94] font-medium mb-2 md:mb-4 leading-tight"
                             >
                                 {doc.role}
                             </p>
 
-                            <div className="flex flex-col items-center justify-center gap-1 text-[8px] md:text-sm text-slate-400 mb-4 px-4">
+                            <div className="flex flex-col items-center justify-center gap-1 text-[8px] md:text-sm text-slate-400 mb-6 px-4">
                                 <div className="flex items-center gap-1.5">
                                     <MapPin size={12} className="text-[#007f94]/60" />
                                     <span className="font-medium tracking-tight uppercase text-[9px] md:text-[11px]">{doc.practice}</span>
                                 </div>
                             </div>
-
-                            {doc.bio && (
-                                <div className="relative mb-6 px-6 group/bio">
-                                    {/* Quote Decor */}
-                                    <div className="absolute left-4 top-0 bottom-0 w-[1.5px] bg-gradient-to-b from-[#007f94]/40 via-[#007f94]/10 to-transparent rounded-full" />
-                                    <p className="text-[11px] md:text-[13px] text-slate-600 leading-relaxed text-left pl-2 italic font-light opacity-90 transition-opacity group-hover:opacity-100 whitespace-pre-line">
-                                        {doc.bio}
-                                    </p>
-                                </div>
-                            )}
 
                             <div className="mt-auto pt-2 pb-2">
                                 <a
@@ -163,8 +132,100 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                     </button>
                 </div>
             </div>
+
+            {/* Biography Modal */}
+            <AnimatePresence>
+                {selectedDoctor && (
+                    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 md:p-8">
+                        {/* Overlay */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedDoctor(null)}
+                            className="absolute inset-0 bg-slate-950/80 backdrop-blur-xl"
+                        />
+
+                        {/* Modal Content */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                            className="relative w-full max-w-4xl bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-2xl flex flex-col md:flex-row pointer-events-auto max-h-[90vh]"
+                        >
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setSelectedDoctor(null)}
+                                className="absolute top-4 right-4 md:top-8 md:right-8 z-20 w-10 h-10 md:w-12 md:h-12 bg-slate-100 hover:bg-[#007f94] text-slate-500 hover:text-white rounded-full flex items-center justify-center transition-all duration-300 shadow-sm"
+                            >
+                                <X size={20} />
+                            </button>
+
+                            {/* Image Part */}
+                            <div className="w-full md:w-[40%] aspect-[4/5] md:aspect-auto relative bg-slate-100">
+                                <img
+                                    src={selectedDoctor.image}
+                                    alt={selectedDoctor.name}
+                                    className="absolute inset-0 w-full h-full object-cover object-top"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent md:hidden" />
+                            </div>
+
+                            {/* Text Part */}
+                            <div className="w-full md:w-[60%] p-6 md:p-12 overflow-y-auto custom-scrollbar bg-white">
+                                <div className="mb-8">
+                                    <span className="text-[#007f94] text-[10px] md:text-xs font-black uppercase tracking-[0.2em] mb-2 block">{badge}</span>
+                                    <h2 className="text-2xl md:text-4xl font-bold text-slate-900 leading-tight mb-2 uppercase tracking-tighter">
+                                        {selectedDoctor.name}
+                                    </h2>
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <p className="text-[#007f94] text-sm md:text-lg font-bold">{selectedDoctor.role}</p>
+                                        <span className="w-1 h-1 bg-slate-200 rounded-full" />
+                                        <p className="text-slate-400 text-xs md:text-base font-medium uppercase tracking-wider">{selectedDoctor.years}</p>
+                                    </div>
+                                </div>
+
+                                <div className="space-y-6">
+                                    <div className="flex items-start gap-4 p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                                        <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 shadow-sm">
+                                            <MapPin size={20} className="text-[#007f94]" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Место практики</p>
+                                            <p className="text-slate-900 font-bold">{selectedDoctor.practice}</p>
+                                        </div>
+                                    </div>
+
+                                    {selectedDoctor.bio && (
+                                        <div className="relative">
+                                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#007f94]/20 rounded-full" />
+                                            <div className="pl-6 pt-1">
+                                                <p className="text-slate-600 text-sm md:text-lg leading-relaxed font-light italic whitespace-pre-line">
+                                                    {selectedDoctor.bio}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className="pt-8 flex flex-col sm:flex-row gap-4">
+                                        <a
+                                            href="#contact"
+                                            onClick={() => setSelectedDoctor(null)}
+                                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#007f94] text-white rounded-2xl font-bold hover:bg-[#005a69] hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-[#007f94]/25"
+                                        >
+                                            {ui?.navbar?.cta || 'Записаться на прием'}
+                                            <ArrowUpRight size={20} />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };
 
 export default Doctors;
+
