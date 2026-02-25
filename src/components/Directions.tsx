@@ -16,7 +16,7 @@ import FadeIn from './common/FadeIn';
 import Magnetic from './common/Magnetic';
 import HighlightedText from './common/HighlightedText';
 
-const Directions = ({ data }: { data: any }) => {
+const Directions = ({ data, ui }: { data: any, ui?: any }) => {
     const {
         badge = 'Medical Hub',
         title = 'Медицинская \n экспертиза',
@@ -135,13 +135,13 @@ const Directions = ({ data }: { data: any }) => {
                                                 </div>
                                             ))
                                         ) : (
-                                            <p className="text-slate-400 text-xs">Нет описания</p>
+                                            <p className="text-slate-400 text-xs">{ui?.directions?.noDescription || 'Нет описания'}</p>
                                         )}
                                     </div>
                                 </div>
 
                                 <div className="relative z-10 pt-4 md:pt-4 border-t border-slate-200/50 flex items-center justify-between">
-                                    <span className="text-xs md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Подробнее</span>
+                                    <span className="text-xs md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{ui?.directions?.moreInfo || 'Подробнее'}</span>
                                     <Magnetic>
                                         <button className="w-10 h-10 md:w-10 md:h-10 rounded-full bg-white border border-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-[#0a1e2b] group-hover:text-white transition-all duration-300">
                                             <ArrowRight size={18} className="md:w-[18px] md:h-[18px]" />
@@ -161,15 +161,15 @@ const Directions = ({ data }: { data: any }) => {
                         <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#007f94]/20 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="relative z-10">
-                            <p className="text-[#007f94]/70 font-bold text-[10px] uppercase tracking-[0.3em] mb-3 md:mb-4">Клиентский сервис</p>
-                            <h3 className="text-2xl md:text-3xl font-black text-white mb-3 md:mb-6 leading-tight">Не нашли <br /> решение?</h3>
-                            <p className="text-slate-400 text-sm md:text-sm font-medium leading-relaxed">Наши эксперты помогут подобрать программу под ваш запрос.</p>
+                            <p className="text-[#007f94]/70 font-bold text-[10px] uppercase tracking-[0.3em] mb-3 md:mb-4">{ui?.directions?.serviceLabel || 'Клиентский сервис'}</p>
+                            <h3 className="text-2xl md:text-3xl font-black text-white mb-3 md:mb-6 leading-tight">{ui?.directions?.helpTitle || 'Не нашли решение?'}</h3>
+                            <p className="text-slate-400 text-sm md:text-sm font-medium leading-relaxed">{ui?.directions?.helpDesc || 'Наши эксперты помогут подобрать программу под ваш запрос.'}</p>
                         </div>
 
                         <div className="relative z-10 mt-8 md:mt-12 flex items-center justify-between">
                             <Magnetic>
                                 <a href="#contact" className="px-6 md:px-8 py-3 md:py-3 bg-[#007f94] text-white font-black text-xs md:text-xs uppercase tracking-widest rounded-xl hover:opacity-90 transition-all shadow-xl shadow-[#007f94]/20">
-                                    Консультация
+                                    {ui?.directions?.consultation || 'Консультация'}
                                 </a>
                             </Magnetic>
                             <ArrowRight size={24} className="md:w-[24px] md:h-[24px] text-white/20 group-hover:text-white transition-colors" />

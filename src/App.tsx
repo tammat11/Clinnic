@@ -75,8 +75,8 @@ function App() {
                 })}
             </main>
 
-            <ContactForm data={content.contact} />
-            <Footer data={content.footer} />
+            <ContactForm data={content.contact} ui={content.ui} />
+            <Footer data={content.footer} ui={content.ui} />
 
             {/* Admin Panel and Button - only visible if authorized */}
             {isAuthorized && (

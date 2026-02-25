@@ -3,15 +3,18 @@ import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
 import { motion } from 'framer-motion';
 import HighlightedText from './common/HighlightedText';
 
-const Footer = ({ data }: { data: any }) => {
+const Footer = ({ data, ui }: { data: any, ui?: any }) => {
     const {
         address = 'Алматы, проспект Достык, 210',
         phone = '+7 707 333 44 55',
         instagram = 'https://www.instagram.com/icgroup.kz/?__pwa=1'
     } = data || {};
 
-    const ui = (data as any)?.ui?.footer || {
-        contacts: "Контакты"
+    const uiData = ui?.footer || {
+        contacts: "Контакты",
+        tagline: "Leading private clinic in Almaty bringing world-class Turkish medical protocols to your health.",
+        agreement: "Medical Agreement",
+        privacy: "Privacy Charter"
     };
 
     return (
@@ -32,7 +35,7 @@ const Footer = ({ data }: { data: any }) => {
                             <span className="text-2xl font-bold tracking-tight uppercase">Reactive</span>
                         </div>
                         <p className="text-slate-400 text-lg leading-relaxed max-w-sm mb-10">
-                            Leading private clinic in Almaty bringing world-class Turkish medical protocols to your health.
+                            {uiData.tagline}
                         </p>
                         <div className="flex gap-6">
                             <motion.a
@@ -55,7 +58,7 @@ const Footer = ({ data }: { data: any }) => {
                     </div>
 
                     <div className="lg:col-span-4">
-                        <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-8">{ui.contacts}</h4>
+                        <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-8">{uiData.contacts}</h4>
                         <div className="space-y-6">
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <span className="text-slate-300">
@@ -85,8 +88,8 @@ const Footer = ({ data }: { data: any }) => {
                 >
                     <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">© 2026 Reactive Clinic Almaty • License #L123456789</p>
                     <div className="flex gap-10 text-xs font-bold text-slate-600 uppercase tracking-widest">
-                        <a href="#" className="hover:text-white transition-colors">Medical Agreement</a>
-                        <a href="#" className="hover:text-white transition-colors">Privacy Charter</a>
+                        <a href="#" className="hover:text-white transition-colors">{uiData.agreement}</a>
+                        <a href="#" className="hover:text-white transition-colors">{uiData.privacy}</a>
                     </div>
                 </motion.div>
             </div>

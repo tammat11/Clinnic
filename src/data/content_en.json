@@ -365,7 +365,10 @@
       "privacy": "By clicking the button, you agree to our privacy policy"
     },
     "footer": {
-      "contacts": "Contacts"
+      "contacts": "Contacts",
+      "tagline": "Leading private clinic in Almaty bringing world-class Turkish medical protocols to your health.",
+      "agreement": "Medical Agreement",
+      "privacy": "Privacy Charter"
     },
     "navbar": {
       "cta": "Book Now"
@@ -379,6 +382,21 @@
     },
     "partners": {
       "title": "Our Partners"
+    },
+    "whyDifferent": {
+      "verdictLabel": "Expert verdict"
+    },
+    "doctors": {
+      "showLess": "Show less",
+      "showAll": "See all doctors"
+    },
+    "directions": {
+      "noDescription": "No description",
+      "moreInfo": "Learn more",
+      "serviceLabel": "Client service",
+      "helpTitle": "Didn't find a solution?",
+      "helpDesc": "Our experts will help you find the right program for your request.",
+      "consultation": "Consultation"
     }
   }
 }

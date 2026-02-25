@@ -4,7 +4,7 @@ import FadeIn from './common/FadeIn';
 import Magnetic from './common/Magnetic';
 import HighlightedText from './common/HighlightedText';
 
-const WhyDifferent = ({ data }: { data: any }) => {
+const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
     const {
         badge = 'Стандарты качества',
         title = 'Почему это \n другой уровень консультации',
@@ -134,7 +134,7 @@ const WhyDifferent = ({ data }: { data: any }) => {
                             >
                                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
                                     <div>
-                                        <p className="text-[#007f94]/70 font-bold text-[10px] md:text-sm uppercase tracking-widest mb-1 md:mb-2">Вердикт эксперта</p>
+                                        <p className="text-[#007f94]/70 font-bold text-[10px] md:text-sm uppercase tracking-widest mb-1 md:mb-2">{ui?.whyDifferent?.verdictLabel || 'Вердикт эксперта'}</p>
                                         <h4
                                             style={{ fontSize: `${descSize}px` }}
                                             className="text-white font-bold leading-tight whitespace-pre-line"
@@ -144,7 +144,7 @@ const WhyDifferent = ({ data }: { data: any }) => {
                                     </div>
                                     <Magnetic>
                                         <a href="#contact" className="px-6 md:px-8 py-3 md:py-4 text-center bg-[#007f94] text-white font-bold text-sm md:text-base rounded-xl md:rounded-2xl hover:opacity-90 transition-all shadow-xl shadow-[#007f94]/20 whitespace-nowrap w-full md:w-auto">
-                                            Записаться
+                                            {ui?.navbar?.cta || 'Записаться'}
                                         </a>
                                     </Magnetic>
                                 </div>

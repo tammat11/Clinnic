@@ -3,7 +3,7 @@ import { ArrowUpRight, MapPin, ShieldCheck } from 'lucide-react';
 import { motion } from 'framer-motion';
 import HighlightedText from './common/HighlightedText';
 
-const Doctors = ({ data }: { data: any }) => {
+const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
     const [showAll, setShowAll] = React.useState(false);
 
     const {
@@ -130,7 +130,7 @@ const Doctors = ({ data }: { data: any }) => {
                             </div>
 
                             <a href="#contact" className="inline-flex items-center gap-1 md:gap-2 text-[10px] md:text-base text-slate-900 font-bold border-b border-slate-200 pb-0.5 hover:border-[#007f94] hover:text-[#007f94] transition-colors">
-                                Записаться <ArrowUpRight size={12} className="md:w-[18px]" />
+                                {ui?.navbar?.cta || 'Записаться'} <ArrowUpRight size={12} className="md:w-[18px]" />
                             </a>
                         </motion.div>
                     ))}
@@ -141,7 +141,7 @@ const Doctors = ({ data }: { data: any }) => {
                         onClick={() => setShowAll(!showAll)}
                         className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-bold rounded-full border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all w-full md:w-auto justify-center"
                     >
-                        {showAll ? 'Скрыть лишних' : 'Посмотреть всех врачей'} <ArrowUpRight size={18} className={showAll ? 'rotate-180' : ''} />
+                        {showAll ? (ui?.doctors?.showLess || 'Скрыть лишних') : (ui?.doctors?.showAll || 'Посмотреть всех врачей')} <ArrowUpRight size={18} className={showAll ? 'rotate-180' : ''} />
                     </button>
                 </div>
             </div>
