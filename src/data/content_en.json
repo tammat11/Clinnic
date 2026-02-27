@@ -293,9 +293,9 @@
         "icon": "Activity"
       },
       {
-        "title": "Dietetics",
-        "desc": "Nutrition and diet planning",
-        "icon": "Pill"
+        "title": "Pediatrics",
+        "desc": "Professional medical care for children",
+        "icon": "Stethoscope"
       },
       {
         "title": "Ultrasound (US)",
@@ -303,9 +303,9 @@
         "icon": "Activity"
       },
       {
-        "title": "Pediatrics",
-        "desc": "Professional medical care for children",
-        "icon": "Stethoscope"
+        "title": "Dietetics",
+        "desc": "Nutrition and diet planning",
+        "icon": "Pill"
       },
       {
         "title": "Massage Therapy",

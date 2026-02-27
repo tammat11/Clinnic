@@ -80,7 +80,7 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                                     onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800'}
                                 />
                                 {/* Hover Overlay */}
-                                <div className="absolute inset-0 bg-[#007f94]/0 group-hover:bg-[#007f94]/40 transition-all duration-500 flex items-center justify-center">
+                                <div className="absolute inset-0 bg-[#007f94]/0 group-hover:bg-[#007f94]/15 transition-all duration-500 flex items-center justify-center">
                                     <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#007f94] shadow-xl opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500">
                                         Подробнее
                                     </div>
