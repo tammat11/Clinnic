@@ -13,7 +13,7 @@
     "padding": 120,
     "benefits": [
       {
-        "icon": "Clock",
+        "icon": "ShieldCheck",
         "text": "No waiting lists"
       },
       {
