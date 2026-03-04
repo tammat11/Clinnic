@@ -51,39 +51,80 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                     </FadeIn>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-                    {/* Connecting Line */}
-                    <div className="absolute top-12 left-0 w-full h-0.5 bg-gradient-to-r from-blue-100 via-indigo-100 to-blue-100 hidden md:block" />
+                <div className="relative max-w-5xl mx-auto py-8 md:py-16">
+                    {/* Vertical connecting line using SVG from bottom to top */}
+                    <div className="absolute left-[3.5rem] md:left-1/2 top-0 bottom-0 w-1 md:-ml-0.5 z-0" style={{ transform: 'scale(1, -1)' }}>
+                        <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 4 100">
+                            <motion.path
+                                d="M 2 0 L 2 100"
+                                stroke="url(#process-gradient)"
+                                strokeWidth="4"
+                                strokeDasharray="1 1"
+                                fill="none"
+                                initial={{ pathLength: 0 }}
+                                whileInView={{ pathLength: 1 }}
+                                viewport={{ once: true, margin: "-20%" }}
+                                transition={{ duration: 1.5, ease: "easeInOut" }}
+                            />
+                            <defs>
+                                <linearGradient id="process-gradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#007f94" />
+                                    <stop offset="100%" stopColor="#3b82f6" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
 
-                    {(steps || []).map((step: any, index: number) => {
-                        const Icon = ICONS[index % ICONS.length];
-                        const color = COLORS[index % COLORS.length];
+                    <div className="space-y-16 md:space-y-24 relative z-10 flex flex-col">
+                        {(steps || []).map((step: any, index: number) => {
+                            // Reverse color and icon assignments to match the original logical order 
+                            // even though array is reversed in JSON to appear bottom-to-top.
+                            const originalIndex = (steps.length - 1 - index);
+                            const Icon = ICONS[originalIndex % ICONS.length];
+                            const color = COLORS[originalIndex % COLORS.length];
 
-                        return (
-                            <FadeIn key={index} delay={index * 0.2} direction="up" className="relative group">
-                                <div className={`w-24 h-24 ${color} rounded-3xl flex items-center justify-center mb-8 mx-auto relative z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 shadow-lg shadow-blue-900/5`}>
-                                    <Icon size={40} strokeWidth={1.5} />
-                                    <div className="absolute -top-3 -right-3 w-8 h-8 bg-[#0a1e2b] text-white rounded-full flex items-center justify-center font-bold text-sm border-2 border-white">
-                                        {step.num}
+                            const isEven = index % 2 === 0;
+                            // Add delays so steps appear in sequence from bottom to top
+                            const animationDelay = originalIndex * 0.3;
+
+                            return (
+                                <FadeIn key={index} delay={animationDelay} direction="up" className="relative group">
+                                    <div className={`flex flex-col md:flex-row items-center ${isEven ? 'md:flex-row-reverse' : ''}`}>
+
+                                        <div className="flex-1 w-full pl-28 md:pl-0 md:px-12 text-left">
+                                            <div className={`bg-white p-6 md:p-8 rounded-[2rem] shadow-xl shadow-blue-900/5 group-hover:shadow-[#007f94]/10 transition-all duration-300 border border-slate-100 relative ${isEven ? 'md:text-left' : 'md:text-right'}`}>
+                                                <h3
+                                                    style={{ fontSize: `${stepTitleSize}px` }}
+                                                    className="font-bold text-[#0a1e2b] mb-3 group-hover:text-[#007f94] transition-colors"
+                                                >
+                                                    {step.title}
+                                                </h3>
+                                                <p
+                                                    style={{ fontSize: `${stepDescSize}px` }}
+                                                    className="text-slate-500 leading-relaxed font-medium"
+                                                >
+                                                    {step.desc}
+                                                </p>
+                                                {/* Connecting horizontal line to icon on desktop */}
+                                                <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-12 h-[2px] bg-gradient-to-r from-blue-100 to-indigo-100 ${isEven ? '-left-12' : '-right-12'}`}></div>
+                                            </div>
+                                        </div>
+
+                                        <div className="absolute left-6 md:static md:mx-auto md:my-0 flex-shrink-0 z-10">
+                                            <div className={`w-16 h-16 md:w-24 md:h-24 ${color} rounded-full flex items-center justify-center relative transition-transform duration-500 group-hover:scale-110 shadow-lg shadow-blue-900/10 border-[6px] border-white`}>
+                                                <Icon className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />
+                                                <div className="absolute -top-2 -right-2 md:-top-1 md:-right-2 w-7 h-7 md:w-9 md:h-9 bg-[#0a1e2b] text-white rounded-full flex items-center justify-center font-bold text-xs md:text-sm border-2 border-white shadow-md">
+                                                    {step.num}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex-1 w-full hidden md:block"></div>
                                     </div>
-                                </div>
-                                <div className="text-center px-4">
-                                    <h3
-                                        style={{ fontSize: `${stepTitleSize}px` }}
-                                        className="font-bold text-[#0a1e2b] mb-4 group-hover:text-[#007f94] transition-colors"
-                                    >
-                                        {step.title}
-                                    </h3>
-                                    <p
-                                        style={{ fontSize: `${stepDescSize}px` }}
-                                        className="text-slate-500 leading-relaxed font-medium"
-                                    >
-                                        {step.desc}
-                                    </p>
-                                </div>
-                            </FadeIn>
-                        );
-                    })}
+                                </FadeIn>
+                            );
+                        })}
+                    </div>
                 </div>
 
                 {/* Integrated CTA Block */}
