@@ -261,51 +261,51 @@
       {
         "title": "JCI Protocols",
         "desc": "The gold standard of global healthcare",
-        "icon": "ShieldCheck"
-      },
-      {
-        "title": "Orthopedics",
-        "desc": "Treatment of musculoskeletal disorders",
         "icon": "Stethoscope"
       },
       {
-        "title": "Physiotherapy",
-        "desc": "Rehabilitation and manual therapy",
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
+        "icon": "Bone"
+      },
+      {
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
         "icon": "Activity"
       },
       {
-        "title": "IV Therapy",
-        "desc": "Detox, Energy & Immunity",
-        "icon": "FlaskConical"
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
+        "icon": "Syringe"
       },
       {
-        "title": "Laboratory",
-        "desc": "99.9% Accuracy",
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
         "icon": "Microscope"
       },
       {
-        "title": "Gynecology",
-        "desc": "Injection and hardware-based treatments",
-        "icon": "Activity"
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
+        "icon": "Flower2"
       },
       {
-        "title": "Dietetics",
-        "desc": "Nutrition and diet planning",
-        "icon": "Pill"
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
+        "icon": "Apple"
       },
       {
-        "title": "Ultrasound (US)",
-        "desc": "Fast and safe diagnostics",
-        "icon": "Activity"
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
+        "icon": "Waves"
       },
       {
-        "title": "Pediatrics",
-        "desc": "Professional medical care for children",
-        "icon": "Stethoscope"
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
+        "icon": "Baby"
       },
       {
-        "title": "Massage Therapy",
-        "desc": "Individually tailored techniques",
+        "title": "JCI Protocols",
+        "desc": "The gold standard of global healthcare",
         "icon": "Activity"
       }
     ]
