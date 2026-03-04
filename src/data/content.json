@@ -13,20 +13,20 @@
     "padding": 120,
     "benefits": [
       {
-        "icon": "Clock",
+        "icon": "ShieldCheck",
         "text": "Без очереди"
       },
       {
         "icon": "UserCheck",
-        "text": "Без очереди "
+        "text": "Персональный менеджер"
       },
       {
         "icon": "Zap",
-        "text": "Протоколы JCI"
+        "text": "Всё за один приём"
       },
       {
         "icon": "ClipboardCheck",
-        "text": "Протоколы JCI"
+        "text": "План лечения за 1 день"
       }
     ]
   },
