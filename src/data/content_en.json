@@ -8,29 +8,25 @@
     "description": "Consultations, diagnostics, and treatment plans based on international protocols — without traveling abroad.",
     "buttonPrimary": "Book an appointment",
     "buttonSecondary": "About Clinic",
-    "titleSize": 84,
+    "titleSize": 75,
     "descSize": 20,
     "padding": 120,
     "benefits": [
       {
-        "icon": "ShieldCheck",
-        "text": "JCI protocols"
+        "icon": "Activity",
+        "text": "No waiting lines"
       },
       {
-        "icon": "Clock",
-        "text": "No waiting lists"
-      },
-      {
-        "icon": "UserCheck",
+        "icon": "UserPlus",
         "text": "Personal manager"
       },
       {
         "icon": "Zap",
-        "text": "Everything in 1 visit"
+        "text": "Everything in one visit"
       },
       {
         "icon": "ClipboardCheck",
-        "text": "Treatment plan in 1 visit"
+        "text": "Treatment plan in 1 day"
       }
     ]
   },
