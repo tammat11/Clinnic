@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,7 +12,7 @@
   }
 
   body {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Golos Text', sans-serif;
     @apply bg-slate-50 text-slate-900 selection:bg-[#007f94]/20 selection:text-[#007f94] overflow-x-hidden;
     cursor: auto !important;
   }
@@ -30,7 +30,7 @@
   h4,
   h5,
   h6 {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Golos Text', sans-serif;
     @apply font-bold tracking-tight text-slate-900;
   }
 
