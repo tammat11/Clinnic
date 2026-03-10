@@ -45,7 +45,7 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                     {/* Content */}
                     <div className="grid lg:grid-cols-2 gap-16 relative z-10">
                         <div>
-                            <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm mb-6 block">{badge}</span>
+                            <span className="text-[#007f94] font-semibold uppercase tracking-widest text-xs md:text-sm mb-6 block">{badge}</span>
                             <h2
                                 style={{ fontSize: `clamp(2rem, 5vw, ${titleSize}px)` }}
                                 className="font-black text-[#0a1e2b] mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
@@ -77,7 +77,7 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                                         <div className="w-20 h-20 bg-[#007f94]/10 text-[#007f94] rounded-full flex items-center justify-center mb-6">
                                             <Check size={40} />
                                         </div>
-                                        <h3 className="text-2xl font-bold text-slate-900 mb-2">{uiForm.successTitle}</h3>
+                                        <h3 className="text-2xl font-semibold text-slate-900 mb-2">{uiForm.successTitle}</h3>
                                         <p className="text-slate-500">{uiForm.successSub}</p>
                                     </motion.div>
                                 ) : (
@@ -90,7 +90,7 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                                         className="space-y-6"
                                     >
                                         <div>
-                                            <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">{uiForm.nameLabel}</label>
+                                            <label className="block text-sm font-semibold text-slate-700 mb-2 ml-1">{uiForm.nameLabel}</label>
                                             <input
                                                 type="text"
                                                 required
@@ -99,7 +99,7 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                                             />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-bold text-slate-700 mb-2 ml-1">{uiForm.phoneLabel}</label>
+                                            <label className="block text-sm font-semibold text-slate-700 mb-2 ml-1">{uiForm.phoneLabel}</label>
                                             <input
                                                 type="tel"
                                                 required
@@ -110,7 +110,7 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                                         <button
                                             type="submit"
                                             disabled={status === 'submitting'}
-                                            className="w-full py-5 bg-[#007f94] text-white font-bold text-lg rounded-xl shadow-lg shadow-[#007f94]/30 hover:opacity-90 hover:shadow-[#007f94]/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group"
+                                            className="w-full py-5 bg-[#007f94] text-white font-semibold text-lg rounded-xl shadow-lg shadow-[#007f94]/30 hover:opacity-90 hover:shadow-[#007f94]/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group"
                                         >
                                             {status === 'submitting' ? (
                                                 <>

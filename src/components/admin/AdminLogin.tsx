@@ -99,7 +99,7 @@ const AdminLogin = () => {
                     <motion.div
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        className="mb-6 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 text-xs font-bold"
+                        className="mb-6 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 text-xs font-semibold"
                     >
                         <AlertCircle size={16} />
                         {error}
@@ -114,7 +114,7 @@ const AdminLogin = () => {
                                 <Phone className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300" size={18} />
                                 <input
                                     type="text"
-                                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/5 outline-none transition-all text-sm font-bold"
+                                    className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:bg-white focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/5 outline-none transition-all text-sm font-semibold"
                                     placeholder="7 707 052 2006"
                                     value={phone}
                                     onChange={(e) => setPhone(e.target.value)}
@@ -125,7 +125,7 @@ const AdminLogin = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full py-4 bg-[#0a1e2b] text-white font-bold rounded-2xl flex items-center justify-center gap-2 hover:opacity-95 active:scale-95 transition-all shadow-xl shadow-slate-900/10 disabled:opacity-50"
+                            className="w-full py-4 bg-[#0a1e2b] text-white font-semibold rounded-2xl flex items-center justify-center gap-2 hover:opacity-95 active:scale-95 transition-all shadow-xl shadow-slate-900/10 disabled:opacity-50"
                         >
                             {loading ? <Loader2 className="animate-spin" /> : <>Получить код <ArrowRight size={18} /></>}
                         </button>
@@ -152,13 +152,13 @@ const AdminLogin = () => {
                             <button
                                 type="button"
                                 onClick={() => setStep(1)}
-                                className="px-6 py-4 bg-slate-50 text-slate-500 font-bold rounded-2xl hover:bg-slate-100 transition-all border border-slate-100"
+                                className="px-6 py-4 bg-slate-50 text-slate-500 font-semibold rounded-2xl hover:bg-slate-100 transition-all border border-slate-100"
                             >
                                 Назад
                             </button>
                             <button
                                 type="submit"
-                                className="flex-1 py-4 bg-[#007f94] text-white font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-[#006070] active:scale-95 transition-all shadow-xl shadow-[#007f94]/10"
+                                className="flex-1 py-4 bg-[#007f94] text-white font-semibold rounded-2xl flex items-center justify-center gap-2 hover:bg-[#006070] active:scale-95 transition-all shadow-xl shadow-[#007f94]/10"
                             >
                                 Войти в систему
                             </button>

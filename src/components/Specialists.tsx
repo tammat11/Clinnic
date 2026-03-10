@@ -27,12 +27,12 @@ const Specialists = ({ data }: { data: any }) => {
                 <FadeIn direction="up" duration={0.8} className="text-center max-w-4xl mx-auto mb-16 md:mb-24">
                     <div className="inline-flex items-center gap-2 mb-6">
                         <span className="h-[1px] w-8 bg-[#007f94]" />
-                        <span className="text-[#007f94] text-sm font-bold uppercase tracking-[0.2em]">{defaultData.badge}</span>
+                        <span className="text-[#007f94] text-sm font-semibold uppercase tracking-[0.2em]">{defaultData.badge}</span>
                         <span className="h-[1px] w-8 bg-[#007f94]" />
                     </div>
                     <h2
                         style={{ fontSize: `${defaultData.titleSize}px` }}
-                        className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-6 md:mb-10 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
+                        className="font-semibold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-6 md:mb-10 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
                     >
                         <HighlightedText text={defaultData.title} />
                     </h2>

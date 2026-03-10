@@ -64,11 +64,11 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                     >
                         <div className="flex items-center gap-3 mb-2 md:mb-3">
                             <span className="w-8 md:w-12 h-[2px] bg-[#007f94]" />
-                            <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
+                            <span className="text-[#007f94] font-semibold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
                         </div>
                         <h2
                             style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
-                            className="font-bold text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-6 whitespace-pre-line"
+                            className="font-semibold text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-6 whitespace-pre-line"
                         >
                             <HighlightedText text={title} />
                         </h2>
@@ -141,7 +141,7 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                                 </div>
 
                                 <div className="relative z-10 pt-4 md:pt-4 border-t border-slate-200/50 flex items-center justify-between">
-                                    <span className="text-xs md:text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">{ui?.directions?.moreInfo || 'Подробнее'}</span>
+                                    <span className="text-xs md:text-xs font-semibold text-slate-400 uppercase tracking-[0.2em]">{ui?.directions?.moreInfo || 'Подробнее'}</span>
                                     <Magnetic>
                                         <button className="w-10 h-10 md:w-10 md:h-10 rounded-full bg-white border border-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-[#0a1e2b] group-hover:text-white transition-all duration-300">
                                             <ArrowRight size={18} className="md:w-[18px] md:h-[18px]" />
@@ -161,7 +161,7 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                         <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#007f94]/20 rounded-full blur-3xl pointer-events-none" />
 
                         <div className="relative z-10">
-                            <p className="text-[#007f94]/70 font-bold text-[10px] uppercase tracking-[0.3em] mb-3 md:mb-4">{ui?.directions?.serviceLabel || 'Клиентский сервис'}</p>
+                            <p className="text-[#007f94]/70 font-semibold text-[10px] uppercase tracking-[0.3em] mb-3 md:mb-4">{ui?.directions?.serviceLabel || 'Клиентский сервис'}</p>
                             <h3 className="text-2xl md:text-3xl font-black text-white mb-3 md:mb-6 leading-tight">{ui?.directions?.helpTitle || 'Не нашли решение?'}</h3>
                             <p className="text-slate-400 text-sm md:text-sm font-medium leading-relaxed">{ui?.directions?.helpDesc || 'Наши эксперты помогут подобрать программу под ваш запрос.'}</p>
                         </div>

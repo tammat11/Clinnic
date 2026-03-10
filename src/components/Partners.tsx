@@ -2,10 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const partners = [
-    { name: 'Bupa', color: 'text-blue-600', font: 'font-sans font-bold' },
-    { name: 'Cigna', color: 'text-emerald-500', font: 'font-serif font-bold' },
+    { name: 'Bupa', color: 'text-blue-600', font: 'font-sans font-semibold' },
+    { name: 'Cigna', color: 'text-emerald-500', font: 'font-serif font-semibold' },
     { name: 'Aetna', color: 'text-purple-600', font: 'font-sans font-black' },
-    { name: 'Allianz', color: 'text-blue-800', font: 'font-serif font-bold' },
+    { name: 'Allianz', color: 'text-blue-800', font: 'font-serif font-semibold' },
     { name: 'AXA', color: 'text-blue-900', font: 'font-sans font-black tracking-tighter relative inline-block' }
 ];
 

@@ -41,10 +41,10 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.4 }}
                     >
-                        <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm mb-4 block">{badge}</span>
+                        <span className="text-[#007f94] font-semibold uppercase tracking-widest text-xs md:text-sm mb-4 block">{badge}</span>
                         <h2
                             style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
-                            className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-8 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
+                            className="font-semibold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-8 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
                         >
                             <HighlightedText text={title} />
                         </h2>
@@ -81,18 +81,18 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                                 />
                                 {/* Hover Overlay */}
                                 <div className="absolute inset-0 bg-[#007f94]/0 group-hover:bg-[#007f94]/15 transition-all duration-500 flex items-center justify-center">
-                                    <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest text-[#007f94] shadow-xl opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500">
+                                    <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest text-[#007f94] shadow-xl opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500">
                                         Подробнее
                                     </div>
                                 </div>
-                                <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/90 backdrop-blur-md px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[7px] md:text-xs font-bold uppercase tracking-wider text-slate-900 shadow-sm transition-all duration-300">
+                                <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-white/90 backdrop-blur-md px-2 py-1 md:px-3 md:py-1.5 rounded-full text-[7px] md:text-xs font-semibold uppercase tracking-wider text-slate-900 shadow-sm transition-all duration-300">
                                     {doc.years}
                                 </div>
                             </div>
 
                             <h3
                                 style={{ fontSize: `clamp(14px, 4.5vw, ${cardTitleSize}px)` }}
-                                className="font-bold text-slate-900 mb-0.5 md:mb-2 leading-tight"
+                                className="font-semibold text-slate-900 mb-0.5 md:mb-2 leading-tight"
                             >
                                 {doc.name}
                             </h3>
@@ -113,7 +113,7 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                             <div className="mt-auto pt-2 pb-2">
                                 <a
                                     href="#contact"
-                                    className="group/btn relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] md:text-sm font-bold text-[#007f94] transition-all duration-300 hover:bg-[#007f94] hover:text-white border border-[#007f94]/20 hover:border-[#007f94] overflow-hidden"
+                                    className="group/btn relative inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-[11px] md:text-sm font-semibold text-[#007f94] transition-all duration-300 hover:bg-[#007f94] hover:text-white border border-[#007f94]/20 hover:border-[#007f94] overflow-hidden"
                                 >
                                     <span className="relative z-10">{ui?.navbar?.cta || 'Записаться'}</span>
                                     <ArrowUpRight size={14} className="relative z-10 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
@@ -126,7 +126,7 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                 <div className="text-center">
                     <button
                         onClick={() => setShowAll(!showAll)}
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-bold rounded-full border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all w-full md:w-auto justify-center"
+                        className="inline-flex items-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-full border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all w-full md:w-auto justify-center"
                     >
                         {showAll ? (ui?.doctors?.showLess || 'Скрыть лишних') : (ui?.doctors?.showAll || 'Посмотреть всех врачей')} <ArrowUpRight size={18} className={showAll ? 'rotate-180' : ''} />
                     </button>
@@ -175,11 +175,11 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                             <div className="w-full md:w-[60%] p-6 md:p-12 overflow-y-auto custom-scrollbar bg-white">
                                 <div className="mb-8">
                                     <span className="text-[#007f94] text-[10px] md:text-xs font-black uppercase tracking-[0.2em] mb-2 block">{badge}</span>
-                                    <h2 className="text-2xl md:text-4xl font-bold text-slate-900 leading-tight mb-2 uppercase tracking-tighter">
+                                    <h2 className="text-2xl md:text-4xl font-semibold text-slate-900 leading-tight mb-2 uppercase tracking-tighter">
                                         {selectedDoctor.name}
                                     </h2>
                                     <div className="flex flex-wrap items-center gap-3">
-                                        <p className="text-[#007f94] text-sm md:text-lg font-bold">{selectedDoctor.role}</p>
+                                        <p className="text-[#007f94] text-sm md:text-lg font-semibold">{selectedDoctor.role}</p>
                                         <span className="w-1 h-1 bg-slate-200 rounded-full" />
                                         <p className="text-slate-400 text-xs md:text-base font-medium uppercase tracking-wider">{selectedDoctor.years}</p>
                                     </div>
@@ -191,8 +191,8 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                                             <MapPin size={20} className="text-[#007f94]" />
                                         </div>
                                         <div>
-                                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Место практики</p>
-                                            <p className="text-slate-900 font-bold">{selectedDoctor.practice}</p>
+                                            <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-widest mb-1">Место практики</p>
+                                            <p className="text-slate-900 font-semibold">{selectedDoctor.practice}</p>
                                         </div>
                                     </div>
 
@@ -211,7 +211,7 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                                         <a
                                             href="#contact"
                                             onClick={() => setSelectedDoctor(null)}
-                                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#007f94] text-white rounded-2xl font-bold hover:bg-[#005a69] hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-[#007f94]/25"
+                                            className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#007f94] text-white rounded-2xl font-semibold hover:bg-[#005a69] hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-[#007f94]/25"
                                         >
                                             {ui?.navbar?.cta || 'Записаться на прием'}
                                             <ArrowUpRight size={20} />

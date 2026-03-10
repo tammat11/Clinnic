@@ -114,7 +114,7 @@ function App() {
                                     setIsAuthorized(false);
                                     window.location.reload();
                                 }}
-                                className="px-3 py-1.5 bg-red-50 text-red-500 text-[10px] font-bold rounded-full border border-red-100 opacity-0 group-hover:opacity-100 md:opacity-0 hover:opacity-100 transition-opacity"
+                                className="px-3 py-1.5 bg-red-50 text-red-500 text-[10px] font-semibold rounded-full border border-red-100 opacity-0 group-hover:opacity-100 md:opacity-0 hover:opacity-100 transition-opacity"
                             >
                                 Выйти
                             </button>

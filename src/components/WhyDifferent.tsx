@@ -74,7 +74,7 @@ const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
                                 duration={0.8}
                                 className="absolute bottom-3 left-3 right-3 md:bottom-10 md:left-10 md:right-10 p-4 md:p-8 bg-white/10 backdrop-blur-md rounded-xl md:rounded-3xl border border-white/20"
                             >
-                                <p className="text-white text-xs md:text-2xl font-bold leading-tight whitespace-pre-line">
+                                <p className="text-white text-xs md:text-2xl font-semibold leading-tight whitespace-pre-line">
                                     <HighlightedText text={quote} />
                                 </p>
                             </FadeIn>
@@ -90,12 +90,12 @@ const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
                         <FadeIn direction="left" duration={0.8}>
                             <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-8">
                                 <div className="h-[1px] w-8 md:w-12 bg-[#007f94]" />
-                                <span className="text-[#007f94] font-bold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
+                                <span className="text-[#007f94] font-semibold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
                             </div>
 
                             <h2
                                 style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
-                                className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-6 md:mb-10 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
+                                className="font-semibold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-6 md:mb-10 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
                             >
                                 <HighlightedText text={title} />
                             </h2>
@@ -115,7 +115,7 @@ const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
                                                 <Icon size={20} className="md:w-6 md:h-6" strokeWidth={1.5} />
                                             </div>
                                             <div>
-                                                <h3 className="text-sm md:text-lg font-bold text-slate-900 mb-1 md:mb-1 group-hover:text-[#007f94] transition-colors uppercase tracking-tight">
+                                                <h3 className="text-sm md:text-lg font-semibold text-slate-900 mb-1 md:mb-1 group-hover:text-[#007f94] transition-colors uppercase tracking-tight">
                                                     <HighlightedText text={fact.text} />
                                                 </h3>
                                                 <p className="text-slate-500 text-xs md:text-sm leading-relaxed max-w-md">
@@ -134,16 +134,16 @@ const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
                             >
                                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
                                     <div>
-                                        <p className="text-[#007f94]/70 font-bold text-[10px] md:text-sm uppercase tracking-widest mb-1 md:mb-2">{ui?.whyDifferent?.verdictLabel || 'Вердикт эксперта'}</p>
+                                        <p className="text-[#007f94]/70 font-semibold text-[10px] md:text-sm uppercase tracking-widest mb-1 md:mb-2">{ui?.whyDifferent?.verdictLabel || 'Вердикт эксперта'}</p>
                                         <h4
                                             style={{ fontSize: `${descSize}px` }}
-                                            className="text-white font-bold leading-tight whitespace-pre-line"
+                                            className="text-white font-semibold leading-tight whitespace-pre-line"
                                         >
                                             <HighlightedText text={verdictTitle} />
                                         </h4>
                                     </div>
                                     <Magnetic>
-                                        <a href="#contact" className="px-6 md:px-8 py-3 md:py-4 text-center bg-[#007f94] text-white font-bold text-sm md:text-base rounded-xl md:rounded-2xl hover:opacity-90 transition-all shadow-xl shadow-[#007f94]/20 whitespace-nowrap w-full md:w-auto">
+                                        <a href="#contact" className="px-6 md:px-8 py-3 md:py-4 text-center bg-[#007f94] text-white font-semibold text-sm md:text-base rounded-xl md:rounded-2xl hover:opacity-90 transition-all shadow-xl shadow-[#007f94]/20 whitespace-nowrap w-full md:w-auto">
                                             {ui?.navbar?.cta || 'Записаться'}
                                         </a>
                                     </Magnetic>

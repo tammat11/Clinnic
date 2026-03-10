@@ -79,7 +79,7 @@ const Hero = ({ data }: { data: any }) => {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
                             </span>
-                            <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-widest text-slate-700">{badgeTR}</span>
+                            <span className="text-[9px] md:text-[11px] font-semibold uppercase tracking-widest text-slate-700">{badgeTR}</span>
                         </div>
                         <div className="w-[1px] h-2.5 bg-slate-300"></div>
                         <div className="flex items-center gap-1.5">
@@ -87,7 +87,7 @@ const Hero = ({ data }: { data: any }) => {
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00c2e0] opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[#00c2e0]"></span>
                             </span>
-                            <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-widest text-slate-700">{badgeKZ}</span>
+                            <span className="text-[9px] md:text-[11px] font-semibold uppercase tracking-widest text-slate-700">{badgeKZ}</span>
                         </div>
                     </motion.div>
 
@@ -97,7 +97,7 @@ const Hero = ({ data }: { data: any }) => {
                         className="flex flex-col items-center gap-4 md:gap-5 mb-10 md:mb-12 max-w-4xl mx-auto px-4"
                     >
                         <h1
-                            className="font-bold text-[#0a1e2b] tracking-tighter leading-[1.05] whitespace-pre-line mx-auto break-words"
+                            className="font-semibold text-[#0a1e2b] tracking-tighter leading-[1.05] whitespace-pre-line mx-auto break-words"
                             style={{ fontSize: `clamp(26px, 8.5vw, ${titleSize}px)`, maxWidth: '18ch' }}
                         >
                             <HighlightedText text={title} />
@@ -105,7 +105,7 @@ const Hero = ({ data }: { data: any }) => {
 
                         <div className="flex flex-col items-center gap-4 md:gap-5 max-w-2xl">
                             <h2
-                                className="font-bold text-[#007f94] tracking-tight leading-tight whitespace-pre-line"
+                                className="font-semibold text-[#007f94] tracking-tight leading-tight whitespace-pre-line"
                                 style={{ fontSize: `clamp(16px, 4.5vw, ${subtitleSize + 4}px)` }}
                             >
                                 {subtitle}
@@ -124,7 +124,7 @@ const Hero = ({ data }: { data: any }) => {
                         <Magnetic>
                             <a
                                 href="#contact"
-                                className="group relative overflow-hidden px-10 py-5 md:px-12 md:py-6 bg-[#007f94] text-white font-bold rounded-full shadow-[0_15px_35px_rgba(0,127,148,0.3)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,127,148,0.45)] hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center gap-3 text-base md:text-xl w-full max-w-[320px] md:max-w-none"
+                                className="group relative overflow-hidden px-10 py-5 md:px-12 md:py-6 bg-[#007f94] text-white font-semibold rounded-full shadow-[0_15px_35px_rgba(0,127,148,0.3)] transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,127,148,0.45)] hover:scale-[1.03] active:scale-[0.98] flex items-center justify-center gap-3 text-base md:text-xl w-full max-w-[320px] md:max-w-none"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-1000 ease-in-out" />
                                 <span className="relative z-10">{buttonPrimary}</span>
@@ -146,7 +146,7 @@ const Hero = ({ data }: { data: any }) => {
                                         <div className="w-6 h-6 rounded-md bg-slate-100 flex items-center justify-center text-slate-400 group-hover:text-[#007f94] group-hover:bg-[#007f94]/5 transition-all duration-300">
                                             <Icon className="w-3.5 h-3.5" />
                                         </div>
-                                        <span className="text-[10px] md:text-xs font-bold text-slate-500 tracking-tight group-hover:text-slate-700 transition-colors uppercase">{item.text}</span>
+                                        <span className="text-[10px] md:text-xs font-semibold text-slate-500 tracking-tight group-hover:text-slate-700 transition-colors uppercase">{item.text}</span>
                                     </div>
                                 );
                             })}

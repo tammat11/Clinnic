@@ -41,10 +41,10 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="max-w-4xl mx-auto mb-16 md:mb-24 text-center">
                     <FadeIn>
-                        <span className="text-[#007f94] font-bold tracking-widest uppercase text-sm mb-2 md:mb-3 block">{badge}</span>
+                        <span className="text-[#007f94] font-semibold tracking-widest uppercase text-sm mb-2 md:mb-3 block">{badge}</span>
                         <h2
                             style={{ fontSize: `${titleSize}px` }}
-                            className="font-bold text-[#0a1e2b] leading-[1.1] tracking-tighter whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)] mb-4 md:mb-6"
+                            className="font-semibold text-[#0a1e2b] leading-[1.1] tracking-tighter whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)] mb-4 md:mb-6"
                         >
                             <HighlightedText text={title} />
                         </h2>
@@ -95,7 +95,7 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                                             <div className={`bg-white p-6 md:p-8 rounded-[2rem] shadow-xl shadow-blue-900/5 group-hover:shadow-[#007f94]/10 transition-all duration-300 border border-slate-100 relative ${isEven ? 'md:text-left' : 'md:text-right'}`}>
                                                 <h3
                                                     style={{ fontSize: `${stepTitleSize}px` }}
-                                                    className="font-bold text-[#0a1e2b] mb-3 group-hover:text-[#007f94] transition-colors"
+                                                    className="font-semibold text-[#0a1e2b] mb-3 group-hover:text-[#007f94] transition-colors"
                                                 >
                                                     {step.title}
                                                 </h3>
@@ -113,7 +113,7 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                                         <div className="absolute left-6 md:static md:mx-auto md:my-0 flex-shrink-0 z-10">
                                             <div className={`w-16 h-16 md:w-24 md:h-24 ${color} rounded-full flex items-center justify-center relative transition-transform duration-500 group-hover:scale-110 shadow-lg shadow-blue-900/10 border-[6px] border-white`}>
                                                 <Icon className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />
-                                                <div className="absolute -top-2 -right-2 md:-top-1 md:-right-2 w-7 h-7 md:w-9 md:h-9 bg-[#0a1e2b] text-white rounded-full flex items-center justify-center font-bold text-xs md:text-sm border-2 border-white shadow-md">
+                                                <div className="absolute -top-2 -right-2 md:-top-1 md:-right-2 w-7 h-7 md:w-9 md:h-9 bg-[#0a1e2b] text-white rounded-full flex items-center justify-center font-semibold text-xs md:text-sm border-2 border-white shadow-md">
                                                     {step.num}
                                                 </div>
                                             </div>
@@ -153,7 +153,7 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                                 <Magnetic>
                                     <a
                                         href="#contact"
-                                        className="inline-flex items-center gap-2 px-10 py-5 bg-[#007f94] text-white font-bold rounded-full shadow-2xl hover:scale-105 transition-all text-lg"
+                                        className="inline-flex items-center gap-2 px-10 py-5 bg-[#007f94] text-white font-semibold rounded-full shadow-2xl hover:scale-105 transition-all text-lg"
                                     >
                                         {ctaButton} <ArrowRight size={20} />
                                     </a>
@@ -165,7 +165,7 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                         <div className="relative flex flex-col items-center">
                             <div className="mb-10 flex items-center gap-3">
                                 <div className="h-[1px] w-8 bg-[#007f94]" />
-                                <span className="text-[#007f94] font-bold uppercase tracking-[0.2em] text-[10px] md:text-xs">{ui?.partners?.title || 'Наши партнеры'}</span>
+                                <span className="text-[#007f94] font-semibold uppercase tracking-[0.2em] text-[10px] md:text-xs">{ui?.partners?.title || 'Наши партнеры'}</span>
                                 <div className="h-[1px] w-8 bg-[#007f94]" />
                             </div>
 
@@ -191,7 +191,7 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                                                     if (parent) {
                                                         const span = document.createElement('span');
                                                         span.innerText = partner.name;
-                                                        span.className = 'text-slate-900 font-bold text-xs md:text-sm text-center';
+                                                        span.className = 'text-slate-900 font-semibold text-xs md:text-sm text-center';
                                                         parent.appendChild(span);
                                                     }
                                                 }}

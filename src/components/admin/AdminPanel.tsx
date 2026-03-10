@@ -60,7 +60,7 @@ const IconPicker = ({ label, value, onChange }: { label: string; value: string; 
 const SectionLayout = ({ data, onUpdate, section }: { data: any; onUpdate: (section: string, key: string, value: any) => void; section: string }) => (
     <div className="mt-6 pt-6 border-t border-slate-100">
         <div className="flex items-center justify-between">
-            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+            <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-widest flex items-center gap-2">
                 <Layout size={12} /> Отступы секции (верх/низ)
             </p>
             <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ const SectionLayout = ({ data, onUpdate, section }: { data: any; onUpdate: (sect
                     type="number"
                     value={data.padding || 0}
                     onChange={(e) => onUpdate(section, 'padding', Number(e.target.value))}
-                    className="w-16 p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-bold text-center outline-none focus:border-[#007f94]"
+                    className="w-16 p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs font-semibold text-center outline-none focus:border-[#007f94]"
                     title="Вертикальный отступ"
                 />
                 <span className="text-xs text-slate-400 font-medium">px</span>
@@ -119,7 +119,7 @@ const ListEditor = ({
                 <button
                     onClick={addItem}
                     type="button"
-                    className="text-[10px] bg-[#007f94] text-white font-bold px-3 py-1.5 rounded-lg hover:bg-[#006070] transition-colors"
+                    className="text-[10px] bg-[#007f94] text-white font-semibold px-3 py-1.5 rounded-lg hover:bg-[#006070] transition-colors"
                     title={`Добавить ${itemLabel}`}
                 >
                     Добавить
@@ -366,10 +366,10 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                 <SectionTitle title={`Раздел ${sections.findIndex(s => s.id === activeSection) + 1}: ${sections.find(s => s.id === activeSection)?.label.split('. ')[1]}`} />
 
                 <div className="bg-[#007f94]/5 p-4 rounded-xl border border-[#007f94]/10 flex gap-3 text-xs text-slate-600 leading-relaxed mb-6">
-                    <div className="w-5 h-5 bg-[#007f94] text-white rounded-full flex items-center justify-center shrink-0 font-bold">i</div>
+                    <div className="w-5 h-5 bg-[#007f94] text-white rounded-full flex items-center justify-center shrink-0 font-semibold">i</div>
                     <p>
                         Чтобы выделить слово цветом, оберните его звездочками: <br />
-                        Например: <span className="font-mono text-[#007f94] font-bold">*Текст*</span>
+                        Например: <span className="font-mono text-[#007f94] font-semibold">*Текст*</span>
                     </p>
                 </div>
 
@@ -600,13 +600,13 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
 
                         <div className="pt-6 border-t border-slate-100 mt-6">
                             <div className="flex items-center justify-between mb-4">
-                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
+                                <p className="text-xs font-semibold text-slate-500 uppercase tracking-widest flex items-center gap-2">
                                     <Layout size={14} /> Список врачей ({data.doctorsList?.length || 0})
                                 </p>
                                 <button
                                     onClick={addDoctor}
                                     type="button"
-                                    className="flex items-center gap-2 text-xs bg-[#007f94] text-white px-3 py-2 rounded-lg hover:bg-[#006070] transition-all shadow-sm font-bold active:scale-95"
+                                    className="flex items-center gap-2 text-xs bg-[#007f94] text-white px-3 py-2 rounded-lg hover:bg-[#006070] transition-all shadow-sm font-semibold active:scale-95"
                                     title="Добавить нового врача"
                                 >
                                     <Plus size={14} /> Добавить врача
@@ -648,7 +648,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                                                 </div>
                                                 <img src={doc.image} className="w-10 h-10 rounded-full object-cover bg-slate-200" alt={doc.name} />
                                                 <div>
-                                                    <p className="text-sm font-bold text-slate-900">{doc.name}</p>
+                                                    <p className="text-sm font-semibold text-slate-900">{doc.name}</p>
                                                     <p className="text-xs text-slate-500">{doc.role}</p>
                                                 </div>
                                             </div>
@@ -835,7 +835,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                                 0{idx + 1}
                             </span>
                             <section.icon size={20} />
-                            <span className="absolute left-full ml-4 px-3 py-2 bg-slate-900 text-white text-[10px] font-bold rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50 transition-all translate-x-[-10px] group-hover:translate-x-0 shadow-xl">
+                            <span className="absolute left-full ml-4 px-3 py-2 bg-slate-900 text-white text-[10px] font-semibold rounded-xl opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50 transition-all translate-x-[-10px] group-hover:translate-x-0 shadow-xl">
                                 {section.label}
                             </span>
                         </button>
@@ -858,7 +858,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                         }
                     }}
                     type="button"
-                    className="py-5 px-6 bg-red-50 text-red-500 font-bold rounded-2xl flex items-center justify-center gap-3 hover:bg-red-100 border border-red-100 transition-all"
+                    className="py-5 px-6 bg-red-50 text-red-500 font-semibold rounded-2xl flex items-center justify-center gap-3 hover:bg-red-100 border border-red-100 transition-all"
                     title={language === 'ru' ? 'Выйти из системы' : 'Log out'}
                 >
                     <X size={20} /> {language === 'ru' ? 'Выйти' : 'Logout'}
@@ -870,7 +870,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                         }
                     }}
                     type="button"
-                    className="py-5 px-6 bg-white text-slate-500 font-bold rounded-2xl flex items-center justify-center gap-3 hover:bg-slate-50 border border-slate-200 transition-all"
+                    className="py-5 px-6 bg-white text-slate-500 font-semibold rounded-2xl flex items-center justify-center gap-3 hover:bg-slate-50 border border-slate-200 transition-all"
                     title={language === 'ru' ? 'Отменить изменения' : 'Discard changes'}
                 >
                     <X size={20} />
@@ -879,7 +879,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ isOpen, setIsOpen, content, upd
                     onClick={handleSave}
                     disabled={isDeploying}
                     type="button"
-                    className="flex-1 py-5 bg-[#0a1e2b] text-white font-bold rounded-2xl flex items-center justify-center gap-3 hover:opacity-95 active:scale-95 transition-all shadow-xl shadow-slate-900/10 disabled:opacity-50"
+                    className="flex-1 py-5 bg-[#0a1e2b] text-white font-semibold rounded-2xl flex items-center justify-center gap-3 hover:opacity-95 active:scale-95 transition-all shadow-xl shadow-slate-900/10 disabled:opacity-50"
                     title={language === 'ru' ? 'Сохранить и опубликовать на сайте' : 'Save and publish to the website'}
                 >
                     {isDeploying ? (
@@ -907,7 +907,7 @@ const InputField = ({ label, value, onChange, placeholder }: { label: string, va
     <div className="space-y-2 mb-4">
         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">{label}</label>
         <input
-            className="w-full p-4 rounded-xl border border-slate-100 bg-slate-50 focus:bg-white focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/5 outline-none transition-all text-sm font-bold"
+            className="w-full p-4 rounded-xl border border-slate-100 bg-slate-50 focus:bg-white focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/5 outline-none transition-all text-sm font-semibold"
             value={value || ''}
             onChange={(e) => onChange(e.target.value)}
             placeholder={placeholder}
@@ -934,7 +934,7 @@ const NumberField = ({ label, value, onChange }: { label: string, value: number,
         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">{label}</label>
         <input
             type="number"
-            className="w-full p-4 rounded-xl border border-slate-100 bg-slate-50 focus:bg-white focus:border-[#007f94] outline-none transition-all text-sm font-bold"
+            className="w-full p-4 rounded-xl border border-slate-100 bg-slate-50 focus:bg-white focus:border-[#007f94] outline-none transition-all text-sm font-semibold"
             value={value || 0}
             onChange={(e) => onChange(Number(e.target.value))}
             title={label}
@@ -966,7 +966,7 @@ const ContentBlock = ({ label, value, onChange, size, onSizeChange, placeholder 
                 onChange={(e) => onChange(e.target.value)}
                 placeholder={placeholder || 'Введите текст...'}
                 title={label}
-                className="w-full bg-transparent border-none outline-none text-sm font-bold text-slate-900 placeholder:text-slate-300 min-h-[60px] resize-none"
+                className="w-full bg-transparent border-none outline-none text-sm font-semibold text-slate-900 placeholder:text-slate-300 min-h-[60px] resize-none"
             />
         </div>
     );
@@ -1024,7 +1024,7 @@ const ImageField = ({ label, value, onChange }: { label: string, value: string, 
                 <button
                     onClick={() => fileInputRef.current?.click()}
                     type="button"
-                    className="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold px-3 py-1.5 rounded-lg transition-colors flex items-center gap-2"
+                    className="text-[10px] bg-slate-100 hover:bg-slate-200 text-slate-600 font-semibold px-3 py-1.5 rounded-lg transition-colors flex items-center gap-2"
                     title={`Загрузить изображение для ${label}`}
                 >
                     <Upload size={12} /> Загрузить файл

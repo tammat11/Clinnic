@@ -30,9 +30,9 @@ const Footer = ({ data, ui }: { data: any, ui?: any }) => {
                     <div className="lg:col-span-8">
                         <div className="flex items-center gap-3 mb-8">
                             <div className="w-10 h-10 bg-[#007f94] rounded-lg flex items-center justify-center">
-                                <span className="text-white font-bold text-xl">R</span>
+                                <span className="text-white font-semibold text-xl">R</span>
                             </div>
-                            <span className="text-2xl font-bold tracking-tight uppercase">Reactive</span>
+                            <span className="text-2xl font-semibold tracking-tight uppercase">Reactive</span>
                         </div>
                         <p className="text-slate-400 text-lg leading-relaxed max-w-sm mb-10">
                             {uiData.tagline}
@@ -58,7 +58,7 @@ const Footer = ({ data, ui }: { data: any, ui?: any }) => {
                     </div>
 
                     <div className="lg:col-span-4">
-                        <h4 className="text-sm font-bold uppercase tracking-widest text-slate-500 mb-8">{uiData.contacts}</h4>
+                        <h4 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-8">{uiData.contacts}</h4>
                         <div className="space-y-6">
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <span className="text-slate-300">
@@ -68,8 +68,8 @@ const Footer = ({ data, ui }: { data: any, ui?: any }) => {
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
                                 <Phone size={20} className="text-[#007f94] shrink-0" />
                                 <div className="flex flex-col">
-                                    <span className="text-slate-300 font-bold">{phone}</span>
-                                    {data?.phone2 && <span className="text-slate-300 font-bold mt-1">{data.phone2}</span>}
+                                    <span className="text-slate-300 font-semibold">{phone}</span>
+                                    {data?.phone2 && <span className="text-slate-300 font-semibold mt-1">{data.phone2}</span>}
                                 </div>
                             </motion.div>
                             <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
@@ -86,8 +86,8 @@ const Footer = ({ data, ui }: { data: any, ui?: any }) => {
                     transition={{ delay: 0.5, duration: 1 }}
                     className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6"
                 >
-                    <p className="text-xs font-bold text-slate-600 uppercase tracking-widest">© 2026 Reactive Clinic Almaty • License #L123456789</p>
-                    <div className="flex gap-10 text-xs font-bold text-slate-600 uppercase tracking-widest">
+                    <p className="text-xs font-semibold text-slate-600 uppercase tracking-widest">© 2026 Reactive Clinic Almaty • License #L123456789</p>
+                    <div className="flex gap-10 text-xs font-semibold text-slate-600 uppercase tracking-widest">
                         <a href="#" className="hover:text-white transition-colors">{uiData.agreement}</a>
                         <a href="#" className="hover:text-white transition-colors">{uiData.privacy}</a>
                     </div>
