@@ -13,6 +13,7 @@
 
   body {
     font-family: 'Golos Text', sans-serif;
+    font-weight: 600;
     @apply bg-slate-50 text-slate-900 selection:bg-[#007f94]/20 selection:text-[#007f94] overflow-x-hidden;
     cursor: auto !important;
   }
@@ -31,7 +32,7 @@
   h5,
   h6 {
     font-family: 'Golos Text', sans-serif;
-    @apply font-bold tracking-tight text-slate-900;
+    @apply font-semibold tracking-tight text-slate-900;
   }
 
   h1 {
