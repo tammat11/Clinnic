@@ -45,7 +45,7 @@ const ValueBlock = ({ data }: { data: any }) => {
                         </div>
                         <h2
                             style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
-                            className="font-semibold text-[#0a1e2b] mb-4 md:mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
+                            className="font-extrabold text-[#0a1e2b] mb-4 md:mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
                         >
                             <HighlightedText text={title} />
                         </h2>
@@ -53,7 +53,7 @@ const ValueBlock = ({ data }: { data: any }) => {
                         <div className="space-y-4 max-w-2xl mx-auto">
                             <p
                                 style={{ fontSize: `clamp(${Math.max(18, (descSize + 4) * 0.7)}px, 4vw, ${descSize + 4}px)` }}
-                                className="text-[#007f94] font-semibold leading-relaxed whitespace-pre-line max-w-[320px] mx-auto md:max-w-none"
+                                className="text-[#007f94] font-extrabold leading-relaxed whitespace-pre-line max-w-[320px] mx-auto md:max-w-none"
                             >
                                 <HighlightedText text={mainText} />
                             </p>

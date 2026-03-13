@@ -32,7 +32,7 @@ const Footer = ({ data, ui }: { data: any, ui?: any }) => {
                             <div className="w-10 h-10 bg-[#007f94] rounded-lg flex items-center justify-center">
                                 <span className="text-white font-semibold text-xl">R</span>
                             </div>
-                            <span className="text-2xl font-semibold tracking-tight uppercase">Reactive</span>
+                            <span className="text-2xl font-extrabold tracking-tight uppercase">Reactive</span>
                         </div>
                         <p className="text-slate-400 text-lg leading-relaxed max-w-sm mb-10">
                             {uiData.tagline}

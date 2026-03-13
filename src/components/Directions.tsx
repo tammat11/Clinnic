@@ -64,11 +64,11 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                     >
                         <div className="flex items-center gap-3 mb-2 md:mb-3">
                             <span className="w-8 md:w-12 h-[2px] bg-[#007f94]" />
-                            <span className="text-[#007f94] font-semibold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
+                            <span className="text-[#007f94] font-extrabold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
                         </div>
                         <h2
                             style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
-                            className="font-semibold text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-6 whitespace-pre-line"
+                            className="font-extrabold text-[#0a1e2b] leading-[1.05] tracking-tighter mb-4 md:mb-6 whitespace-pre-line"
                         >
                             <HighlightedText text={title} />
                         </h2>

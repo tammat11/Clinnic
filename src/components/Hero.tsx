@@ -97,7 +97,7 @@ const Hero = ({ data }: { data: any }) => {
                         className="flex flex-col items-center gap-4 md:gap-5 mb-10 md:mb-12 max-w-4xl mx-auto px-4"
                     >
                         <h1
-                            className="font-semibold text-[#0a1e2b] tracking-tighter leading-[1.05] whitespace-pre-line mx-auto break-words"
+                            className="font-extrabold text-[#0a1e2b] tracking-tighter leading-[1.05] whitespace-pre-line mx-auto break-words"
                             style={{ fontSize: `clamp(26px, 8.5vw, ${titleSize}px)`, maxWidth: '18ch' }}
                         >
                             <HighlightedText text={title} />
@@ -105,7 +105,7 @@ const Hero = ({ data }: { data: any }) => {
 
                         <div className="flex flex-col items-center gap-4 md:gap-5 max-w-2xl">
                             <h2
-                                className="font-semibold text-[#007f94] tracking-tight leading-tight whitespace-pre-line"
+                                className="font-extrabold text-[#007f94] tracking-tight leading-tight whitespace-pre-line"
                                 style={{ fontSize: `clamp(16px, 4.5vw, ${subtitleSize + 4}px)` }}
                             >
                                 {subtitle}

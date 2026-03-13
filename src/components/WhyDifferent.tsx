@@ -90,12 +90,12 @@ const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
                         <FadeIn direction="left" duration={0.8}>
                             <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-8">
                                 <div className="h-[1px] w-8 md:w-12 bg-[#007f94]" />
-                                <span className="text-[#007f94] font-semibold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
+                                <span className="text-[#007f94] font-extrabold uppercase tracking-widest text-xs md:text-sm">{badge}</span>
                             </div>
 
                             <h2
                                 style={{ fontSize: `clamp(${Math.max(24, titleSize * 0.6)}px, 8vw, ${titleSize}px)` }}
-                                className="font-semibold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-6 md:mb-10 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
+                                className="font-extrabold text-[#0a1e2b] leading-[1.1] tracking-tighter mb-6 md:mb-10 whitespace-pre-line text-[clamp(1.75rem,5vw,1000px)]"
                             >
                                 <HighlightedText text={title} />
                             </h2>

@@ -45,10 +45,10 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                     {/* Content */}
                     <div className="grid lg:grid-cols-2 gap-16 relative z-10">
                         <div>
-                            <span className="text-[#007f94] font-semibold uppercase tracking-widest text-xs md:text-sm mb-6 block">{badge}</span>
+                            <span className="text-[#007f94] font-extrabold uppercase tracking-widest text-xs md:text-sm mb-6 block">{badge}</span>
                             <h2
                                 style={{ fontSize: `clamp(2rem, 5vw, ${titleSize}px)` }}
-                                className="font-black text-[#0a1e2b] mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
+                                className="font-extrabold text-[#0a1e2b] mb-6 leading-[1.1] tracking-tighter whitespace-pre-line"
                             >
                                 <HighlightedText text={title} />
                             </h2>
