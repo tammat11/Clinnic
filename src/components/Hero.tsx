@@ -28,7 +28,7 @@ const Hero = ({ data }: { data: any }) => {
                 paddingTop: `clamp(130px, 18vh, ${padding + 40}px)`,
                 paddingBottom: `clamp(60px, 10vh, ${padding}px)`
             }}
-            className="relative z-10 bg-white"
+            className="relative z-10 bg-white overflow-hidden"
         >
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 {/* Generated Background Image */}
@@ -99,7 +99,7 @@ const Hero = ({ data }: { data: any }) => {
             {/* Doctors positioned relative to the section bottom */}
             <div className="absolute right-0 bottom-0 pointer-events-none z-10 hidden md:block w-full md:w-1/2 h-full max-w-[850px] overflow-visible">
                 <div className="relative h-full w-full flex items-end justify-center md:block">
-                    <div className="absolute left-[5%] md:left-[-12%] bottom-[-2px] z-20 h-[60%] md:h-[105%] w-[60%] md:w-[70%] lg:left-[-10%] lg:h-[125%] lg:w-[82%] -rotate-[2deg] origin-bottom">
+                    <div className="absolute left-[5%] md:left-[-12%] bottom-[-50px] z-20 h-[60%] md:h-[105%] w-[60%] md:w-[70%] lg:left-[-10%] lg:h-[125%] lg:w-[82%] -rotate-[2deg] origin-bottom">
                         <img
                             src="/d2.png?v=3"
                             alt="Doctor woman"
@@ -107,7 +107,7 @@ const Hero = ({ data }: { data: any }) => {
                         />
                     </div>
 
-                    <div className="absolute right-[5%] md:right-[-5%] bottom-[-2px] z-10 h-[55%] md:h-[85%] w-[55%] md:w-[63%] lg:right-[-2%] lg:h-[100%] lg:w-[70%] rotate-[4deg] origin-bottom">
+                    <div className="absolute right-[5%] md:right-[-5%] bottom-[-40px] z-10 h-[55%] md:h-[85%] w-[55%] md:w-[63%] lg:right-[-2%] lg:h-[100%] lg:w-[70%] rotate-[4deg] origin-bottom">
                         <img
                             src="/d1.png"
                             alt="Doctor man"
