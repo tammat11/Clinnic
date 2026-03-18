@@ -32,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ language, setLanguage, data }) => {
                     <img
                         src="/logo.png"
                         alt="ReActive International"
-                        className="h-10 md:h-14 w-auto object-contain drop-shadow-sm"
+                        className="h-12 md:h-16 w-auto object-contain drop-shadow-sm"
                     />
                 </div>
 
