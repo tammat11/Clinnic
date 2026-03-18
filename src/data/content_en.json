@@ -262,7 +262,7 @@
       {
         "title": "Orthopedics",
         "desc": "Treatment of musculoskeletal disorders",
-        "icon": "Stethoscope"
+        "icon": "Activity"
       },
       {
         "title": "Orthopedics",
@@ -313,6 +313,16 @@
         "title": "Orthopedics",
         "desc": "Treatment of musculoskeletal disorders",
         "icon": "Zap"
+      },
+      {
+        "title": "Orthopedics",
+        "desc": "Treatment of musculoskeletal disorders",
+        "icon": "Zap"
+      },
+      {
+        "title": "Orthopedics",
+        "desc": "Treatment of musculoskeletal disorders",
+        "icon": "Waves"
       },
       {
         "title": "Orthopedics",
