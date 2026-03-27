@@ -55,7 +55,7 @@ const Hero = ({ data }: { data: any }) => {
                 </div>
             </div>
 
-            <div className="relative z-10 mx-auto grid w-full max-w-[1550px] items-stretch gap-8 px-5 lg:grid-cols-[0.9fr_1.1fr] lg:px-10">
+            <div className="section-container relative z-10 grid items-stretch gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div
                     className="relative flex flex-col items-center text-center lg:items-start lg:text-left lg:pl-4"
                     style={{ 
@@ -97,23 +97,13 @@ const Hero = ({ data }: { data: any }) => {
             </div>
 
             {/* Doctors positioned relative to the section bottom */}
-            <div className="absolute right-0 bottom-0 pointer-events-none z-10 hidden md:block w-full md:w-1/2 h-full max-w-[850px] overflow-visible">
-                <div className="relative h-full w-full flex items-end justify-center md:block">
-                    <div className="absolute left-[5%] md:left-[-12%] bottom-[-50px] z-20 h-[66%] md:h-[115%] w-[66%] md:w-[77%] lg:left-[-10%] lg:h-[137%] lg:w-[90%] -rotate-[2deg] origin-bottom">
-                        <img
-                            src="/d2.png?v=3"
-                            alt="Doctor woman"
-                            className="h-full w-full object-contain object-bottom brightness-110 drop-shadow-[0_20px_40px_rgba(15,23,42,0.15)]"
-                        />
-                    </div>
-
-                    <div className="absolute right-[5%] md:right-[-5%] bottom-[-40px] z-10 h-[60%] md:h-[93%] w-[60%] md:w-[69%] lg:right-[-2%] lg:h-[110%] lg:w-[77%] rotate-[4deg] origin-bottom">
-                        <img
-                            src="/d1.png"
-                            alt="Doctor man"
-                            className="h-full w-full object-contain object-bottom -scale-x-100 brightness-110 drop-shadow-[0_24px_46px_rgba(15,23,42,0.22)]"
-                        />
-                    </div>
+            <div className="absolute right-[5%] bottom-0 pointer-events-none z-10 hidden md:flex items-end justify-center w-[45%] h-full max-w-[850px] overflow-visible">
+                <div className="relative w-full lg:w-[115%] lg:-left-[15%] flex items-end">
+                    <img
+                        src="/groupPhoto.png"
+                        alt="Doctors"
+                        className="w-full h-auto object-contain object-bottom translate-y-[6%] lg:translate-y-[8%] scale-[1.08] lg:scale-[1.12] origin-bottom drop-shadow-[0_20px_40px_rgba(15,23,42,0.15)]"
+                    />
                 </div>
             </div>
         </section>

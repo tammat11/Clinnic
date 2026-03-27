@@ -75,10 +75,15 @@ export const useContent = () => {
                         process: { ...currentDefault.process, ...(parsed.process || {}) },
                         trust: { ...currentDefault.trust, ...(parsed.trust || {}) },
                         doctors: { ...currentDefault.doctors, ...(parsed.doctors || {}) },
+                        specialists: { ...currentDefault.specialists, ...(parsed.specialists || {}) },
                         directions: { ...currentDefault.directions, ...(parsed.directions || {}) },
                         contact: { ...currentDefault.contact, ...(parsed.contact || {}) },
                         footer: { ...currentDefault.footer, ...(parsed.footer || {}) },
                     };
+                    // Migrate legacy embedded data URLs to static specialists image.
+                    if (typeof merged?.specialists?.image === 'string' && merged.specialists.image.startsWith('data:image/')) {
+                        merged.specialists.image = '/team.jpg';
+                    }
                     if (!Array.isArray(merged.sectionsOrder)) {
                         merged.sectionsOrder = currentDefault.sectionsOrder;
                     }
