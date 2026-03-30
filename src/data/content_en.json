@@ -262,67 +262,170 @@
       {
         "title": "All Specialists in One Place",
         "desc": "Comprehensive body check-up",
-        "icon": "Activity"
+        "icon": "Activity",
+        "popup": {
+          "text": "Our hub brings together leading specialists in various fields, working as a united team. This allows for comprehensive health assessments in a single visit with no queues.",
+          "services": [
+            "Medical Concilium",
+            "Comprehensive Check-up",
+            "Complex Case Management",
+            "Second Opinion"
+          ]
+        }
       },
       {
         "title": "Orthopedics",
         "desc": "Treatment of musculoskeletal disorders",
-        "icon": "FlaskConical"
+        "icon": "FlaskConical",
+        "popup": {
+          "text": "Treatment of joint, spine, and bone diseases. We eliminate the root cause of pain and restore the joy of full movement using advanced techniques.",
+          "services": [
+            "Arthrosis & Arthritis Treatment",
+            "Sports Traumatology",
+            "Posture Computer Diagnostics",
+            "Non-Surgical Pain Relief"
+          ]
+        }
       },
       {
         "title": "Physiotherapy",
         "desc": "Rehabilitation and manual therapy",
-        "icon": "Microscope"
-      },
-      {
-        "title": "Dietology",
-        "desc": "Nutrition and personalized meal planning",
-        "icon": "Activity"
-      },
-      {
-        "title": "Pediatrics",
-        "desc": "Professional medical care for children",
-        "icon": "Waves"
+        "icon": "Microscope",
+        "popup": {
+          "text": "Effective rehabilitation and recovery after specific injuries or surgeries. We use hardware and manual techniques to accelerate healing and reduce inflammation.",
+          "services": [
+            "Shockwave Therapy (SWT)",
+            "Magnetotherapy",
+            "Electrophoresis",
+            "Kinesiotaping"
+          ]
+        }
       },
       {
         "title": "IV Therapy",
         "desc": "Detox, energy, and immunity",
-        "icon": "Activity"
+        "icon": "Activity",
+        "popup": {
+          "text": "Intravenous therapy (IV drips) for rapid replenishment of deficiencies, immunity boosting, and energy recovery. Formulations are strictly individualized.",
+          "services": [
+            "Detox Drips",
+            "Vitamin Complexes",
+            "Post-Illness Recovery",
+            "Anti-Age Therapy"
+          ]
+        }
       },
       {
         "title": "Laboratory",
         "desc": "99.9% accuracy",
-        "icon": "Pill"
+        "icon": "Pill",
+        "popup": {
+          "text": "Our own expert-class laboratory. Prompt and highly accurate test results essential for making the correct diagnosis.",
+          "services": [
+            "General Clinical Tests",
+            "Biochemistry & Hormones",
+            "Genetic Testing",
+            "Allergy Panels"
+          ]
+        }
       },
       {
         "title": "Gynecology",
         "desc": "Injection and device-based treatment",
-        "icon": "Stethoscope"
+        "icon": "Stethoscope",
+        "popup": {
+          "text": "A delicate approach to women's health. From preventive check-ups to injection and hardware treatments following global protocols.",
+          "services": [
+            "Video Colposcopy",
+            "Cervical Pathology Treatment",
+            "Aesthetic Gynecology",
+            "Contraception Selection"
+          ]
+        }
       },
       {
-        "title": "Ultrasound Examination (US)",
-        "desc": "Fast and safe diagnostics",
-        "icon": "Activity"
-      },
-      {
-        "title": "Massage Therapy",
-        "desc": "Methods based on an individualized approach",
-        "icon": "Zap"
+        "title": "Pediatrics",
+        "desc": "Professional medical care for children",
+        "icon": "Waves",
+        "popup": {
+          "text": "Gentle care for children and peace of mind for parents. Diagnostics, treatment, and prevention of childhood diseases in a friendly atmosphere.",
+          "services": [
+            "Infant Care (up to 1 year)",
+            "Vaccination Scheduling",
+            "School & Kindergarten Certificates",
+            "Infectious Disease Treatment"
+          ]
+        }
       },
       {
         "title": "Pectus",
         "desc": "Modern non-surgical methods for the diagnosis and correction of chest deformities.",
-        "icon": "Waves"
+        "icon": "Waves",
+        "popup": {
+          "text": "A specialized center for the diagnosis and treatment of chest deformities (funnel or pigeon chest). We apply modern non-surgical methods.",
+          "services": [
+            "Vacuum Bell Therapy",
+            "Orthotics",
+            "Individual Physiotherapy",
+            "Dynamics Monitoring"
+          ]
+        }
+      },
+      {
+        "title": "Dietology",
+        "desc": "Nutrition and personalized meal planning",
+        "icon": "Activity",
+        "popup": {
+          "text": "A personalized approach to nutrition: for weight loss, treating gastrointestinal diseases, or improving quality of life without strict, painful limits.",
+          "services": [
+            "Bioimpedance Analysis",
+            "Personalized Menu Planning",
+            "Therapeutic Nutrition",
+            "Metabolic Syndrome Correction"
+          ]
+        }
+      },
+      {
+        "title": "Ultrasound Examination (US)",
+        "desc": "Fast and safe diagnostics",
+        "icon": "Activity",
+        "popup": {
+          "text": "Expert ultrasound on premium-class equipment. Allows detecting the slightest organ changes early on with high detailing.",
+          "services": [
+            "Pelvic Ultrasound",
+            "Abdominal & Kidney Ultrasound",
+            "Thyroid Ultrasound",
+            "Vascular Ultrasound"
+          ]
+        }
+      },
+      {
+        "title": "Massage Therapy",
+        "desc": "Methods based on an individualized approach",
+        "icon": "Zap",
+        "popup": {
+          "text": "Professional medical massage to relax muscles, relieve spasms, and improve blood circulation. Performed by certified specialists.",
+          "services": [
+            "Therapeutic & Wellness Massage",
+            "Sports Massage",
+            "Lymphatic Drainage Massage",
+            "Pediatric Massage"
+          ]
+        }
       },
       {
         "title": "Vaccination",
         "desc": "Reliable immune protection according to international vaccination schedules.",
-        "icon": "ShieldCheck"
-      },
-      {
-        "title": "Hair Transplant",
-        "desc": "Modern seamless methods for hair density restoration.",
-        "icon": "Zap"
+        "icon": "ShieldCheck",
+        "popup": {
+          "text": "Protection against dangerous infections with high-quality vaccines, strictly maintaining the cold chain. Doctor's consultation before every shot.",
+          "services": [
+            "Routine Immunizations",
+            "Seasonal Flu Vaccination",
+            "Traveler's Vaccination",
+            "Catch-up Vaccination Schedules"
+          ]
+        }
       }
     ]
   },

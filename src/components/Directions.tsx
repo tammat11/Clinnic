@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
     Bone,
     Zap,
@@ -9,7 +10,8 @@ import {
     HeartPulse,
     ArrowRight,
     Star,
-    CheckCircle2
+    CheckCircle2,
+    X
 } from 'lucide-react';
 import { ICON_POOL } from '../lib/icons';
 import FadeIn from './common/FadeIn';
@@ -33,16 +35,27 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
     const COLORS = ['blue', 'teal', 'indigo', 'brand', 'cyan', 'rose', 'orange'];
 
     const colorMap: any = {
-        blue: 'hover:border-blue-500/50 bg-blue-50/30',
-        teal: 'hover:border-[#007f94]/50 bg-[#007f94]/5',
-        indigo: 'hover:border-indigo-500/50 bg-indigo-50/30',
-        brand: 'hover:border-[#007f94]/50 bg-[#007f94]/5',
-        cyan: 'hover:border-cyan-500/50 bg-cyan-50/30',
-        rose: 'hover:border-rose-500/50 bg-rose-50/30',
-        orange: 'hover:border-orange-500/50 bg-orange-50/30',
+        blue: 'hover:border-blue-500/50 bg-blue-50/30 text-blue-500',
+        teal: 'hover:border-[#007f94]/50 bg-[#007f94]/5 text-[#007f94]',
+        indigo: 'hover:border-indigo-500/50 bg-indigo-50/30 text-indigo-500',
+        brand: 'hover:border-[#007f94]/50 bg-[#007f94]/5 text-[#007f94]',
+        cyan: 'hover:border-cyan-500/50 bg-cyan-50/30 text-cyan-500',
+        rose: 'hover:border-rose-500/50 bg-rose-50/30 text-rose-500',
+        orange: 'hover:border-orange-500/50 bg-orange-50/30 text-orange-500',
     };
 
     const items = specialties || [];
+
+    const [activeModal, setActiveModal] = useState<any>(null);
+
+    useEffect(() => {
+        if (activeModal) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+        return () => { document.body.style.overflow = 'unset'; };
+    }, [activeModal]);
 
     return (
         <section
@@ -100,7 +113,8 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                                 key={i}
                                 delay={i * 0.05}
                                 duration={0.5}
-                                className={`group relative p-4 md:p-10 rounded-2xl md:rounded-[2.5rem] border border-slate-100 transition-[box-shadow,border-color,background-color] duration-500 hover:shadow-2xl hover:shadow-slate-200/50 flex flex-col justify-between ${colorClass}`}
+                                onClick={() => setActiveModal({ ...item, Icon, colorKey })}
+                                className={`group relative p-4 md:p-10 rounded-2xl md:rounded-[2.5rem] border border-slate-100 transition-[box-shadow,border-color,background-color] duration-500 hover:shadow-2xl hover:shadow-slate-200/50 flex flex-col justify-between cursor-pointer ${colorClass}`}
                             >
                                 {/* Decorative elements */}
                                 <div className="absolute top-3 right-3 md:top-6 md:right-6 opacity-5 group-hover:opacity-20 transition-opacity">
@@ -177,6 +191,83 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                     </FadeIn>
                 </div>
             </div>
+
+            <AnimatePresence>
+                {activeModal && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6"
+                    >
+                        <div 
+                            className="absolute inset-0 bg-[#0a1e2b]/50 backdrop-blur-sm cursor-pointer" 
+                            onClick={() => setActiveModal(null)} 
+                        />
+                        
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }} 
+                            animate={{ opacity: 1, scale: 1, y: 0 }} 
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            className="bg-white rounded-3xl md:rounded-[2.5rem] w-full max-w-2xl shadow-2xl relative overflow-hidden flex flex-col max-h-[90vh] z-10"
+                        >
+                            {/* Header */}
+                            <div className="p-6 md:p-8 pb-4 md:pb-6 flex justify-between items-start border-b border-slate-100 flex-shrink-0">
+                                <div className="flex items-center gap-4">
+                                    <div className={`w-12 h-12 md:w-14 md:h-14 ${colorMap[activeModal.colorKey]?.split(' ')[1] || 'bg-slate-100'} rounded-2xl flex items-center justify-center ${colorMap[activeModal.colorKey]?.split(' ')[2] || 'text-[#0a1e2b]'}`}>
+                                        {activeModal.Icon && <activeModal.Icon size={24} strokeWidth={1.5} />}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl md:text-2xl font-black text-[#0a1e2b] leading-tight flex flex-col">
+                                            {activeModal.title.split('\n').map((l: string, i: number) => (
+                                                <span key={i} className={i>0 ? "text-[#007f94] text-sm md:text-base font-semibold mt-1" : ""}>{l}</span>
+                                            ))}
+                                        </h3>
+                                    </div>
+                                </div>
+                                <button onClick={() => setActiveModal(null)} className="p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors">
+                                    <X size={24} />
+                                </button>
+                            </div>
+
+                            {/* Body */}
+                            <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar">
+                                <p className="text-slate-600 font-medium leading-relaxed mb-8 text-base md:text-lg">
+                                    {activeModal.popup?.text || (Array.isArray(activeModal.desc) ? activeModal.desc.join(' ') : activeModal.desc)}
+                                </p>
+
+                                {activeModal.popup?.services?.length > 0 && (
+                                    <div className="space-y-4">
+                                        <h4 className="font-bold text-[#0a1e2b] flex items-center gap-2">
+                                            <div className="w-6 h-[2px] bg-[#007f94] rounded-full" />
+                                            {ui?.directions?.servicesIncluded || 'Услуги и возможности'}
+                                        </h4>
+                                        <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
+                                            {activeModal.popup.services.map((service: string, idx: number) => (
+                                                <div key={idx} className="flex items-start gap-3 bg-slate-50 p-3 md:p-4 rounded-2xl hover:bg-[#007f94]/5 transition-colors group">
+                                                    <CheckCircle2 size={20} className="text-[#007f94]/50 group-hover:text-[#007f94] flex-shrink-0 mt-0.5 transition-colors" />
+                                                    <span className="text-slate-600 font-medium text-sm">
+                                                        {service}
+                                                    </span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Footer */}
+                            <div className="p-6 md:p-8 pt-4 md:pt-6 border-t border-slate-100 bg-slate-50 flex-shrink-0">
+                                <a href="#contact" onClick={() => setActiveModal(null)} className="w-full flex items-center justify-center gap-2 py-4 bg-[#007f94] text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-[#007f94]/20">
+                                    {ui?.directions?.consultation || 'Записаться на прием'}
+                                    <ArrowRight size={20} />
+                                </a>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };

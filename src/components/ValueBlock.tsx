@@ -34,11 +34,11 @@ const ValueBlock = ({ data }: { data: any }) => {
             <div className="section-container relative z-10">
                 <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
                     <FadeIn direction="up">
-                        <div className="flex justify-center gap-1.5 md:gap-2.5 mb-6 md:mb-8 py-5 px-8 rounded-full bg-slate-50 border border-slate-100 max-w-fit mx-auto shadow-sm">
+                        <div className="flex justify-center gap-1.5 md:gap-3 lg:gap-4 mb-6 md:mb-8 py-5 px-8 md:py-6 md:px-12 rounded-full bg-slate-50 border border-slate-100 max-w-fit mx-auto shadow-sm">
                             {[...Array(10)].map((_, i) => (
                                 <User
                                     key={i}
-                                    className={`${i < 8 ? "text-[#007f94]" : "text-red-500/60"} w-5 h-5 md:w-6 md:h-6`}
+                                    className={`${i < 8 ? "text-[#007f94]" : "text-red-500/60"} w-5 h-5 md:w-8 md:h-8 lg:w-10 lg:h-10`}
                                     strokeWidth={3}
                                 />
                             ))}

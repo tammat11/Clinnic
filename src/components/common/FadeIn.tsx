@@ -8,7 +8,8 @@ const FadeIn = ({
     delay = 0,
     duration = 0.6,
     once = true,
-    style = {}
+    style = {},
+    onClick
 }: {
     children: any,
     className?: string,
@@ -16,7 +17,8 @@ const FadeIn = ({
     delay?: number,
     duration?: number,
     once?: boolean,
-    style?: any
+    style?: any,
+    onClick?: () => void
 }) => {
     // Definining variants as an object with 'any' cast to avoid interface mismatches in production build
     const hidden: any = {
@@ -46,6 +48,7 @@ const FadeIn = ({
                 ...style
             }}
             className={className}
+            onClick={onClick}
         >
             {children}
         </motion.div>

@@ -91,7 +91,7 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                                 <FadeIn key={index} delay={animationDelay} direction="up" className="relative group">
                                     <div className={`flex flex-col md:flex-row items-center ${isEven ? 'md:flex-row-reverse' : ''}`}>
 
-                                        <div className="flex-1 w-full pl-28 md:pl-0 md:px-12 text-left">
+                                        <div className="flex-1 w-full pl-28 md:pl-12 md:pr-12 text-left">
                                             <div className={`bg-white p-6 md:p-8 rounded-[2rem] shadow-xl shadow-blue-900/5 group-hover:shadow-[#007f94]/10 transition-all duration-300 border border-slate-100 relative ${isEven ? 'md:text-left' : 'md:text-right'}`}>
                                                 <h3
                                                     style={{ fontSize: `${stepTitleSize}px` }}
@@ -106,7 +106,10 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                                                     {step.desc}
                                                 </p>
                                                 {/* Connecting horizontal line to icon on desktop */}
-                                                <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-12 h-[2px] bg-gradient-to-r from-blue-100 to-indigo-100 ${isEven ? '-left-12' : '-right-12'}`}></div>
+                                                <div 
+                                                    className="hidden md:block absolute top-1/2 -translate-y-1/2 w-12 h-[2px] bg-[#007f94]/30"
+                                                    style={{ [isEven ? 'left' : 'right']: '-3rem' }}
+                                                ></div>
                                             </div>
                                         </div>
 
