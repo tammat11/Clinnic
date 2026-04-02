@@ -47,18 +47,18 @@ const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
             className="py-12 md:py-24 bg-[#f8fafc] overflow-hidden"
         >
             <div className="container mx-auto px-4 md:px-6">
-                <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
+                <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 lg:items-stretch">
 
                     {/* Visual Side */}
                     <FadeIn
                         direction="right"
                         duration={1}
-                        className="w-full lg:w-1/2 relative order-1 lg:order-1"
+                        className="w-full lg:w-1/2 relative order-1 lg:order-1 flex flex-col"
                     >
                         {/* Decorative Offset Border */}
-                        <div className="absolute top-4 left-4 w-full h-full rounded-2xl md:rounded-[3rem] border-2 border-[#007f94]/10 z-0 translate-x-4 translate-y-4" />
+                        <div className="absolute top-4 left-4 w-full h-full rounded-2xl md:rounded-[3rem] border-2 border-[#007f94]/10 z-0 lg:translate-x-4 lg:translate-y-4" />
 
-                        <div className="relative z-10 rounded-2xl md:rounded-[3rem] overflow-hidden aspect-[3/4] md:aspect-[4/5] shadow-xl md:shadow-2xl">
+                        <div className="relative z-10 rounded-2xl md:rounded-[3rem] overflow-hidden aspect-[3/4] lg:aspect-auto lg:h-full lg:absolute lg:inset-0 shadow-xl md:shadow-2xl">
                             <img
                                 src={image}
                                 className="w-full h-full object-cover object-center"
@@ -130,11 +130,10 @@ const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
                             <FadeIn
                                 direction="up"
                                 delay={0.3}
-                                className="p-6 md:p-8 bg-[#0a1e2b] rounded-2xl md:rounded-[2.5rem] relative overflow-hidden group"
+                                className="p-6 md:p-8 bg-gradient-to-br from-red-600 to-red-900 rounded-2xl md:rounded-[2.5rem] relative overflow-hidden group"
                             >
                                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 md:gap-6">
                                     <div>
-                                        <p className="text-[#007f94]/70 font-semibold text-[10px] md:text-sm uppercase tracking-widest mb-1 md:mb-2">{ui?.whyDifferent?.verdictLabel || 'Вердикт эксперта'}</p>
                                         <h4
                                             style={{ fontSize: `${descSize}px` }}
                                             className="text-white font-semibold leading-tight whitespace-pre-line"
@@ -143,7 +142,7 @@ const WhyDifferent = ({ data, ui }: { data: any, ui?: any }) => {
                                         </h4>
                                     </div>
                                     <Magnetic>
-                                        <a href="#contact" className="px-6 md:px-8 py-3 md:py-4 text-center bg-[#007f94] text-white font-semibold text-sm md:text-base rounded-xl md:rounded-2xl hover:opacity-90 transition-all shadow-xl shadow-[#007f94]/20 whitespace-nowrap w-full md:w-auto">
+                                        <a href="#contact" className="px-6 md:px-8 py-3 md:py-4 text-center bg-white text-red-700 font-semibold text-sm md:text-base rounded-xl md:rounded-2xl hover:opacity-90 transition-all shadow-xl shadow-red-900/20 whitespace-nowrap w-full md:w-auto">
                                             {ui?.navbar?.cta || 'Записаться'}
                                         </a>
                                     </Magnetic>

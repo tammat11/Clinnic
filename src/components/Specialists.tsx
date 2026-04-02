@@ -24,7 +24,7 @@ const Specialists = ({ data }: { data: any }) => {
             className="relative py-16 md:py-32 bg-white overflow-hidden"
         >
             <div className="container mx-auto px-4 md:px-6 relative z-10 max-w-7xl">
-                <FadeIn direction="up" duration={0.8} className="text-center max-w-4xl mx-auto mb-16 md:mb-24">
+                <FadeIn direction="up" duration={0.8} className="text-center max-w-4xl mx-auto mb-10 md:mb-14">
                     <div className="inline-flex items-center gap-2 mb-6">
                         <span className="h-[1px] w-8 bg-[#007f94]" />
                         <span className="text-[#007f94] text-sm font-extrabold uppercase tracking-[0.2em]">{defaultData.badge}</span>

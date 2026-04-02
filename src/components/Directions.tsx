@@ -47,15 +47,16 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
     const items = specialties || [];
 
     const [activeModal, setActiveModal] = useState<any>(null);
+    const [selectedService, setSelectedService] = useState<any>(null);
 
     useEffect(() => {
-        if (activeModal) {
+        if (activeModal || selectedService) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset';
         }
         return () => { document.body.style.overflow = 'unset'; };
-    }, [activeModal]);
+    }, [activeModal, selectedService]);
 
     return (
         <section
@@ -244,17 +245,25 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                                             {ui?.directions?.servicesIncluded || 'Услуги и возможности'}
                                         </h4>
                                         <div className="grid sm:grid-cols-2 gap-3 md:gap-4">
-                                            {activeModal.popup.services.map((service: string, idx: number) => (
-                                                <div key={idx} className="flex items-start gap-3 bg-slate-50 p-3 md:p-4 rounded-2xl hover:bg-[#007f94]/5 transition-colors group">
-                                                    <CheckCircle2 size={20} className="text-[#007f94]/50 group-hover:text-[#007f94] flex-shrink-0 mt-0.5 transition-colors" />
-                                                    <span className="text-slate-600 font-medium text-sm">
-                                                        {service}
-                                                    </span>
-                                                </div>
-                                            ))}
+                                            {activeModal.popup.services.map((service: string, idx: number) => {
+                                                const serviceDetail = activeModal.popup.servicesDetails?.[idx];
+                                                return (
+                                                    <div 
+                                                        key={idx} 
+                                                        onClick={() => serviceDetail && setSelectedService(serviceDetail)}
+                                                        className={`flex items-start gap-3 bg-slate-50 p-3 md:p-4 rounded-2xl transition-all duration-300 group ${serviceDetail ? 'cursor-pointer hover:bg-[#007f94]/15 hover:shadow-lg hover:shadow-[#007f94]/10 hover:scale-[1.02]' : 'hover:bg-[#007f94]/5'}`}
+                                                    >
+                                                        <CheckCircle2 size={20} className="text-[#007f94]/50 group-hover:text-[#007f94] flex-shrink-0 mt-0.5 transition-colors" />
+                                                        <span className="text-slate-600 font-medium text-sm group-hover:text-slate-800 transition-colors">
+                                                            {service}
+                                                        </span>
+                                                    </div>
+                                                );
+                                            })}
                                         </div>
                                     </div>
                                 )}
+
                             </div>
 
                             {/* Footer */}
@@ -263,6 +272,81 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                                     {ui?.directions?.consultation || 'Записаться на прием'}
                                     <ArrowRight size={20} />
                                 </a>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Service Detail Modal (Nested) */}
+            <AnimatePresence>
+                {selectedService && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.18 }}
+                        className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6"
+                    >
+                        <motion.div 
+                            initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+                            animate={{ opacity: 1, backdropFilter: 'blur(12px)' }}
+                            exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+                            transition={{ duration: 0.15, easing: 'easeOut' }}
+                            className="absolute inset-0 bg-[#0a1e2b]/60 cursor-pointer" 
+                            onClick={() => setSelectedService(null)} 
+                        />
+                        
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95, y: 20 }} 
+                            animate={{ opacity: 1, scale: 1, y: 0 }} 
+                            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                            transition={{ duration: 0.3, type: "spring", damping: 20, stiffness: 400 }}
+                            className="bg-white rounded-3xl w-full max-w-xl shadow-2xl relative overflow-hidden flex flex-col max-h-[80vh] z-20"
+                        >
+                            {/* Header */}
+                            <div className="p-6 md:p-8 pb-4 md:pb-6 flex justify-between items-start border-b border-slate-100 flex-shrink-0 bg-gradient-to-r from-slate-50 to-[#007f94]/5">
+                                <div>
+                                    <h3 className="text-2xl md:text-3xl font-black text-[#0a1e2b] leading-tight">
+                                        {selectedService.name}
+                                    </h3>
+                                </div>
+                                <button 
+                                    onClick={() => setSelectedService(null)} 
+                                    className="p-2 rounded-full hover:bg-slate-200/50 text-slate-400 hover:text-slate-600 transition-colors flex-shrink-0"
+                                >
+                                    <X size={24} />
+                                </button>
+                            </div>
+
+                            {/* Body */}
+                            <div className="p-6 md:p-8 overflow-y-auto custom-scrollbar flex-1">
+                                {selectedService.items && Array.isArray(selectedService.items) ? (
+                                    <ul className="space-y-3 md:space-y-4">
+                                        {selectedService.items.map((item: string, idx: number) => (
+                                            <li key={idx} className="flex items-start gap-3">
+                                                <span className="w-2 h-2 bg-[#007f94] rounded-full mt-2 flex-shrink-0" />
+                                                <span className="text-slate-700 font-medium leading-relaxed text-sm md:text-base">
+                                                    {item}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <p className="text-slate-700 font-medium leading-relaxed text-base md:text-lg">
+                                        {selectedService.description}
+                                    </p>
+                                )}
+                            </div>
+
+                            {/* Footer */}
+                            <div className="p-6 md:p-8 pt-4 md:pt-6 border-t border-slate-100 bg-slate-50 flex-shrink-0">
+                                <button 
+                                    onClick={() => setSelectedService(null)}
+                                    className="w-full py-3 bg-[#007f94] text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-[#007f94]/20"
+                                >
+                                    Закрыть
+                                </button>
                             </div>
                         </motion.div>
                     </motion.div>

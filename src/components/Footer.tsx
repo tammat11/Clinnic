@@ -1,7 +1,19 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Instagram, Facebook } from 'lucide-react';
+import { MapPin, Phone, Mail, Instagram, Home } from 'lucide-react';
 import { motion } from 'framer-motion';
 import HighlightedText from './common/HighlightedText';
+
+const WhatsappIcon = ({ size = 20, className = "" }) => (
+    <img src="/whastappLogoo.png" alt="WhatsApp" width={size} height={size} className={`object-contain ${className}`} />
+);
+
+const GisIcon = ({ size = 20, className = "" }) => (
+    <img src="/2gisLogo.png" alt="2GIS" width={size} height={size} className={`object-contain ${className}`} />
+);
+
+const TikTokIcon = ({ size = 20, className = "" }) => (
+    <img src="/tiktiklogo3.png" alt="TikTok" width={size} height={size} className={`object-contain ${className}`} />
+);
 
 const Footer = ({ data, ui }: { data: any, ui?: any }) => {
     const {
@@ -43,16 +55,36 @@ const Footer = ({ data, ui }: { data: any, ui?: any }) => {
                                 href={instagram}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-3 bg-white/5 rounded-xl hover:bg-[#007f94] transition-colors"
+                                className="p-3 bg-white/5 rounded-xl hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] transition-all"
                             >
                                 <Instagram size={20} />
                             </motion.a>
                             <motion.a
-                                whileHover={{ scale: 1.1, rotate: -10 }}
-                                href="#"
-                                className="p-3 bg-white/5 rounded-xl hover:bg-[#007f94] transition-colors"
+                                whileHover={{ scale: 1.1, rotate: 10 }}
+                                href="https://www.tiktok.com/@reactiveclinic"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 bg-white/5 rounded-xl hover:bg-gradient-to-tr hover:from-[#25F4EE] hover:via-[#000000] hover:to-[#FE2C55] transition-all"
                             >
-                                <Facebook size={20} />
+                                <TikTokIcon size={20} />
+                            </motion.a>
+                            <motion.a
+                                whileHover={{ scale: 1.1, rotate: 10 }}
+                                href="https://wa.me/77757401405"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 bg-white/5 rounded-xl hover:bg-[#25D366] transition-colors"
+                            >
+                                <WhatsappIcon size={20} />
+                            </motion.a>
+                            <motion.a
+                                whileHover={{ scale: 1.1, rotate: -10 }}
+                                href="https://2gis.kz/almaty/firm/70000001063180289"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 bg-white/5 rounded-xl hover:bg-gradient-to-tr hover:from-[#A4D61D] hover:via-[#6BCB3D] hover:to-[#00A651] transition-all"
+                            >
+                                <GisIcon size={20} />
                             </motion.a>
                         </div>
                     </div>
@@ -60,7 +92,8 @@ const Footer = ({ data, ui }: { data: any, ui?: any }) => {
                     <div className="lg:col-span-4">
                         <h4 className="text-sm font-semibold uppercase tracking-widest text-slate-500 mb-8">{uiData.contacts}</h4>
                         <div className="space-y-6">
-                            <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
+                            <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default text-left items-start">
+                                <Home size={20} className="text-[#007f94] shrink-0" />
                                 <span className="text-slate-300">
                                     <HighlightedText text={address} />
                                 </span>

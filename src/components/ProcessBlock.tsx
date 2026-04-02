@@ -186,7 +186,11 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                                             <img
                                                 src={partner.logo}
                                                 alt={partner.name}
-                                                className="w-full h-full object-contain scale-110 md:scale-125"
+                                                className={`w-full h-full object-contain ${
+                                                    partner.name === 'Aetna' ? 'scale-75 md:scale-90' : 
+                                                    partner.name === 'Bupa' ? 'scale-90 md:scale-105' : 
+                                                    'scale-110 md:scale-125'
+                                                }`}
                                                 onError={(e) => {
                                                     const target = e.target as HTMLImageElement;
                                                     target.style.display = 'none';
