@@ -78,10 +78,14 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                                 className="w-full aspect-[4/5] md:aspect-[3/4] mb-3 md:mb-8 overflow-hidden rounded-[1.2rem] md:rounded-[2.5rem] bg-[#F3F3F3] relative shadow-sm md:shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer"
                             >
                                 {doc.image ? (
-                                    <img
+                                    <img 
                                         src={doc.image}
                                         alt={doc.name}
-                                        className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                                        className={`w-full h-full object-cover object-top transition-transform duration-700 ease-out ${
+                                            doc.image === '/d2.png' 
+                                                ? 'scale-[1.25] mt-3 group-hover:scale-[1.35]' 
+                                                : 'group-hover:scale-110'
+                                        }`}
                                         onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800'}
                                     />
                                 ) : null}
