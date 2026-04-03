@@ -3,6 +3,54 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Check, Loader, ArrowRight } from 'lucide-react';
 import HighlightedText from './common/HighlightedText';
 
+type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error';
+
+const sanitizePhoneInput = (input: string): string => {
+    const trimmed = input.trim();
+    const hasLeadingPlus = trimmed.startsWith('+');
+    const digits = trimmed.replace(/\D/g, '');
+
+    if (!digits) return '';
+
+    if (hasLeadingPlus) {
+        return `+${digits}`;
+    }
+
+    if (digits.startsWith('8')) {
+        return `+7${digits.slice(1)}`;
+    }
+
+    if (digits.startsWith('7')) {
+        return `+${digits}`;
+    }
+
+    return digits;
+};
+
+const normalizeKzPhone = (input: string): string | null => {
+    const cleaned = sanitizePhoneInput(input);
+    const hasLeadingPlus = cleaned.startsWith('+');
+    const digits = cleaned.replace(/\D/g, '');
+
+    if (hasLeadingPlus && digits.length >= 8 && digits.length <= 15) {
+        return `+${digits}`;
+    }
+
+    if (digits.length === 11 && (digits.startsWith('7') || digits.startsWith('8'))) {
+        return `+7${digits.slice(1)}`;
+    }
+
+    if (digits.length === 10) {
+        return `+7${digits}`;
+    }
+
+    if (!hasLeadingPlus && digits.length >= 8 && digits.length <= 15) {
+        return `+${digits}`;
+    }
+
+    return null;
+};
+
 const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
     const {
         badge = 'Свяжитесь с нами',
@@ -25,13 +73,53 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
         privacy: "Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности"
     };
 
-    const [status, setStatus] = useState('idle'); // idle, submitting, success
+    const [status, setStatus] = useState<SubmissionStatus>('idle');
+    const [name, setName] = useState('');
+    const [phoneInput, setPhoneInput] = useState('');
+    const [errorText, setErrorText] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus('submitting');
-        // Simulate API call
-        setTimeout(() => setStatus('success'), 1500);
+        setErrorText('');
+
+        try {
+            const normalizedPhone = normalizeKzPhone(phoneInput);
+            if (!normalizedPhone) {
+                throw new Error('Введите корректный номер телефона (например: +77771234567)');
+            }
+
+            const response = await fetch('/api/whatsapp-lead', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name.trim(),
+                    phone: normalizedPhone
+                })
+            });
+
+            if (!response.ok) {
+                const payload = await response.json().catch(() => ({}));
+                throw new Error(payload?.error || 'Failed to send request');
+            }
+
+            setStatus('success');
+            setName('');
+            setPhoneInput('');
+        } catch (error) {
+            setStatus('error');
+            setErrorText(error instanceof Error ? error.message : 'Failed to send request');
+        }
+    };
+
+    const handlePhoneChange = (value: string) => {
+        setPhoneInput(sanitizePhoneInput(value));
+        if (status === 'error') {
+            setStatus('idle');
+            setErrorText('');
+        }
     };
 
     return (
@@ -94,6 +182,8 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                                             <input
                                                 type="text"
                                                 required
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
                                                 placeholder={uiForm.namePlaceholder}
                                                 className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-300"
                                             />
@@ -103,7 +193,14 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                                             <input
                                                 type="tel"
                                                 required
-                                                placeholder="+7 (700) 000-00-00"
+                                                value={phoneInput}
+                                                onChange={(e) => handlePhoneChange(e.target.value)}
+                                                onPaste={(e) => {
+                                                    e.preventDefault();
+                                                    handlePhoneChange(e.clipboardData.getData('text'));
+                                                }}
+                                                inputMode="tel"
+                                                placeholder="+7 700 000 00 00"
                                                 className="w-full px-6 py-4 rounded-xl bg-white border border-slate-200 focus:border-[#007f94] focus:ring-4 focus:ring-[#007f94]/20 outline-none transition-all font-medium text-slate-900 placeholder:text-slate-300"
                                             />
                                         </div>
@@ -125,6 +222,9 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                                         <p className="text-center text-xs text-slate-400 mt-4">
                                             {uiForm.privacy}
                                         </p>
+                                        {status === 'error' && (
+                                            <p className="text-center text-sm text-red-600 mt-2">{errorText}</p>
+                                        )}
                                     </motion.form>
                                 )}
                             </AnimatePresence>
