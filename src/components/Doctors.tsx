@@ -75,14 +75,16 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                             {/* Image Container */}
                             <div
                                 onClick={() => setSelectedDoctor(doc)}
-                                className="w-full aspect-[4/5] md:aspect-[3/4] mb-3 md:mb-8 overflow-hidden rounded-[1.2rem] md:rounded-[2.5rem] bg-slate-200 relative shadow-sm md:shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                                className="w-full aspect-[4/5] md:aspect-[3/4] mb-3 md:mb-8 overflow-hidden rounded-[1.2rem] md:rounded-[2.5rem] bg-[#F3F3F3] relative shadow-sm md:shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer"
                             >
-                                <img
-                                    src={doc.image}
-                                    alt={doc.name}
-                                    className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
-                                    onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800'}
-                                />
+                                {doc.image ? (
+                                    <img
+                                        src={doc.image}
+                                        alt={doc.name}
+                                        className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                                        onError={(e) => e.currentTarget.src = 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=800'}
+                                    />
+                                ) : null}
                                 {/* Hover Overlay */}
                                 <div className="absolute inset-0 bg-[#007f94]/0 group-hover:bg-[#007f94]/15 transition-all duration-500 flex items-center justify-center">
                                     <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-[10px] md:text-xs font-semibold uppercase tracking-widest text-[#007f94] shadow-xl opacity-0 scale-90 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500">
