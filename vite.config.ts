@@ -36,26 +36,29 @@ function formatAlmatyNow(): string {
 
 function normalizeKzPhone(input: string): string | null {
   const raw = String(input || '').trim()
-  const hasLeadingPlus = raw.startsWith('+')
   const digits = raw.replace(/\D/g, '')
 
-  if (hasLeadingPlus && digits.length >= 8 && digits.length <= 15) {
-    return `+${digits}`
-  }
-
-  if (digits.length === 11 && (digits.startsWith('7') || digits.startsWith('8'))) {
-    return `+7${digits.slice(1)}`
-  }
-
-  if (digits.length === 10) {
-    return `+7${digits}`
-  }
-
-  if (!hasLeadingPlus && digits.length >= 8 && digits.length <= 15) {
+  if (digits.length >= 8 && digits.length <= 15) {
     return `+${digits}`
   }
 
   return null
+}
+
+function normalizeRecipientPhone(input: string): string | null {
+  const digits = String(input || '').replace(/\D/g, '')
+
+  if (digits.length < 8 || digits.length > 15) {
+    return null
+  }
+
+  return digits
+}
+
+function maskPhone(input: string): string {
+  const digits = String(input || '').replace(/\D/g, '')
+  if (digits.length <= 4) return digits
+  return `${'*'.repeat(digits.length - 4)}${digits.slice(-4)}`
 }
 
 function whatsappDevApiPlugin(): Plugin {
@@ -64,6 +67,13 @@ function whatsappDevApiPlugin(): Plugin {
     apply: 'serve',
     configureServer(server) {
       server.middlewares.use('/api/whatsapp-lead', async (req, res) => {
+        const traceId = `wa-dev-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
+
+        console.log('[whatsapp-dev-api] Incoming request', {
+          traceId,
+          method: req.method
+        })
+
         if (req.method !== 'POST') {
           res.statusCode = 405
           res.setHeader('Content-Type', 'application/json')
@@ -108,12 +118,32 @@ function whatsappDevApiPlugin(): Plugin {
         const env = { ...fileEnv, ...process.env }
         const accessToken = env.API_WHATSAPP || env['API-WHATSAPP']
         const phoneNumberId = env.PHONE_NUMBER_ID || '1055384357659254'
-        const toNumber = (env.WHATSAPP_TO_NUMBER || env.WHATSAPP_RECIPIENT || '787757401405').replace(/\D/g, '')
+        const rawRecipientPhone = env.WHATSAPP_TO_NUMBER || env.WHATSAPP_RECIPIENT || '787757401405'
+        const recipientPhone = normalizeRecipientPhone(rawRecipientPhone)
+
+        console.log('[whatsapp-dev-api] Normalized payload', {
+          traceId,
+          normalizedPhone,
+          recipientPhone: recipientPhone ? maskPhone(recipientPhone) : null,
+          phoneNumberId,
+          hasAccessToken: Boolean(accessToken)
+        })
 
         if (!accessToken) {
           res.statusCode = 500
           res.setHeader('Content-Type', 'application/json')
           res.end(JSON.stringify({ error: 'WhatsApp API token is missing' }))
+          return
+        }
+
+        if (!recipientPhone) {
+          res.statusCode = 500
+          res.setHeader('Content-Type', 'application/json')
+          res.end(
+            JSON.stringify({
+              error: 'WhatsApp recipient number is invalid. Check WHATSAPP_TO_NUMBER or WHATSAPP_RECIPIENT env variable.'
+            })
+          )
           return
         }
 
@@ -133,16 +163,35 @@ function whatsappDevApiPlugin(): Plugin {
             },
             body: JSON.stringify({
               messaging_product: 'whatsapp',
-              to: toNumber,
-              type: 'text',
-              text: {
-                preview_url: false,
-                body: messageText
+              to: recipientPhone,
+              type: 'template',
+              template: {
+                name: 'new_lead_from_site',
+                language: { code: 'ru' },
+                components: [
+                  {
+                    type: 'body',
+                    parameters: [
+                      { type: 'text', text: String(name).trim() || 'Клиент' },
+                      { type: 'text', text: normalizedPhone || 'Без телефона' }
+                    ]
+                  }
+                ]
               }
             })
           })
 
           const payload = await response.json()
+
+          console.log('[whatsapp-dev-api] Meta response', {
+            traceId,
+            status: response.status,
+            ok: response.ok,
+            error: payload?.error?.message || null,
+            messageId: payload?.messages?.[0]?.id || null,
+            messageStatus: payload?.messages?.[0]?.message_status || payload?.messages?.[0]?.status || null
+          })
+
           res.statusCode = response.status
           res.setHeader('Content-Type', 'application/json')
 
@@ -150,14 +199,34 @@ function whatsappDevApiPlugin(): Plugin {
             res.end(
               JSON.stringify({
                 error: payload?.error?.message || 'WhatsApp API request failed',
-                details: payload
+                details: payload,
+                debug: {
+                  traceId,
+                  recipientPhone: maskPhone(recipientPhone)
+                }
               })
             )
             return
           }
 
-          res.end(JSON.stringify({ ok: true, payload }))
+          res.end(
+            JSON.stringify({
+              ok: true,
+              payload,
+              debug: {
+                traceId,
+                recipientPhone: maskPhone(recipientPhone),
+                messageId: payload?.messages?.[0]?.id || null,
+                messageStatus: payload?.messages?.[0]?.message_status || payload?.messages?.[0]?.status || null
+              }
+            })
+          )
         } catch (error) {
+          console.error('[whatsapp-dev-api] Unexpected error', {
+            traceId,
+            message: error instanceof Error ? error.message : 'Unknown server error'
+          })
+
           res.statusCode = 500
           res.setHeader('Content-Type', 'application/json')
           res.end(

@@ -109,16 +109,16 @@ const Footer = ({ data, ui }: { data: any, ui?: any }) => {
                                     <HighlightedText text={address} />
                                 </span>
                             </motion.div>
-                            <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
-                                <Phone size={20} className="text-[#007f94] shrink-0" />
+                            <motion.div whileHover={{ x: 5 }} className="flex gap-4">
+                                <Phone size={20} className="text-[#007f94] shrink-0 mt-1" />
                                 <div className="flex flex-col">
-                                    <span className="text-slate-300 font-semibold">{phone}</span>
-                                    {data?.phone2 && <span className="text-slate-300 font-semibold mt-1">{data.phone2}</span>}
+                                    <a target="_blank" rel="noopener noreferrer" href={`https://wa.me/${String(phone).replace(/\D/g, '')}`} className="text-slate-300 font-semibold hover:text-[#007f94] transition-colors">{phone}</a>
+                                    {data?.phone2 && <a target="_blank" rel="noopener noreferrer" href={`https://wa.me/${String(data.phone2).replace(/\D/g, '')}`} className="text-slate-300 font-semibold mt-1 hover:text-[#007f94] transition-colors">{data.phone2}</a>}
                                 </div>
                             </motion.div>
-                            <motion.div whileHover={{ x: 5 }} className="flex gap-4 cursor-default">
+                            <motion.div whileHover={{ x: 5 }} className="flex gap-4">
                                 <Mail size={20} className="text-[#007f94] shrink-0" />
-                                <span className="text-slate-300">info@reactive.kz</span>
+                                <a href="mailto:info@reactiveclinic.kz" className="text-slate-300 hover:text-[#007f94] transition-colors">info@reactiveclinic.kz</a>
                             </motion.div>
                         </div>
                     </div>

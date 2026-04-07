@@ -28,7 +28,7 @@ function getConfig() {
 
   const accessToken = env.API_WHATSAPP || env['API-WHATSAPP'];
   const phoneNumberId = env.PHONE_NUMBER_ID || '1055384357659254';
-  const toNumber = (env.WHATSAPP_TO_NUMBER || env.WHATSAPP_RECIPIENT || '787757401405').replace(/\D/g, '');
+  const toNumber = String(env.WHATSAPP_TO_NUMBER || env.WHATSAPP_RECIPIENT || '787757401405').replace(/\D/g, '');
 
   return { accessToken, phoneNumberId, toNumber };
 }
@@ -48,29 +48,40 @@ function formatAlmatyNow() {
 
 function normalizeKzPhone(input) {
   const raw = String(input || '').trim();
-  const hasLeadingPlus = raw.startsWith('+');
   const digits = raw.replace(/\D/g, '');
 
-  if (hasLeadingPlus && digits.length >= 8 && digits.length <= 15) {
-    return `+${digits}`;
-  }
-
-  if (digits.length === 11 && (digits.startsWith('7') || digits.startsWith('8'))) {
-    return `+7${digits.slice(1)}`;
-  }
-
-  if (digits.length === 10) {
-    return `+7${digits}`;
-  }
-
-  if (!hasLeadingPlus && digits.length >= 8 && digits.length <= 15) {
+  if (digits.length >= 8 && digits.length <= 15) {
     return `+${digits}`;
   }
 
   return null;
 }
 
+function normalizeRecipientPhone(input) {
+  const digits = String(input || '').replace(/\D/g, '');
+
+  if (digits.length < 8 || digits.length > 15) {
+    return null;
+  }
+
+  return digits;
+}
+
+function maskPhone(input) {
+  const digits = String(input || '').replace(/\D/g, '');
+  if (digits.length <= 4) return digits;
+  return `${'*'.repeat(digits.length - 4)}${digits.slice(-4)}`;
+}
+
 export default async function handler(req, res) {
+  const traceId = `wa-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+
+  console.log('[whatsapp-lead] Incoming request', {
+    traceId,
+    method: req.method,
+    hasBody: Boolean(req.body)
+  });
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -85,10 +96,26 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid phone format. Use international format, e.g. +77771234567' });
   }
 
-  const { accessToken, phoneNumberId, toNumber } = getConfig();
+  const { accessToken, phoneNumberId, toNumber: rawRecipientPhone } = getConfig();
+  const recipientPhone = normalizeRecipientPhone(rawRecipientPhone);
+
+  console.log('[whatsapp-lead] Normalized payload', {
+    traceId,
+    nameLength: String(name).trim().length,
+    normalizedPhone,
+    recipientPhone,
+    phoneNumberId,
+    hasAccessToken: Boolean(accessToken)
+  });
 
   if (!accessToken) {
     return res.status(500).json({ error: 'WhatsApp API token is missing' });
+  }
+
+  if (!recipientPhone) {
+    return res.status(500).json({
+      error: 'WhatsApp recipient number is invalid. Check WHATSAPP_TO_NUMBER or WHATSAPP_RECIPIENT env variable.'
+    });
   }
 
   const messageText = [
@@ -107,16 +134,33 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         messaging_product: 'whatsapp',
-        to: toNumber,
-        type: 'text',
-        text: {
-          preview_url: false,
-          body: messageText
+        to: recipientPhone,
+        type: 'template',
+        template: {
+          name: 'new_lead_from_site',
+          language: { code: 'ru' },
+          components: [
+            {
+              type: 'body',
+              parameters: [
+                { type: 'text', text: String(name).trim() || 'Клиент' },
+                { type: 'text', text: normalizedPhone || 'Без телефона' }
+              ]
+            }
+          ]
         }
       })
     });
 
     const payload = await response.json();
+
+    console.log('[whatsapp-lead] Meta response', {
+      traceId,
+      status: response.status,
+      ok: response.ok,
+      error: payload?.error?.message || null,
+      messageId: payload?.messages?.[0]?.id || null
+    });
 
     if (!response.ok) {
       return res.status(response.status).json({
@@ -125,8 +169,22 @@ export default async function handler(req, res) {
       });
     }
 
-    return res.status(200).json({ ok: true, payload });
+    return res.status(200).json({
+      ok: true,
+      payload,
+      debug: {
+        traceId,
+        recipientPhone: maskPhone(recipientPhone),
+        messageId: payload?.messages?.[0]?.id || null,
+        messageStatus: payload?.messages?.[0]?.message_status || payload?.messages?.[0]?.status || null
+      }
+    });
   } catch (error) {
+    console.error('[whatsapp-lead] Unexpected error', {
+      traceId,
+      message: error instanceof Error ? error.message : 'Unknown server error'
+    });
+
     return res.status(500).json({
       error: error instanceof Error ? error.message : 'Unknown server error'
     });

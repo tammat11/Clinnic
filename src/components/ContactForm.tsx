@@ -12,39 +12,14 @@ const sanitizePhoneInput = (input: string): string => {
 
     if (!digits) return '';
 
-    if (hasLeadingPlus) {
-        return `+${digits}`;
-    }
-
-    if (digits.startsWith('8')) {
-        return `+7${digits.slice(1)}`;
-    }
-
-    if (digits.startsWith('7')) {
-        return `+${digits}`;
-    }
-
-    return digits;
+    return `+${digits}`;
 };
 
 const normalizeKzPhone = (input: string): string | null => {
     const cleaned = sanitizePhoneInput(input);
-    const hasLeadingPlus = cleaned.startsWith('+');
     const digits = cleaned.replace(/\D/g, '');
 
-    if (hasLeadingPlus && digits.length >= 8 && digits.length <= 15) {
-        return `+${digits}`;
-    }
-
-    if (digits.length === 11 && (digits.startsWith('7') || digits.startsWith('8'))) {
-        return `+7${digits.slice(1)}`;
-    }
-
-    if (digits.length === 10) {
-        return `+7${digits}`;
-    }
-
-    if (!hasLeadingPlus && digits.length >= 8 && digits.length <= 15) {
+    if (digits.length >= 8 && digits.length <= 15) {
         return `+${digits}`;
     }
 
@@ -89,6 +64,11 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                 throw new Error('Введите корректный номер телефона (например: +77771234567)');
             }
 
+            console.log('[ContactForm] Submitting WhatsApp lead', {
+                nameLength: name.trim().length,
+                normalizedPhone
+            });
+
             const response = await fetch('/api/whatsapp-lead', {
                 method: 'POST',
                 headers: {
@@ -100,8 +80,21 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
                 })
             });
 
+            const payload = await response.json().catch(() => ({}));
+
+            console.log('[ContactForm] WhatsApp lead response', {
+                status: response.status,
+                ok: response.ok,
+                payload
+            });
+
             if (!response.ok) {
-                const payload = await response.json().catch(() => ({}));
+                const knownError = typeof payload?.error === 'string' ? payload.error : '';
+
+                if (knownError.includes('Recipient phone number not in allowed list')) {
+                    throw new Error('WhatsApp test mode: номер получателя не добавлен в allow list в Meta (или добавлен в другом формате).');
+                }
+
                 throw new Error(payload?.error || 'Failed to send request');
             }
 
@@ -109,6 +102,7 @@ const ContactForm = ({ data, ui }: { data: any, ui?: any }) => {
             setName('');
             setPhoneInput('');
         } catch (error) {
+            console.error('[ContactForm] WhatsApp lead failed', error);
             setStatus('error');
             setErrorText(error instanceof Error ? error.message : 'Failed to send request');
         }

@@ -345,7 +345,7 @@ const Directions = ({ data, ui }: { data: any, ui?: any }) => {
                                     onClick={() => setSelectedService(null)}
                                     className="w-full py-3 bg-[#007f94] text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-[#007f94]/20"
                                 >
-                                    Закрыть
+                                    {ui?.footer?.modalClose || 'Закрыть'}
                                 </button>
                             </div>
                         </motion.div>
