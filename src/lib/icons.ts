@@ -22,7 +22,10 @@ import {
     Flower2,
     Apple,
     Baby,
-    Waves
+    Waves,
+    ScanFace,
+    Brain,
+    ShieldPlus
 } from 'lucide-react';
 
 export const ICON_POOL: any = {
@@ -49,7 +52,10 @@ export const ICON_POOL: any = {
     Flower2,
     Apple,
     Baby,
-    Waves
+    Waves,
+    ScanFace,
+    Brain,
+    ShieldPlus
 };
 
 export type IconName = keyof typeof ICON_POOL;
@@ -77,5 +83,8 @@ export const AVAILABLE_ICONS: IconName[] = [
     'Flower2',
     'Apple',
     'Baby',
-    'Waves'
+    'Waves',
+    'ScanFace',
+    'Brain',
+    'ShieldPlus'
 ];

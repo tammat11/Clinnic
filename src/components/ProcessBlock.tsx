@@ -12,6 +12,8 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
         ctaTitle = 'Получите второе мнение \n бесценного уровня',
         ctaDesc = 'Запишитесь на консультацию сегодня и получите персональный план лечения в течение 24 часов.',
         ctaButton = 'Записаться сейчас',
+        ctaContactLabel = 'Contact us for more details:',
+        ctaContactEmail = 'international@reactiveclinic.kz',
         image = 'https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&q=80&w=800',
         titleSize = 48,
         descSize = 18,
@@ -166,6 +168,15 @@ const ProcessBlock = ({ data, ui }: { data: any, ui?: any }) => {
                                     </a>
                                 </Magnetic>
                             </div>
+                            <p className="mt-4 text-sm md:text-base font-medium text-slate-300">
+                                {ctaContactLabel}{' '}
+                                <a
+                                    href={`mailto:${ctaContactEmail}`}
+                                    className="text-white underline decoration-[#007f94] decoration-2 underline-offset-4 transition-colors hover:text-[#7ee7f4]"
+                                >
+                                    {ctaContactEmail}
+                                </a>
+                            </p>
                         </div>
 
                         {/* Partners Display on Right */}

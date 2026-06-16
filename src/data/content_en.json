@@ -89,7 +89,9 @@
         "desc": "You receive a clear, structured action plan — from treatment strategy to lifestyle recommendations."
       }
     ],
-    "ctaTitleSize": -2
+    "ctaTitleSize": -2,
+    "ctaContactLabel": "Contact us for more details:",
+    "ctaContactEmail": "international@reactiveclinic.kz"
   },
   "trust": {
     "badge": "Why Patients Trust Us",
@@ -679,12 +681,12 @@
         "popup": {
           "text": "Our own expert-class laboratory. Prompt and highly accurate test results essential for making the correct diagnosis.",
           "services": [
-          "Comprehensive Blood & Urine Testing",
-          "Biochemistry & Organ Function Panels",
-          "Hormonal & Endocrine Laboratory Diagnostics",
-          "Infection, Immunology & PCR Testing",
-          "Vitamin, Mineral & Deficiency Screening",
-          "Preventive Check-up & Health Screening Panels"
+            "Comprehensive Blood & Urine Testing",
+            "Biochemistry & Organ Function Panels",
+            "Hormonal & Endocrine Laboratory Diagnostics",
+            "Infection, Immunology & PCR Testing",
+            "Vitamin, Mineral & Deficiency Screening",
+            "Preventive Check-up & Health Screening Panels"
           ]
         }
       },
@@ -1152,12 +1154,12 @@
         "popup": {
           "text": "A personalized approach to nutrition: for weight loss, treating gastrointestinal diseases, or improving quality of life without strict, painful limits.",
           "services": [
-          "Personalized Nutrition Counseling",
-          "Weight Management & Healthy Weight Loss Programs",
-          "Digestive Health & Therapeutic Diet Plans",
-          "Nutrition for Metabolic Disorders",
-          "Food Intolerance & Elimination Planning",
-          "Lifestyle Nutrition for Long-Term Wellness"
+            "Personalized Nutrition Counseling",
+            "Weight Management & Healthy Weight Loss Programs",
+            "Digestive Health & Therapeutic Diet Plans",
+            "Nutrition for Metabolic Disorders",
+            "Food Intolerance & Elimination Planning",
+            "Lifestyle Nutrition for Long-Term Wellness"
           ]
         }
       },
@@ -1168,12 +1170,12 @@
         "popup": {
           "text": "Professional medical massage to relax muscles, relieve spasms, and improve blood circulation. Performed by certified specialists.",
           "services": [
-          "Classic Massage",
-          "Anti-Stress Massage",
-          "Sports Massage",
-          "Face & Foot Massage",
-          "Thai Massage",
-          "Lymphatic Drainage Massage"
+            "Classic Massage",
+            "Anti-Stress Massage",
+            "Sports Massage",
+            "Face & Foot Massage",
+            "Thai Massage",
+            "Lymphatic Drainage Massage"
           ]
         }
       },
@@ -1247,6 +1249,22 @@
                 "Safe administration with post-vaccine monitoring"
               ]
             }
+          ]
+        }
+      },
+      {
+        "title": "HPV Prevention Program (Gardasil 9)",
+        "desc": "Comprehensive HPV prevention and vaccination support.",
+        "icon": "ShieldPlus",
+        "popup": {
+          "text": "A structured HPV prevention program with Gardasil 9 vaccination, education, and a personalized schedule for both females and males.",
+          "services": [
+            "Comprehensive HPV prevention strategy",
+            "Vaccination with Gardasil 9",
+            "Education on HPV-related diseases",
+            "Cervical cancer prevention support",
+            "Personalized vaccination schedule",
+            "Suitable for both females and males"
           ]
         }
       },
@@ -1346,6 +1364,88 @@
                 "Customized treatment plans",
                 "Prevents progression of hair loss",
                 "Suitable for early to moderate cases"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Dermatology Services",
+        "desc": "Diagnosis and treatment of skin, hair, and nail conditions.",
+        "icon": "ScanFace",
+        "popup": {
+          "text": "Comprehensive dermatology services for skin, hair, and nail health, from diagnosis and chronic condition management to minor procedures and aesthetic dermatology.",
+          "services": [
+            "General Dermatology Consultation",
+            "Acne & Rosacea Treatment",
+            "Skin Lesion & Mole Assessment",
+            "Hair & Scalp Disorders",
+            "Eczema, Psoriasis & Chronic Skin Conditions",
+            "Dermatologic Procedures",
+            "Aesthetic Dermatology"
+          ],
+          "servicesDetails": [
+            {
+              "name": "General Dermatology Consultation",
+              "items": [
+                "Diagnosis and treatment of skin, hair, and nail conditions",
+                "Comprehensive skin examination",
+                "Personalized treatment plans",
+                "Preventive skin health recommendations"
+              ]
+            },
+            {
+              "name": "Acne & Rosacea Treatment",
+              "items": [
+                "Treatment of mild to severe acne",
+                "Management of rosacea and facial redness",
+                "Customized skincare recommendations",
+                "Scar prevention and long-term control strategies"
+              ]
+            },
+            {
+              "name": "Skin Lesion & Mole Assessment",
+              "items": [
+                "Evaluation of moles, skin growths, and pigmented lesions",
+                "Early detection of suspicious skin changes",
+                "Dermatoscopic examination",
+                "Referral for removal or biopsy when indicated"
+              ]
+            },
+            {
+              "name": "Hair & Scalp Disorders",
+              "items": [
+                "Diagnosis of hair loss and thinning",
+                "Assessment of scalp conditions and inflammation",
+                "Treatment plans for alopecia and shedding",
+                "PRP and supportive therapies when appropriate"
+              ]
+            },
+            {
+              "name": "Eczema, Psoriasis & Chronic Skin Conditions",
+              "items": [
+                "Management of inflammatory skin diseases",
+                "Reduction of itching, redness, and flare-ups",
+                "Long-term treatment planning",
+                "Lifestyle and trigger management guidance"
+              ]
+            },
+            {
+              "name": "Dermatologic Procedures",
+              "items": [
+                "Removal of skin tags, warts, and benign lesions",
+                "Cryotherapy and minor dermatologic procedures",
+                "Scar and skin texture improvement options",
+                "Performed under medical supervision"
+              ]
+            },
+            {
+              "name": "Aesthetic Dermatology",
+              "items": [
+                "Skin rejuvenation treatments",
+                "Chemical peels and advanced skincare",
+                "Anti-aging consultations",
+                "Personalized cosmetic treatment plans"
               ]
             }
           ]
@@ -1468,6 +1568,78 @@
                 "Skin rejuvenation procedures",
                 "Facial contouring without surgery",
                 "Maintenance of surgical results"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "title": "Neurology Services",
+        "desc": "Diagnosis and treatment of nervous system conditions.",
+        "icon": "Brain",
+        "popup": {
+          "text": "Comprehensive neurology care for headaches, dizziness, sensory changes, spine-related nerve symptoms, cognitive concerns, and movement disorders.",
+          "services": [
+            "Headache & Migraine Management",
+            "Dizziness & Balance Disorders",
+            "Nerve & Neuropathy Assessment",
+            "Spine-Related Neurological Conditions",
+            "Memory & Cognitive Health Evaluation",
+            "Movement Disorders Consultation"
+          ],
+          "servicesDetails": [
+            {
+              "name": "Headache & Migraine Management",
+              "items": [
+                "Diagnosis of migraines and chronic headaches",
+                "Identification of triggers and contributing factors",
+                "Individualized treatment strategies",
+                "Prevention and symptom control programs"
+              ]
+            },
+            {
+              "name": "Dizziness & Balance Disorders",
+              "items": [
+                "Evaluation of vertigo and balance problems",
+                "Neurological assessment and diagnosis",
+                "Treatment and rehabilitation recommendations",
+                "Fall prevention strategies"
+              ]
+            },
+            {
+              "name": "Nerve & Neuropathy Assessment",
+              "items": [
+                "Evaluation of numbness, tingling, and weakness",
+                "Diagnosis of peripheral nerve disorders",
+                "Diabetic and compression neuropathy assessment",
+                "Treatment planning and monitoring"
+              ]
+            },
+            {
+              "name": "Spine-Related Neurological Conditions",
+              "items": [
+                "Assessment of nerve compression and radiculopathy",
+                "Neck and back pain with neurological symptoms",
+                "Sciatica and disc-related nerve issues",
+                "Conservative treatment recommendations"
+              ]
+            },
+            {
+              "name": "Memory & Cognitive Health Evaluation",
+              "items": [
+                "Assessment of memory and concentration concerns",
+                "Early cognitive screening",
+                "Neurological examination and monitoring",
+                "Recommendations for further evaluation when needed"
+              ]
+            },
+            {
+              "name": "Movement Disorders Consultation",
+              "items": [
+                "Evaluation of tremors and involuntary movements",
+                "Parkinsonian symptom assessment",
+                "Functional movement analysis",
+                "Long-term neurological care planning"
               ]
             }
           ]
