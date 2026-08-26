@@ -16,6 +16,7 @@ import AdminPanel from './components/admin/AdminPanel';
 import AdminLogin from './components/admin/AdminLogin';
 import Specialists from './components/Specialists';
 import Reviews from './components/Reviews';
+import NewsPromo from './components/NewsPromo';
 
 function App() {
     const { content, updateContent, language, setLanguage } = useContent();
@@ -55,6 +56,7 @@ function App() {
 
     const componentsMap: { [key: string]: React.FC<any> } = {
         hero: Hero,
+        news: NewsPromo,
         values: ValueBlock,
         process: ProcessBlock,
         trust: WhyDifferent,

@@ -91,6 +91,14 @@ export const useContent = () => {
                         // Keep user-defined order, but append any newly introduced sections.
                         const missingSections = currentDefault.sectionsOrder.filter((id: string) => !merged.sectionsOrder.includes(id));
                         merged.sectionsOrder = [...merged.sectionsOrder, ...missingSections];
+
+                        // The campaign card is intentionally placed directly below the intro,
+                        // including for visitors who already have an older section order saved.
+                        if (missingSections.includes('news')) {
+                            merged.sectionsOrder = merged.sectionsOrder.filter((id: string) => id !== 'news');
+                            const heroIndex = merged.sectionsOrder.indexOf('hero');
+                            merged.sectionsOrder.splice(heroIndex >= 0 ? heroIndex + 1 : 0, 0, 'news');
+                        }
                     }
                     return merged;
                 }
@@ -145,4 +153,3 @@ export const useContent = () => {
 
     return { content, updateContent, reorderSections, language, setLanguage };
 };
-
