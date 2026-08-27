@@ -22,7 +22,7 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
     const items = doctorsList || [];
 
     const getDoctorImage = (doctor: any) =>
-        doctor.name === 'Лейла Гечгиль' ? '/doctors/doctor-8-1.png' : doctor.image;
+        doctor.id === '1771185819338' ? '/doctors/doctor-8-1.png' : doctor.image;
 
     const visibleItems = showAll ? items : items.slice(0, 3);
 
@@ -85,7 +85,7 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                                         src={getDoctorImage(doc)}
                                         alt={doc.name}
                                         className={`w-full h-full object-cover object-top transition-transform duration-700 ease-out ${
-                                            doc.name === 'Лейла Гечгиль'
+                                            doc.id === '1771185819338'
                                                 ? 'object-contain scale-[1.25] translate-y-12 group-hover:scale-[1.3]'
                                                 : doc.image === '/d2.png' 
                                                 ? 'scale-[1.25] mt-3 group-hover:scale-[1.35]' 
@@ -182,7 +182,7 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                                     src={getDoctorImage(selectedDoctor)}
                                     alt={selectedDoctor.name}
                                     className={`absolute inset-0 w-full h-full object-cover object-top ${
-                                        selectedDoctor.name === 'Лейла Гечгиль' ? 'object-contain scale-[1.25] translate-y-12' : ''
+                                        selectedDoctor.id === '1771185819338' ? 'object-contain scale-[1.25] translate-y-12' : ''
                                     }`}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent md:hidden" />
