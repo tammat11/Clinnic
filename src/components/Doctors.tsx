@@ -21,6 +21,9 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
 
     const items = doctorsList || [];
 
+    const getDoctorImage = (doctor: any) =>
+        doctor.name === 'Лейла Гечгиль' ? '/doctors/doctor-8-1.png' : doctor.image;
+
     const visibleItems = showAll ? items : items.slice(0, 3);
 
     return (
@@ -79,10 +82,12 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                             >
                                 {doc.image ? (
                                     <img 
-                                        src={doc.image}
+                                        src={getDoctorImage(doc)}
                                         alt={doc.name}
                                         className={`w-full h-full object-cover object-top transition-transform duration-700 ease-out ${
-                                            doc.image === '/d2.png' 
+                                            doc.name === 'Лейла Гечгиль'
+                                                ? 'object-contain scale-[1.25] translate-y-12 group-hover:scale-[1.3]'
+                                                : doc.image === '/d2.png' 
                                                 ? 'scale-[1.25] mt-3 group-hover:scale-[1.35]' 
                                                 : 'group-hover:scale-110'
                                         }`}
@@ -174,9 +179,11 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
                             {/* Image Part */}
                             <div className="w-full md:w-[40%] aspect-[4/5] md:aspect-auto relative bg-slate-100">
                                 <img
-                                    src={selectedDoctor.image}
+                                    src={getDoctorImage(selectedDoctor)}
                                     alt={selectedDoctor.name}
-                                    className="absolute inset-0 w-full h-full object-cover object-top"
+                                    className={`absolute inset-0 w-full h-full object-cover object-top ${
+                                        selectedDoctor.name === 'Лейла Гечгиль' ? 'object-contain scale-[1.25] translate-y-12' : ''
+                                    }`}
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent md:hidden" />
                             </div>
@@ -238,4 +245,3 @@ const Doctors = ({ data, ui }: { data: any, ui?: any }) => {
 };
 
 export default Doctors;
-
